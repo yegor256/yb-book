@@ -21,13 +21,15 @@
 % SOFTWARE.
 
 \documentclass[cover]{./ybook}
-\renewcommand*\theversion{\input{VERSION}}
-\renewcommand*\theinceptionyear{2021}
+\renewcommand*\theauthor{\nospell{Yegor Bugayenko}}
+\renewcommand*\theversion{\input{VERSION.txt}}
+\renewcommand*\theyear{2021}
 \renewcommand*\thevolume{1}
+\renewcommand*\theprice{\$0.99}
 \renewcommand*\thespinetext{new book, vol.1}
 \renewcommand*\thetitle{A New Book}
-\renewcommand*\theimage{images/logo}
+\renewcommand*\theimage{images/cactus}
 \renewcommand*\thetldr{This \LaTeX{} class helps me design and publish books on Amazon.}
 \begin{document}
-\ybPrintCover
+\ybPrintCover{}
 \end{document}

@@ -22,9 +22,9 @@
 
 .ONESHELL:
 
-all: ybook.pdf zip
+all: ybook.pdf cover.pdf zip
 
-ybook.pdf: ybook.tex ybook.cls
+%.pdf: %.tex ybook.cls
 	latexmk -pdf $<
 	texsc $<
 	texqc --ignore 'You have requested document class' $<

@@ -25,6 +25,8 @@
 
 \newif\ifdraft
 \DeclareOption{draft}{\drafttrue}
+\newif\ifcover
+\DeclareOption{cover}{\covertrue}
 \ProcessOptions\relax
 
 \ifdraft
@@ -37,6 +39,7 @@
 
 \RequirePackage[T2A,T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage{anyfontsize}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
   \usetikzlibrary{shapes}
@@ -118,8 +121,6 @@
 \fi
 
 \ifdraft
-  \RequirePackage[absolute]{textpos}
-    \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
     \pagestyle{fancy}
     \renewcommand\headrulewidth{0pt}
@@ -256,14 +257,87 @@
   \fi%
 }
 
+\makeatletter\newcommand{\exec}[3][1=]{%
+  \begingroup
+  \let\%\@percentchar
+  \let\{\@charlb
+  \let\}\@charrb
+  \ShellEscape{#3 > #2}%
+  \endgroup%
+  \ifthenelse{\isempty{#1}}{\input{#2}}{}%
+}\makeatother
+\makeatletter\let\primitiveinput\@@input\makeatother%
+\ifcover
+  \exec[noprint]{totalpages.exc}{qpdf --show-npages ybook.pdf | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
+  \newcommand{\totalpages}{\primitiveinput totalpages.exc }%
+  % The height of the page is 9 inches plus 0.125 "bleed" on top and
+  % on the bottom.
+  % Check this doc: https://kdp.amazon.com/en_US/help/topic/G201953020
+  \newlength{\ybpageheight}%
+  \setlength{\ybpageheight}{0.125in + 9in + 0.125in}%
+  % The width is 6 inches plus 0.125 "bleed" on each side. The width of the
+  % "spine" depends on the amount of pages in the book. Also, there is a
+  %
+  \newlength{\ybpagewidth}%
+  \setlength{\ybpagewidth}{0.125in + 6in + 0.0025in * \totalpages + 6in + 0.125in}%
+  \geometry{paperwidth=\ybpagewidth,paperheight=\ybpageheight,left=0pt,right=0pt,top=0pt,bottom=0pt}
+\fi
+
+\newcommand\ybPrintCover{%
+  \setlength{\parskip}{0pt}%
+  \ttfamily%
+  \begin{textblock}{2.4}[0.5,0](8,0)
+    \begin{tikzpicture}
+      \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
+    \end{tikzpicture}
+  \end{textblock}
+  \begin{textblock}{2.4}[0.5,1](8,14)
+    \centerline{\includegraphics[width=0.32in]{images/signature}}
+  \end{textblock}
+  \begin{textblock}{1}[0.5,0](8,2)
+    \begin{tikzpicture}
+      \node [color=white, inner sep=0cm, outer sep=0cm, rotate=270, minimum height=\TPHorizModule] at (0,0) {
+        \textbf{\Large \thespinetext{}}
+      };
+    \end{tikzpicture}
+  \end{textblock}
+  \begin{textblock}{5}(10,9)
+    \fontsize{32}{32}\selectfont\textbf{\thetitle{}}
+  \end{textblock}
+  \begin{textblock}{4}(10,10)
+    \large\textbf{by \theauthor{}}
+  \end{textblock}
+  \begin{textblock}{5}(10,11)
+    \raggedright
+    TL;DR \thetldr{}
+  \end{textblock}
+  \begin{textblock}{4}[0,1](10,14)
+    \theversion{}
+    \quad
+    \exec[]{date.exc}{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
+  \end{textblock}
+  \begin{textblock}{4}[0,1](1,14)
+    \small (c)
+    \ifdefempty{\theyear{}}{}{\theyear{}-}\the\year{} \theauthor{}
+  \end{textblock}
+  \begin{textblock}{4}[0,1](1,2)
+    \small \theprice{}
+  \end{textblock}
+  \ifdefempty{\thevolume}{}{
+    \begin{textblock}{2}[1,1](15,14)
+      \raggedleft
+      \includegraphics[height=0.4in]{images/volume-\thevolume}
+    \end{textblock}
+  }
+  \begin{textblock}{4}(10,2)
+    \includegraphics[width=\textwidth]{\theimage}
+  \end{textblock}
+}
+
+\RequirePackage[absolute]{textpos}
+  \TPGrid{16}{16}
+
 \AtBeginDocument{
-  \makeatletter\newcommand{\exec}[1]{%
-    \begingroup%
-    \let\%\@percentchar%
-    \ShellEscape{#1 2>&1 > target/exec.tex}%
-    \endgroup%
-    \input{target/exec.tex}%
-  }\makeatother%
   \raggedbottom%
   \setlength\topskip{0mm}
   \setlength\parindent{0pt}
@@ -293,11 +367,16 @@
   \edef\shortenurl{\@@input /tmp/shorten.tex }
   \makeatother}
 
-\newcommand*\thetitle{Sample Book}
+\newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
 \newcommand*\thedate{}
-\newcommand*\theversion{}
-\newcommand*\theauthor{\nospell{Yegor Bugayenko}}
-\newcommand*\thereviewer{Mr.~Anonymous}
+\newcommand*\theversion{\textbackslash{}theversion}
+\newcommand*\theauthor{\textbackslash{}theauthor}
+\newcommand*\thereviewer{\textbackslash{}thereviewer}
+\newcommand*\theyear{\textbackslash{}theyear}
+\newcommand*\theprice{\textbackslash{}theprice}
+\newcommand*\thespinetext{\textbackslash{}thespinetext}
+\newcommand*\theimage{images/cactus}
+\newcommand*\thetldr{You have to renew the \ff{\textbackslash{}thetldr} command in order to change this text.}
 
 \endinput
