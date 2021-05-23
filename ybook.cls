@@ -28,28 +28,68 @@
 \DeclareOptionX{draft}{\drafttrue}
 \newif\ifcompact
 \DeclareOptionX{compact}{\compacttrue}
+\newif\ifmanuscript
+\DeclareOptionX{manuscript}{\manuscripttrue}
 \newif\ifcover
 \DeclareOptionX{cover}{\covertrue\newcommand*\thebookpdf{#1}}
 \ProcessOptionsX
 
+\LoadClass{book}
+
+\RequirePackage{geometry}
 \ifdraft
-  \LoadClass[11pt,oneside]{book}
-  \RequirePackage[paperwidth=8.5in, paperheight=11in, bindingoffset=0.25in, left=0.75in, right=2in, top=0.75in, bottom=1.25in]{geometry}
+  \PassOptionsToClass{11pt}{book}
+  \PassOptionsToClass{oneside}{book}
+  \PassOptionsToClass{a4paper}{book}
 \else
-  \LoadClass[11pt,twoside]{book}
-  \RequirePackage[paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in]{geometry}
+  \ifmanuscript
+    \PassOptionsToClass{12pt}{book}
+    \PassOptionsToClass{oneside}{book}
+    \geometry{paperwidth=8.25in, paperheight=11.75in, left=1.2in, right=1.2in, top=1.2in, bottom=1.2in}
+  \else
+    \PassOptionsToClass{11pt}{book}
+    \PassOptionsToClass{twoside}{book}
+    \geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
+  \fi
 \fi
 
 \RequirePackage[T2A,T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{anyfontsize}
-\RequirePackage[indexing=cite,natbib=true]{biblatex}
+\RequirePackage[indexing=cite,style=authoryear,natbib=true,maxnames=1,minnames=1,doi=false,url=false,isbn=false,isbn=false]{biblatex}
+  \DeclareCiteCommand{\citetitle}
+    {\boolfalse{citetracker}%
+     \boolfalse{pagetracker}%
+     \usebibmacro{prenote}}
+    {\ifciteindex
+       {\indexnames{labelname}}
+       {}%
+     \printfield[citetitle]{labeltitle}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+  \DeclareCiteCommand*{\citetitle}
+    {\boolfalse{citetracker}%
+     \boolfalse{pagetracker}%
+     \usebibmacro{prenote}}
+    {\ifciteindex
+       {\indexnames{labelname}}
+       {}%
+     \printfield[citetitle]{title}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+\RequirePackage{imakeidx}
+  \renewbibmacro*{citeindex}{\indexnames{labelname}{}}
+  \makeindex
+  \indexsetup{othercode={\hyphenpenalty=10000}}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
   \usetikzlibrary{shapes}
   \usetikzlibrary{fit}
 \ifdraft\else
   \RequirePackage[letterspace=-50]{microtype}
+\fi
+\ifmanuscript
+  \RequirePackage{libertine}
 \fi
 \RequirePackage{soul} % in order to use \st{} to strikethrough
 \RequirePackage[autostyle=try]{csquotes}
@@ -72,7 +112,6 @@
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
 \RequirePackage{textcomp}
-\RequirePackage{imakeidx}
 \RequirePackage[inline]{enumitem}
   \setlist{nosep}
 \RequirePackage{float}
@@ -88,8 +127,6 @@
       \endgroup
     }%
   \endgroup\makeatother
-
-\makeindex\indexsetup{othercode={\hyphenpenalty=10000}}
 
 \RequirePackage{qrcode}
 \RequirePackage{wrapfig}
@@ -298,7 +335,13 @@
 \newcommand\ybPrintBibliography{%
   \AtNextBibliography{\small}%
   \raggedright%
-  \printbibliography
+  \ifmanuscript%
+    \setlength\bibitemsep{0pt}%
+    \newpage%
+    \begin{multicols}{2}\setrelativestretch{1.0}{\printbibliography}\end{multicols}
+  \else
+    \printbibliography
+  \fi
 }
 
 \newcommand\ybPrintCover{%
