@@ -360,6 +360,8 @@
   \RequirePackage{tcolorbox}
   \newtcbox{\codebox}{nobeforeafter,colframe=gray!80!white,colback=gray!5!white,boxrule=0.1pt,arc=1pt, boxsep=1.2pt,left=0.5pt,right=0.5pt,top=0.2pt,bottom=0.2pt,tcbox raise base}
 
+\newcommand\tbd[1]{\colorbox{yellow}{#1}}
+
 \newcommand{\shortenurl}{...}
 \newcommand{\shorten}[1]{%
   \immediate\write18{/code/books/src/shorten.rb #1 > /tmp/shorten.tex}%
