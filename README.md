@@ -1,5 +1,8 @@
 [![make](https://github.com/yegor256/huawei.cls/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/ybook/actions/workflows/make.yml)
 
+This LaTeX class I use to format [my books](https://www.yegor256.com/books.html) 
+I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
+
 First, [install it](https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages)
 from [CTAN](https://ctan.org/pkg/ybook) 
 and then use in the preamble:
@@ -13,8 +16,6 @@ and then use in the preamble:
 Hello, world!
 \end{document}
 ```
-
-You can use this class for your own book format too.
 
 If you want to contribute yourself, make a fork, then create a branch, 
 then run `make` in the root directory.
