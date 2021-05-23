@@ -47,14 +47,15 @@ zip: ybook.pdf ybook.cls
 	cp ../.latexmkrc .
 	latexmk -pdf ybook.tex
 	rm .latexmkrc
-	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out
+	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.idx *.ilg *.ind *.toc *.exc
 	mkdir ybook
 	mv * ybook
 	zip -r ybook.zip *
 	cp ybook.zip ..
 
 clean:
-	rm -rf .DS_Store *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out
+	rm -rf .DS_Store *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.idx *.ilg *.ind *.toc *.exc
 	rm -rf *.pdf
+	rm -rf *.zip
 	rm -rf package
 	rm -rf _minted*

@@ -14,9 +14,7 @@ Hello, world!
 \end{document}
 ```
 
-If you need more formatting options, 
-[submit an issue](https://github.com/yegor256/ybook/issues), 
-I'll implement them.
+You can use this class for your own book format too.
 
 If you want to contribute yourself, make a fork, then create a branch, 
 then run `make` in the root directory.
