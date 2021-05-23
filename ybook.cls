@@ -95,7 +95,7 @@
   \RequirePackage[letterspace=-50]{microtype}
 \fi
 \ifmanuscript
-  \RequirePackage{libertine}
+  \RequirePackage[tt=false,type1=true]{libertine}
 \fi
 \RequirePackage{soul} % in order to use \st{} to strikethrough
 \RequirePackage[autostyle=try]{csquotes}
