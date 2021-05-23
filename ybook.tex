@@ -46,6 +46,28 @@ Hello, world!
 \end{document}
 \end{listing}
 
+\section{Cover Page}
+
+A cover page must have a special formatting. You do it this way:
+
+\begin{listing}
+\documentclass[cover]{ybook}
+\renewcommand*\theauthor{Jeff Lebowski}
+\renewcommand*\theversion{0.1}
+\renewcommand*\theyear{2021}
+\renewcommand*\thevolume{1}
+\renewcommand*\theprice{\$14.99}
+\renewcommand*\thespinetext{new book, vol.1}
+\renewcommand*\thetitle{A New Book}
+\renewcommand*\theimage{images/cactus}
+\renewcommand*\thetldr{Put your TL;DR text here...}
+\begin{document}
+\ybPrintCover{}
+\end{document}\end{listing}
+
+The PDF file generated most likely will be accepted by Amazon without
+any questions.
+
 \section{Commands}
 
 There are a few new commands you may want to learn and use:
