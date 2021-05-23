@@ -48,10 +48,11 @@ Hello, world!
 
 \section{Cover Page}
 
-A cover page must have a special formatting. You do it this way:
+A cover page must have a special formatting. You do it this way
+(provided your book already exists in `book.pdf`):
 
 \begin{listing}
-\documentclass[cover]{ybook}
+\documentclass[cover=book.pdf]{ybook}
 \renewcommand*\theauthor{Jeff Lebowski}
 \renewcommand*\theversion{0.1}
 \renewcommand*\theyear{2021}

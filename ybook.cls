@@ -23,11 +23,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ybook}[00.00.0000 0.0.0 The Template for ybBranded Books]
 
+\RequirePackage{xkeyval}
 \newif\ifdraft
-\DeclareOption{draft}{\drafttrue}
+\DeclareOptionX{draft}{\drafttrue}
 \newif\ifcover
-\DeclareOption{cover}{\covertrue}
-\ProcessOptions\relax
+\DeclareOptionX{cover}{\covertrue\newcommand*\thebookpdf{#1}}
+\ProcessOptionsX
+
+% \newif\ifdraft
+% \DeclareOption{draft}{\drafttrue}
+% \newif\ifcover
+% \DeclareOption{cover}{\covertrue}
+% \ProcessOptions\relax
 
 \ifdraft
   \LoadClass[11pt,oneside]{book}
@@ -40,6 +47,7 @@
 \RequirePackage[T2A,T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{anyfontsize}
+\RequirePackage[indexing=cite,natbib=true]{biblatex}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
   \usetikzlibrary{shapes}
@@ -268,7 +276,7 @@
 }\makeatother
 \makeatletter\let\primitiveinput\@@input\makeatother%
 \ifcover
-  \exec[noprint]{totalpages.exc}{qpdf --show-npages ybook.pdf | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
+  \exec[noprint]{totalpages.exc}{qpdf --show-npages \thebookpdf | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
   \newcommand{\totalpages}{\primitiveinput totalpages.exc }%
   % The height of the page is 9 inches plus 0.125 "bleed" on top and
   % on the bottom.
@@ -282,6 +290,10 @@
   \setlength{\ybpagewidth}{0.125in + 6in + 0.0025in * \totalpages + 6in + 0.125in}%
   \geometry{paperwidth=\ybpagewidth,paperheight=\ybpageheight,left=0pt,right=0pt,top=0pt,bottom=0pt}
 \fi
+
+\newcommand\ybPrintBibliography{
+  \printbibliography
+}
 
 \newcommand\ybPrintCover{%
   \setlength{\parskip}{0pt}%
