@@ -1,6 +1,6 @@
 [![make](https://github.com/yegor256/huawei.cls/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/ybook/actions/workflows/make.yml)
 
-This LaTeX class I use to format [my books](https://www.yegor256.com/books.html) 
+This LaTeX class I use to format [my books](https://www.yegor256.com/books.html), which
 I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
 
 First, [install it](https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages)
