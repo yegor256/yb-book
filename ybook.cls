@@ -26,15 +26,11 @@
 \RequirePackage{xkeyval}
 \newif\ifdraft
 \DeclareOptionX{draft}{\drafttrue}
+\newif\ifcompact
+\DeclareOptionX{compact}{\compacttrue}
 \newif\ifcover
 \DeclareOptionX{cover}{\covertrue\newcommand*\thebookpdf{#1}}
 \ProcessOptionsX
-
-% \newif\ifdraft
-% \DeclareOption{draft}{\drafttrue}
-% \newif\ifcover
-% \DeclareOption{cover}{\covertrue}
-% \ProcessOptions\relax
 
 \ifdraft
   \LoadClass[11pt,oneside]{book}
@@ -125,7 +121,15 @@
 \ifdraft
   \setstretch{1.1}
 \else
-  \setstretch{1.2}
+  \ifcompact
+    \setstretch{1.0}
+  \else
+    \setstretch{1.2}
+  \fi
+\fi
+
+\ifcompact
+  \renewcommand\section{\vspace{2em}\oldsection}
 \fi
 
 \ifdraft
@@ -291,7 +295,9 @@
   \geometry{paperwidth=\ybpagewidth,paperheight=\ybpageheight,left=0pt,right=0pt,top=0pt,bottom=0pt}
 \fi
 
-\newcommand\ybPrintBibliography{
+\newcommand\ybPrintBibliography{%
+  \AtNextBibliography{\small}%
+  \raggedright%
   \printbibliography
 }
 
@@ -373,6 +379,8 @@
   \newtcbox{\codebox}{nobeforeafter,colframe=gray!80!white,colback=gray!5!white,boxrule=0.1pt,arc=1pt, boxsep=1.2pt,left=0.5pt,right=0.5pt,top=0.2pt,bottom=0.2pt,tcbox raise base}
 
 \newcommand\tbd[1]{\colorbox{yellow}{#1}}
+
+\newcommand\first[2]{\vspace{1em}{\setlength{\parindent}{0pt}\bfseries\LARGE #1}\textsc{#2}}
 
 \newcommand{\shortenurl}{...}
 \newcommand{\shorten}[1]{%
