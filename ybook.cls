@@ -34,22 +34,28 @@
 \DeclareOptionX{cover}{\covertrue\newcommand*\thebookpdf{#1}}
 \ProcessOptionsX
 
-\LoadClass{book}
-
-\RequirePackage{geometry}
 \ifdraft
   \PassOptionsToClass{11pt}{book}
   \PassOptionsToClass{oneside}{book}
-  \PassOptionsToClass{a4paper}{book}
 \else
   \ifmanuscript
     \PassOptionsToClass{12pt}{book}
     \PassOptionsToClass{oneside}{book}
-    \geometry{paperwidth=8.25in, paperheight=11.75in, left=1.2in, right=1.2in, top=1.2in, bottom=1.2in}
   \else
     \PassOptionsToClass{11pt}{book}
     \PassOptionsToClass{twoside}{book}
-    \geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
+  \fi
+\fi
+
+\LoadClass{book}
+
+\RequirePackage{geometry}
+\geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
+\ifdraft
+  \geometry{a4paper, margin=1in, left=1.5in}
+\else
+  \ifmanuscript
+    \geometry{a4paper, margin=1.2in}
   \fi
 \fi
 
@@ -155,15 +161,10 @@
   \renewcommand\section{\newpage\oldsection}
 \fi
 
-\ifdraft
-  \setstretch{1.1}
-\else
-  \ifcompact
-    \setstretch{1.0}
-  \else
-    \setstretch{1.2}
-  \fi
-\fi
+\setstretch{1.2}
+\ifdraft\setstretch{1.1}\fi
+\ifcompact\setstretch{1.0}\fi
+\ifmanuscript\setstretch{1.1}\fi
 
 \ifcompact
   \renewcommand\section{\vspace{2em}\oldsection}
