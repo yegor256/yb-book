@@ -79,35 +79,35 @@
     \end{tikzpicture}
   \end{textblock}
   \begin{textblock}{5}(10,9)
-    \fontsize{32}{32}\selectfont\textbf{\ybtitle}
+    \fontsize{32}{32}\selectfont\textbf{\thetitle}
   \end{textblock}
   \begin{textblock}{4}(10,10)
     \large\textbf{by Yegor Bugayenko}
   \end{textblock}
   \begin{textblock}{5}(10,11)
     \raggedright
-    TL;DR \ybtldr
+    TL;DR \thetldr{}
   \end{textblock}
   \begin{textblock}{4}[0,1](10,14)
-    \ybversion
+    \theversion{}
     \quad
     \exec[]{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
   \end{textblock}
   \begin{textblock}{4}[0,1](1,14)
     \small (c)
-    \ifdefempty{\ybinceptionyear}{}{\ybinceptionyear-}\the\year{} Yegor Bugayenko
+    \ifdefempty{\theyear{}}{}{\theyear{}-}\the\year{} \theauthor{}
   \end{textblock}
   \begin{textblock}{4}[0,1](1,2)
     \small \$40.96
   \end{textblock}
-  \ifdefempty{\ybvolume}{}{
+  \ifdefempty{\thevolume}{}{
     \begin{textblock}{2}[1,1](15,14)
       \raggedleft
-      \includegraphics[height=0.4in]{/code/books/images/vol\ybvolume}
+      \includegraphics[height=0.4in]{images/volume-\thevolume}
     \end{textblock}
   }
   \begin{textblock}{4}(10,2)
-    \includegraphics[width=\textwidth]{\ybimage}
+    \includegraphics[width=\textwidth]{\theimage{}}
   \end{textblock}
 }
 

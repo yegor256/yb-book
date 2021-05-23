@@ -21,7 +21,7 @@
 % SOFTWARE.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ybook}[00.00.0000 0.0.0 The Template for yb-Branded Books]
+\ProvidesClass{ybook}[00.00.0000 0.0.0 The Template for ybBranded Books]
 
 \newif\ifdraft
 \DeclareOption{draft}{\drafttrue}
@@ -39,8 +39,11 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
+  \usetikzlibrary{shapes}
   \usetikzlibrary{fit}
-\RequirePackage[letterspace=-50]{microtype}
+\ifdraft\else
+  \RequirePackage[letterspace=-50]{microtype}
+\fi
 \RequirePackage{soul} % in order to use \st{} to strikethrough
 \RequirePackage[autostyle=try]{csquotes}
 \RequirePackage{xifthen}
@@ -144,9 +147,7 @@
 \RequirePackage{shellesc}
 
 \newcommand\ybPrintTitlePage{
-  \ifdraft
-    The Title Page will be printed here.
-  \else
+  \ifdraft\else
     \begin{titlepage}
       \ttfamily
       \vspace*{\fill}
@@ -171,9 +172,7 @@
 }
 
 \newcommand\ybPrintTOC{
-  \ifdraft
-    The Table of Contents will be printed here.
-  \else
+  \ifdraft\else
     \cleardoublepage
     {
       \setstretch{0.7}
@@ -183,9 +182,7 @@
 }
 
 \newcommand\ybPrintIndex[1][Index]{
-  \ifdraft
-    The Index will be printed here.
-  \else
+  \ifdraft\else
     \cleardoublepage
     {
       \setstretch{1.0}

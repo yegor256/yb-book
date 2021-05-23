@@ -20,39 +20,14 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 
-\documentclass{./ybook}
-\renewcommand*\theversion{0.0.0}
-\renewcommand*\thedate{00.00.0000}
-\renewcommand*\thetitle{\LaTeX{} Class \ff{ybook}}
-\renewcommand*\theauthor{\nospell{Yegor Bugayenko}}
+\documentclass[cover]{./ybook}
+\renewcommand*\theversion{\input{VERSION}}
+\renewcommand*\theinceptionyear{2021}
+\renewcommand*\thevolume{1}
+\renewcommand*\thespinetext{new book, vol.1}
+\renewcommand*\thetitle{A New Book}
+\renewcommand*\theimage{images/logo}
+\renewcommand*\thetldr{This \LaTeX{} class helps me design and publish books on Amazon.}
 \begin{document}
-
-\ybPrintTitlePage
-
-\ybPrintTOC
-
-\chapter{Overview}
-
-\section{Purpose}
-
-\index{Amazon}
-The provided class \ff{ybook} helps me design my books and
-publish them on Amazon. You are welcome to use it too. It's easy:
-
-\begin{listing}
-\documentclass{ybook}
-\begin{document}
-Hello, world!
-\end{document}
-\end{listing}
-
-\section{Commands}
-
-There are a few new commands you may want to learn and use:
-
-\index{font}
-\ff{\textbackslash{}ff} makes your code fixed-font, like \ff{this one}.
-
-\ybPrintIndex
-
+\ybPrintCover
 \end{document}
