@@ -54,8 +54,4 @@ zip: ybook.pdf ybook.cls
 	cp ybook.zip ..
 
 clean:
-	rm -rf .DS_Store *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.idx *.ilg *.ind *.toc *.exc
-	rm -rf *.pdf
-	rm -rf *.zip
-	rm -rf package
-	rm -rf _minted*
+	git clean -dfX

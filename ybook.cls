@@ -197,6 +197,23 @@
 
 \RequirePackage{shellesc}
 
+\renewcommand\maketitle{
+  {\LARGE\textbf{\thetitle}}
+  \\[1em]
+  by \theauthor{}
+  \\[4em]
+  \ifx\thevolume\empty\else%
+    Volume \thevolume{}\\
+  \fi
+  \ifx\thedate\empty\else%
+    \thedate{}
+  \fi
+  \ifx\thedate\empty\else%
+    \\
+    \theversion{}
+  \fi
+}
+
 \newcommand\ybPrintTitlePage{
   \ifdraft\else
     \begin{titlepage}
@@ -224,11 +241,8 @@
 
 \newcommand\ybPrintTOC{
   \ifdraft\else
-    \cleardoublepage
-    {
-      \setstretch{0.7}
-      \tableofcontents
-    }
+    \ifcompact\else\cleardoublepage\fi
+    \setrelativestretch{0.7}{\tableofcontents}
   \fi
 }
 
@@ -245,12 +259,16 @@
 }
 
 \newcommand\ybPrintIcons{
-  \includegraphics[height=1em]{images/email.pdf} book@yegor256.com
-  \includegraphics[height=1em]{images/twitter.pdf}
-  \includegraphics[height=1em]{images/linkedin.pdf}
-  \includegraphics[height=1em]{images/github.pdf}
-  \includegraphics[height=1em]{images/instagram.pdf}
-  \includegraphics[height=1em]{images/facebook.pdf} yegor256
+  \ifdefempty{\theemail{}}{}{
+    \includegraphics[height=1em]{images/icon-email.pdf}
+    \theemail{}
+  }
+  \includegraphics[height=1em]{images/icon-twitter.pdf}
+  \includegraphics[height=1em]{images/icon-linkedin.pdf}
+  \includegraphics[height=1em]{images/icon-github.pdf}
+  \includegraphics[height=1em]{images/icon-instagram.pdf}
+  \includegraphics[height=1em]{images/icon-facebook.pdf}
+  \thesocial{}
 }
 
 % quotes
@@ -436,6 +454,8 @@
 \newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
 \newcommand*\thedate{}
+\newcommand*\theemail{}
+\newcommand*\thesocial{}
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
