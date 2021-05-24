@@ -206,11 +206,11 @@
     Volume \thevolume{}\\
   \fi
   \ifx\thedate\empty\else%
-    \thedate{}
+    Rendered on \thedate{}
   \fi
   \ifx\thedate\empty\else%
     \\
-    \theversion{}
+    Ver. \theversion{}
   \fi
 }
 
@@ -454,15 +454,15 @@
 \newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
 \newcommand*\thedate{}
-\newcommand*\theemail{}
-\newcommand*\thesocial{}
+\newcommand*\theemail{\textbackslash{}theemail}
+\newcommand*\thesocial{\textbackslash{}thesocial}
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
 \newcommand*\theyear{\textbackslash{}theyear}
 \newcommand*\theprice{\textbackslash{}theprice}
 \newcommand*\thespinetext{\textbackslash{}thespinetext}
-\newcommand*\theimage{images/cactus}
+\newcommand*\theimage{}
 \newcommand*\thetldr{You have to renew the \ff{\textbackslash{}thetldr} command in order to change this text.}
 
 \endinput

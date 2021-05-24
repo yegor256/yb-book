@@ -29,14 +29,10 @@
 
 \maketitle
 
-\ybPrintTOC
-
-\chapter{Overview}
-
-\section{Purpose}
+\section*{Purpose}
 
 \index{Amazon}
-The provided class \ff{ybook} helps me design my books and
+\first{T}{he provided} class \ff{ybook} helps me design my books and
 publish them on Amazon. You are welcome to use it too. It's easy:
 
 \begin{listing}
@@ -61,9 +57,9 @@ There are a few class options you can use:
     \ff{book.pdf} file.
 \end{itemize}
 
-\section{Cover Page}
+\section*{Cover Page}
 
-A cover page must have a special formatting. You do it this way
+\first{A}{ cover} page must have a special formatting. You do it this way
 (provided your book already exists in `book.pdf`):
 
 \begin{listing}
@@ -75,29 +71,33 @@ A cover page must have a special formatting. You do it this way
 \renewcommand*\theprice{\$14.99}
 \renewcommand*\thespinetext{new book, vol.1}
 \renewcommand*\thetitle{A New Book}
-\renewcommand*\theimage{images/cactus}
+\renewcommand*\theimage{cactus}
 \renewcommand*\thetldr{Put your TL;DR text here...}
 \begin{document}
-\ybPrintCover{}
+\ybPrintCover
 \end{document}\end{listing}
 
 The PDF file generated most likely will be accepted by Amazon without
-any questions.
+any questions. The \ff{\textbackslash{}ybPrintCover} command will
+make sure the size of the page is correctly adjusted for the
+number of pages in the \ff{book.pdf} document.
 
-\section{Commands}
+\section*{Commands}
 
-There are a few new commands you may want to learn and use:
+\first{T}{here} are a few new commands you may want to learn and use:
 
 \index{font}
-\ff{\textbackslash{}ff} makes your code fixed-font, like \ff{this one}.
+\ff{\textbackslash{}ff[1]} makes your code fixed-font, like \ff{this one}.
 
-\ff{\textbackslash{}tbd} makes some text \tbd{highlighted}, in order to indicate
+\ff{\textbackslash{}tbd[1]} makes some text \tbd{highlighted}, in order to indicate
 that it will be written later.
+
+\ff{\textbackslash{}first[2]} makes the first letter large and the
+rest of the text small caps, in order to emphasize the start of a new
+group of paragraphs.
 
 You are welcome to suggest additional commands, but the style
 of my books is intentionally as simple as possible, avoiding formatting
 as much as possible.
-
-\ybPrintIndex
 
 \end{document}
