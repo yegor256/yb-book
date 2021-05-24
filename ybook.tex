@@ -27,13 +27,19 @@
 \renewcommand*\theauthor{\nospell{Yegor Bugayenko}}
 \begin{document}
 
+\includegraphics[height=6em]{images/signature-black}
+\vspace*{24pt}
+
 \maketitle
 
 \section*{Purpose}
 
 \index{Amazon}
-\first{T}{he provided} class \ff{ybook} helps me design my books and
-publish them on Amazon. You are welcome to use it too. It's easy:
+\first{T}{he provided} class \ff{ybook} helps me design
+\href{https://www.yegor256.com/books.html}{my books} and
+publish them
+\href{https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK}{on Amazon}.
+You are welcome to use it too. It's easy:
 
 \begin{listing}
 \documentclass{ybook}
@@ -44,23 +50,40 @@ Hello, world!
 
 There are a few class options you can use:
 
-\begin{itemize}
-    \item \ff{compact} --- when you need to make text more compact
-    and take less vertical space;
+\ff{compact} --- when you need to make text more compact
+and take less vertical space;
 
-    \item \ff{manuscript} --- when the format is not for Amazon printing,
-    but for some other purposes (the page size is A4);
+\ff{manuscript} --- when the format is not for Amazon printing,
+but for some other purposes (the page size is A4);
 
-    \item \ff{draft} --- when it's a draft for reviewers (the page size is A4);
+\ff{draft} --- when it's a draft for reviewers (the page size is A4);
 
-    \item \ff{cover=book.pdf} --- when you print a cover and the book is in the
-    \ff{book.pdf} file.
-\end{itemize}
+\ff{cover=book.pdf} --- when you print a cover and the book is in the
+\ff{book.pdf} file.
+
+\section*{Printers}
+
+There are a number of printers, commands the print large blocks of text
+in the expected format:
+
+\ff{\textbackslash{}ybPrintTitlePage} prints the first page of a book.
+
+\ff{\textbackslash{}ybPrintTOC} prints table of contents.
+
+\ff{\textbackslash{}ybPrintBibliography} prints the list of bib references.
+
+\ff{\textbackslash{}ybPrintIcons} prints social icons.
+
+\ff{\textbackslash{}ybPrintIndex[1]} prints index with an optional name of the section (instead of ``Index'').
+
+\ff{\textbackslash{}ybPrintCover} prints the cover of the book.
+
+For more samples, check the directory \ff{samples/}.
 
 \section*{Cover Page}
 
 \first{A}{ cover} page must have a special formatting. You do it this way
-(provided your book already exists in `book.pdf`):
+(provided your book already exists in the \ff{book.pdf} file):
 
 \begin{listing}
 \documentclass[cover=book.pdf]{ybook}
