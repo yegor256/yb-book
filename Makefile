@@ -22,7 +22,7 @@
 
 .ONESHELL:
 
-all: ybook.pdf cover.pdf zip
+all: ybook.pdf zip
 
 %.pdf: %.tex ybook.cls
 	latexmk -pdf $<
@@ -45,6 +45,7 @@ zip: ybook.pdf ybook.cls
 	gsed -i "s|0\.0\.0|$${version}|" ybook.tex
 	gsed -i "s|00\.00\.0000|$${date}|" ybook.tex
 	cp ../.latexmkrc .
+	cp -r ../images .
 	latexmk -pdf ybook.tex
 	rm .latexmkrc
 	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.idx *.ilg *.ind *.toc *.exc
