@@ -1,7 +1,8 @@
 [![make](https://github.com/yegor256/ybook/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/ybook/actions/workflows/make.yml)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/ybook/blob/master/LICENSE.txt)
 
-This LaTeX class I use to format [my books](https://www.yegor256.com/books.html), which
-I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
+This LaTeX class I use to format [my books](https://www.yegor256.com/books.html), 
+which I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
 
 First, [install it](https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages)
 from [CTAN](https://ctan.org/pkg/ybook) 
