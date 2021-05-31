@@ -208,7 +208,7 @@
   \ifx\thedate\empty\else%
     Rendered on \thedate{}
   \fi
-  \ifx\thedate\empty\else%
+  \ifx\theversion\empty\else%
     \\
     Ver. \theversion{}
   \fi

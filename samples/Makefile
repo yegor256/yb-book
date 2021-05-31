@@ -24,49 +24,10 @@
 
 .ONESHELL:
 
-all: ybook.pdf make-samples zip
-
-ybook.pdf: ybook.tex ybook.cls
-	texliveonfly $<
-	latexmk -pdf $<
-	texsc $<
-	texqc --ignore 'You have requested document class' $<
-
-zip: ybook.pdf ybook.cls
-	rm -rf package
-	mkdir package
-	cd package
-	mkdir ybook
-	cd ybook
-	cp -r ../../images .
-	cp ../../README.md .
-	version=$$(cat ../../VERSION.txt)
-	echo "Version is: $${version}"
-	date=$$(date +%Y/%m/%d)
-	echo "Date is: $${date}"
-	cp ../../ybook.cls .
-	gsed -i "s|0\.0\.0|$${version}|" ybook.cls
-	gsed -i "s|00\.00\.0000|$${date}|" ybook.cls
-	cp ../../ybook.tex .
-	gsed -i "s|0\.0\.0|$${version}|" ybook.tex
-	gsed -i "s|00\.00\.0000|$${date}|" ybook.tex
-	cp ../../.latexmkrc .
-	latexmk -pdf ybook.tex
-	rm .latexmkrc
-	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.ind *.idx *.ilg
-	mkdir samples
-	cp ../../samples/*.tex samples
-	cat ybook.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
-	cd ..
-	zip -r ybook.zip *
-	cp ybook.zip ..
-	cd ..
+all: ybook-sample.pdf ybook-cover.pdf
 
 clean:
 	git clean -dfX
-	cd samples && make clean && cd ..
 
-make-samples: samples/*.tex
-	cd samples
-	make
-	cd ..
+%.pdf: %.tex ../ybook.cls
+	latexmk -pdf $<

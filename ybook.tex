@@ -32,17 +32,15 @@
 
 \maketitle
 
-\section*{Purpose}
-
 \index{Amazon}
 \first{T}{he provided} class \ff{ybook} helps me design
 \href{https://www.yegor256.com/books.html}{my books} and
 publish them
 \href{https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK}{on Amazon}.
-You are welcome to use it too. It's easy:
+You are welcome to use it too, it's pretty easy:
 
 \begin{listing}
-\documentclass{ybook}
+\documentclass[draft]{ybook}
 \begin{document}
 Hello, world!
 \end{document}
@@ -54,25 +52,27 @@ There are a few class options you can use:
 and take less vertical space;
 
 \ff{manuscript} --- when the format is not for Amazon printing,
-but for some other purposes (the page size is A4);
+but for some other purposes (the page size is A4), like the document
+you are reading right now;
 
-\ff{draft} --- when it's a draft for reviewers (the page size is A4);
+\ff{draft} --- when it's a draft for reviewers (the page size is A4)
+and you want to have a watermark and a compact form of the content;
 
 \ff{cover=book.pdf} --- when you print a cover and the book is in the
 \ff{book.pdf} file.
 
 \section*{Printers}
 
-There are a number of printers, commands the print large blocks of text
+There are a number of printers, commands that print large blocks of text
 in the expected format:
 
 \ff{\textbackslash{}ybPrintTitlePage} prints the first page of a book.
 
-\ff{\textbackslash{}ybPrintTOC} prints table of contents.
+\ff{\textbackslash{}ybPrintTOC} prints the table of contents.
 
 \ff{\textbackslash{}ybPrintBibliography} prints the list of bib references.
 
-\ff{\textbackslash{}ybPrintIcons} prints social icons.
+\ff{\textbackslash{}ybPrintIcons} prints your social icons.
 
 \ff{\textbackslash{}ybPrintIndex[1]} prints index with an optional name of the section (instead of ``Index'').
 
@@ -94,7 +94,7 @@ For more samples, check the directory \ff{samples/}.
 \renewcommand*\theprice{\$14.99}
 \renewcommand*\thespinetext{new book, vol.1}
 \renewcommand*\thetitle{A New Book}
-\renewcommand*\theimage{cactus}
+\renewcommand*\theimage{images/cactus} % file name of PDF image
 \renewcommand*\thetldr{Put your TL;DR text here...}
 \begin{document}
 \ybPrintCover

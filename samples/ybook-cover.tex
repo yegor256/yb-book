@@ -20,16 +20,16 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 
-\documentclass[cover=ybook.pdf]{./ybook}
+\documentclass[cover=ybook-sample.pdf]{../ybook}
 \renewcommand*\theauthor{\nospell{Yegor Bugayenko}}
-\renewcommand*\theversion{\input{VERSION.txt}}
+\renewcommand*\theversion{\input{../VERSION.txt}}
 \renewcommand*\theyear{2021}
 \renewcommand*\thevolume{1}
 \renewcommand*\theprice{\$0.99}
-\renewcommand*\thespinetext{new book, vol.1}
-\renewcommand*\thetitle{A New Book}
-\renewcommand*\theimage{images/cactus}
-\renewcommand*\thetldr{This \LaTeX{} class helps me design and publish books on Amazon.}
+\renewcommand*\thespinetext{computer book, vol.1}
+\renewcommand*\thetitle{Computer Book}
+\renewcommand*\theimage{../images/cactus}
+\renewcommand*\thetldr{It's a very interesting book about computers}
 \begin{document}
-\ybPrintCover{}
+% \ybPrintCover
 \end{document}

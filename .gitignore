@@ -19,4 +19,5 @@ _minted-*
 *.ilg
 *.ind
 *.exc
+*.synctex.gz
 package/
