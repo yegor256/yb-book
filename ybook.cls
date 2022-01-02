@@ -1,6 +1,6 @@
 % (The MIT License)
 %
-% Copyright (c) 2021 Yegor Bugayenko
+% Copyright (c) 2021-2022 Yegor Bugayenko
 %
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the 'Software'), to deal
@@ -21,47 +21,76 @@
 % SOFTWARE.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ybook}[00.00.0000 0.0.0 The Template for ybBranded Books]
+\ProvidesClass{ybook}[00.00.0000 0.0.0 YB Branded Book Style]
 
 \RequirePackage{xkeyval}
-\newif\ifdraft
-\DeclareOptionX{draft}{\drafttrue}
-\newif\ifcompact
-\DeclareOptionX{compact}{\compacttrue}
-\newif\ifmanuscript
-\DeclareOptionX{manuscript}{\manuscripttrue}
-\newif\ifcover
-\DeclareOptionX{cover}{\covertrue\newcommand*\thebookpdf{#1}}
-\ProcessOptionsX
 
-\ifdraft
+\makeatletter
+\newif\ifybook@draft
+\DeclareOptionX{draft}{\ybook@drafttrue}
+\newif\ifybook@compact
+\DeclareOptionX{compact}{\ybook@compacttrue}
+\newif\ifybook@manuscript
+\DeclareOptionX{manuscript}{\ybook@manuscripttrue}
+\ProcessOptionsX
+\makeatother
+
+\makeatletter\ifybook@draft
   \PassOptionsToClass{11pt}{book}
   \PassOptionsToClass{oneside}{book}
 \else
-  \ifmanuscript
+  \ifybook@manuscript
     \PassOptionsToClass{12pt}{book}
     \PassOptionsToClass{oneside}{book}
   \else
     \PassOptionsToClass{11pt}{book}
     \PassOptionsToClass{twoside}{book}
   \fi
-\fi
+\fi\makeatother
 
 \LoadClass{book}
 
 \RequirePackage{geometry}
-\geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
-\ifdraft
-  \geometry{a4paper, margin=1in, left=1.5in}
-\else
-  \ifmanuscript
-    \geometry{a4paper, margin=1.2in}
-  \fi
-\fi
+  \geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in, left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
+  \makeatletter\ifybook@draft
+    \geometry{a4paper, margin=1in, left=1.5in}
+  \else
+    \ifybook@manuscript
+      \geometry{a4paper, margin=1.2in}
+    \fi
+  \fi\makeatother
 
 \RequirePackage[T2A,T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{anyfontsize}
+\RequirePackage{tikz}
+  \usetikzlibrary{positioning}
+  \usetikzlibrary{shapes}
+  \usetikzlibrary{fit}
+\RequirePackage{chngcntr}
+  \counterwithout{footnote}{chapter}
+\RequirePackage{lastpage}
+\RequirePackage{paralist}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{setspace}
+  \setstretch{1.2}
+  \makeatletter\ifybook@draft\setstretch{1.1}\fi\makeatother
+  \makeatletter\ifybook@compact\setstretch{1.0}\fi\makeatother
+  \makeatletter\ifybook@manuscript\setstretch{1.1}\fi\makeatother
+\RequirePackage{textcomp}
+\RequirePackage[inline]{enumitem}
+  \setlist{nosep}
+\RequirePackage{float}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{qrcode}
+\RequirePackage{wrapfig}
+  \pagestyle{plain}
+\RequirePackage{xfp}
+\RequirePackage{soul} % in order to use \st{} to strikethrough
+\RequirePackage{xifthen}
+\RequirePackage[autostyle=try]{csquotes}
+
 \RequirePackage[indexing=cite,style=authoryear,natbib=true,maxnames=1,minnames=1,doi=false,url=false,isbn=false,isbn=false]{biblatex}
   \DeclareCiteCommand{\citetitle}
     {\boolfalse{citetracker}%
@@ -87,90 +116,45 @@
   \renewbibmacro*{citeindex}{\indexnames{labelname}{}}
   \makeindex
   \indexsetup{othercode={\hyphenpenalty=10000}}
-\RequirePackage{tikz}
-  \usetikzlibrary{positioning}
-  \usetikzlibrary{shapes}
-  \usetikzlibrary{fit}
-\ifdraft\else
+
+\newenvironment{condensed}{%
+  \begingroup\setstretch{1.0}%
+  % This lsstyle is defined by 'letterspace' in microtype
+  \lsstyle}{\endgroup}
+
+\makeatletter\ifybook@draft\else
   \RequirePackage[letterspace=-50]{microtype}
-\fi
-\ifmanuscript
+\fi\makeatother
+
+\makeatletter\ifybook@manuscript
   \RequirePackage[tt=false,type1=true]{libertine}
-\fi
-\RequirePackage{soul} % in order to use \st{} to strikethrough
-\RequirePackage[autostyle=try]{csquotes}
-\RequirePackage{xifthen}
+\fi\makeatother
 
 \RequirePackage[bottom,perpage,multiple]{footmisc}
   % see https://tex.stackexchange.com/questions/40072/incompatibility-between-footmisc-option-multiple-and-hyperref/62091#62091
-  \let\oldFootnote\footnote
-  \newcommand\nextToken\relax
-  \renewcommand\footnote[1]{%
-    \oldFootnote{#1}\futurelet\nextToken\isFootnote}
-  \newcommand\isFootnote{%
-    \ifx\footnote\nextToken\textsuperscript{,}\fi}
+  \makeatletter\let\ybook@oldfootnote\footnote\makeatother
+  \makeatletter\newcommand\ybook@nexttoken\relax\makeatother
+  \makeatletter\newcommand\ybook@isfootnote{%
+    \ifx\footnote\ybook@nexttoken\textsuperscript{,}\fi}\makeatother
+  \makeatletter\renewcommand\footnote[1]{%
+    \ybook@oldfootnote{#1}\futurelet\ybook@nexttoken\ybook@isfootnote}\makeatother
 
-\RequirePackage{chngcntr}
-  \counterwithout{footnote}{chapter}
-\RequirePackage{lastpage}
-\RequirePackage{paralist}
-\RequirePackage{xcolor}
-\RequirePackage{graphicx}
-\RequirePackage{setspace}
-\RequirePackage{textcomp}
-\RequirePackage[inline]{enumitem}
-  \setlist{nosep}
-\RequirePackage{float}
-\RequirePackage[normalem]{ulem}
+\makeatletter
+  \let\ybook@oldsection\section
+  \ifybook@draft
+    \RequirePackage[medium]{titlesec}
+  \else
+    \RequirePackage[raggedright]{titlesec}
+      \titlespacing{\section}{0in}{6pt}{6pt}[1in]
+    \renewcommand\section{\newpage\ybook@oldsection}
+  \fi
+\makeatother
 
-% To make \href{} links look nice, underscored
-\RequirePackage[hidelinks]{hyperref}
-  \makeatletter\begingroup
-    \catcode`\$=6 %
-    \catcode`\#=12 %
-    \gdef\href@split$1#$2#$3\\$4{%
-      \hyper@@link{$1}{$2}{\uline{$4}}%
-      \endgroup
-    }%
-  \endgroup\makeatother
+\makeatletter\ifybook@compact
+  \renewcommand\section{\vspace{2em}\ybook@oldsection}
+\fi\makeatother
 
-\RequirePackage{qrcode}
-\RequirePackage{wrapfig}
-  \pagestyle{plain}
-\RequirePackage{xfp}
-\RequirePackage{verbatim}
-  \newcommand{\setrelativestretch}[1]{%
-    \begingroup\edef\x{\endgroup
-      \noexpand\setstretch{\fpeval{(#1)*(\baselinestretch)}}%
-    }\x
-  }
-  \newenvironment{listing}
-    {\medskip\minipage{\linewidth}\setrelativestretch{0.9}\verbatim}%
-    {\endverbatim\endminipage\medskip}
-  \newenvironment{condensed}{%
-    \setrelativestretch{0.85}%
-    % This lsstyle is defined by 'letterspace' in microtype
-    \lsstyle}{}
-
-\let\oldsection\section
-\ifdraft
-  \RequirePackage[medium]{titlesec}
-\else
-  \RequirePackage[raggedright]{titlesec}
-    \titlespacing{\section}{0in}{6pt}{6pt}[1in]
-  \renewcommand\section{\newpage\oldsection}
-\fi
-
-\setstretch{1.2}
-\ifdraft\setstretch{1.1}\fi
-\ifcompact\setstretch{1.0}\fi
-\ifmanuscript\setstretch{1.1}\fi
-
-\ifcompact
-  \renewcommand\section{\vspace{2em}\oldsection}
-\fi
-
-\ifdraft
+\makeatletter\ifybook@draft
   \RequirePackage{fancyhdr}
     \pagestyle{fancy}
     \renewcommand\headrulewidth{0pt}
@@ -193,9 +177,7 @@
       \end{textblock}
     }
     \fancyfoot[C,CO]{\small\ttfamily page \#\thepage{} of \pageref{LastPage}}
-\fi
-
-\RequirePackage{shellesc}
+\fi\makeatother
 
 \renewcommand\maketitle{
   {\LARGE\textbf{\thetitle}}
@@ -214,8 +196,8 @@
   \fi
 }
 
-\newcommand\ybPrintTitlePage{
-  \ifdraft\else
+\makeatletter\newcommand\ybPrintTitlePage{
+  \ifybook@draft\else
     \begin{titlepage}
       \ttfamily
       \vspace*{\fill}
@@ -237,17 +219,17 @@
       \vspace*{\fill}
     \end{titlepage}
   \fi
-}
+}\makeatother
 
-\newcommand\ybPrintTOC{
-  \ifdraft\else
-    \ifcompact\else\cleardoublepage\fi
-    \setrelativestretch{0.7}{\tableofcontents}
+\makeatletter\newcommand\ybPrintTOC{
+  \ifybook@draft\else
+    \ifybook@compact\else\cleardoublepage\fi
+    {\setstretch{0.7}\tableofcontents}
   \fi
-}
+}\makeatother
 
-\newcommand\ybPrintIndex[1][Index]{
-  \ifdraft\else
+\makeatletter\newcommand\ybPrintIndex[1][Index]{
+  \ifybook@draft\else
     \cleardoublepage
     {
       \setstretch{1.0}
@@ -256,19 +238,19 @@
       \printindex
     }
   \fi
-}
+}\makeatother
 
-\newcommand\ybPrintIcons{
-  \ifdefempty{\theemail{}}{}{
-    \includegraphics[height=1em]{images/icon-email.pdf}
-    \theemail{}
-  }
-  \includegraphics[height=1em]{images/icon-twitter.pdf}
-  \includegraphics[height=1em]{images/icon-linkedin.pdf}
-  \includegraphics[height=1em]{images/icon-github.pdf}
-  \includegraphics[height=1em]{images/icon-instagram.pdf}
-  \includegraphics[height=1em]{images/icon-facebook.pdf}
-  \thesocial{}
+\newcommand\ybPrintIcons{%
+  \ifdefempty{\theemail{}}{}{%
+    \includegraphics[height=1em]{images/icon-email.pdf}%
+    \theemail{}%
+  }%
+  \includegraphics[height=1em]{images/icon-twitter.pdf}%
+  \includegraphics[height=1em]{images/icon-linkedin.pdf}%
+  \includegraphics[height=1em]{images/icon-github.pdf}%
+  \includegraphics[height=1em]{images/icon-instagram.pdf}%
+  \includegraphics[height=1em]{images/icon-facebook.pdf}%
+  \thesocial{}%
 }
 
 % quotes
@@ -290,7 +272,7 @@
   skipabove=0pt,skipbelow=0pt,
   linewidth=2pt,
   topline=false,bottomline=false,leftline=false}
-\newcommand\ybQuote[3]{%
+\makeatletter\newcommand\ybQuote[3]{%
   \ifthenelse{\isempty{#3}}{}{
     \ifx\hfuzz#2\hfuzz%
       \index{#3}%
@@ -298,7 +280,7 @@
       \index{#3, #2}%
     \fi%
   }%
-  \def\body{%
+  \def\ybook@body{%
     \raggedright%
     \ifx\hfuzz#3\hfuzz%
       #1%
@@ -306,150 +288,44 @@
       ``#1''\\\raggedleft---#2 #3%
     \fi%
   }
-  \ifdraft%
+  \ifybook@draft%
     \begin{wrapfigure}{r}{0.4\textwidth}%
       \begin{mdframed}[style=quoteodd]%
-        \body%
+        \ybook@body%
       \end{mdframed}%
     \end{wrapfigure}%
   \else%
     \begin{wrapfigure}{o}[12pt]{0.4\textwidth}%
       \sffamily\checkoddpage%
       \ifoddpage%
-        \begin{mdframed}[style=quoteodd]\body\end{mdframed}%
+        \begin{mdframed}[style=quoteodd]\ybook@body\end{mdframed}%
       \else%
-        \begin{mdframed}[style=quoteeven]\body\end{mdframed}%
+        \begin{mdframed}[style=quoteeven]\ybook@body\end{mdframed}%
       \fi%
       \vspace{-12pt}
     \end{wrapfigure}%
   \fi%
-}
-
-\makeatletter\newcommand{\exec}[3][1=]{%
-  \begingroup
-  \let\%\@percentchar
-  \let\{\@charlb
-  \let\}\@charrb
-  \ShellEscape{#3 > #2}%
-  \endgroup%
-  \ifthenelse{\isempty{#1}}{\input{#2}}{}%
 }\makeatother
-\makeatletter\let\primitiveinput\@@input\makeatother%
-\ifcover
-  \exec[noprint]{totalpages.exc}{qpdf --show-npages \thebookpdf | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
-  \newcommand{\totalpages}{\primitiveinput totalpages.exc }%
-  % The height of the page is 9 inches plus 0.125 "bleed" on top and
-  % on the bottom.
-  % Check this doc: https://kdp.amazon.com/en_US/help/topic/G201953020
-  \newlength{\ybpageheight}%
-  \setlength{\ybpageheight}{0.125in + 9in + 0.125in}%
-  % The width is 6 inches plus 0.125 "bleed" on each side. The width of the
-  % "spine" depends on the amount of pages in the book. Also, there is a
-  %
-  \newlength{\ybpagewidth}%
-  \setlength{\ybpagewidth}{0.125in + 6in + 0.0025in * \totalpages + 6in + 0.125in}%
-  \geometry{paperwidth=\ybpagewidth,paperheight=\ybpageheight,left=0pt,right=0pt,top=0pt,bottom=0pt}
-\fi
 
-\newcommand\ybPrintBibliography{%
+\makeatletter\newcommand\ybPrintBibliography{%
   \AtNextBibliography{\small}%
   \raggedright%
-  \ifmanuscript%
+  \ifybook@manuscript%
     \setlength\bibitemsep{0pt}%
     \newpage%
-    \begin{multicols}{2}\setrelativestretch{1.0}{\printbibliography}\end{multicols}
+    \begin{multicols}{2}{\setstretch{1.0}\printbibliography}\end{multicols}
   \else
     \printbibliography
   \fi
-}
+}\makeatother
 
-\newcommand\ybPrintCover{%
-  \setlength{\parskip}{0pt}%
-  \ttfamily%
-  \begin{textblock}{2.4}[0.5,0](8,0)
-    \begin{tikzpicture}
-      \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
-    \end{tikzpicture}
-  \end{textblock}
-  \begin{textblock}{2.4}[0.5,1](8,14)
-    \centerline{\includegraphics[width=0.32in]{images/signature}}
-  \end{textblock}
-  \begin{textblock}{1}[0.5,0](8,2)
-    \begin{tikzpicture}
-      \node [color=white, inner sep=0cm, outer sep=0cm, rotate=270, minimum height=\TPHorizModule] at (0,0) {
-        \textbf{\Large \thespinetext{}}
-      };
-    \end{tikzpicture}
-  \end{textblock}
-  \begin{textblock}{5}(10,9)
-    \fontsize{32}{32}\selectfont\textbf{\thetitle{}}
-  \end{textblock}
-  \begin{textblock}{4}(10,10)
-    \large\textbf{by \theauthor{}}
-  \end{textblock}
-  \begin{textblock}{5}(10,11)
-    \raggedright
-    TL;DR \thetldr{}
-  \end{textblock}
-  \begin{textblock}{4}[0,1](10,14)
-    \theversion{}
-    \quad
-    \exec[]{date.exc}{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
-  \end{textblock}
-  \begin{textblock}{4}[0,1](1,14)
-    \small (c)
-    \ifdefempty{\theyear{}}{}{\theyear{}-}\the\year{} \theauthor{}
-  \end{textblock}
-  \begin{textblock}{4}[0,1](1,2)
-    \small \theprice{}
-  \end{textblock}
-  \ifdefempty{\thevolume}{}{
-    \begin{textblock}{2}[1,1](15,14)
-      \raggedleft
-      \includegraphics[height=0.4in]{images/volume-\thevolume}
-    \end{textblock}
-  }
-  \begin{textblock}{4}(10,2)
-    \includegraphics[width=\textwidth]{\theimage}
-  \end{textblock}
-}
-
-\RequirePackage[absolute]{textpos}
-  \TPGrid{16}{16}
-
-\AtBeginDocument{
+\AtBeginDocument{%
   \raggedbottom%
-  \setlength\topskip{0mm}
-  \setlength\parindent{0pt}
-  \setlength\parskip{6pt}
-  \interfootnotelinepenalty=10000
+  \setlength\topskip{0mm}%
+  \setlength\parindent{0pt}%
+  \setlength\parskip{6pt}%
+  \interfootnotelinepenalty=10000%
 }
-
-\newcommand\nospell[1]{#1}
-\newcommand\blog[1]{%
-  \shorten{#1}%
-  \ifdraft\else%
-    \begin{wrapfigure}[0]{R}{0.6in}%
-      \vspace{-.75in}%
-      \qrcode[height=0.6in]{\shortenurl}%
-    \end{wrapfigure}%
-  \fi%
-  {\footnotesize\ttfamily{}Discuss at \shortenurl}\par%
-}
-\newcommand{\ff}[1]{\codebox{\vrule height 6pt depth 1pt width 0pt\texttt{#1}}}
-  \RequirePackage{tcolorbox}
-  \newtcbox{\codebox}{nobeforeafter,colframe=gray!80!white,colback=gray!5!white,boxrule=0.1pt,arc=1pt, boxsep=1.2pt,left=0.5pt,right=0.5pt,top=0.2pt,bottom=0.2pt,tcbox raise base}
-
-\newcommand\tbd[1]{\colorbox{yellow}{#1}}
-
-\newcommand\first[2]{\vspace{1em}{\setlength{\parindent}{0pt}\bfseries\LARGE #1}\textsc{#2}}
-
-\newcommand{\shortenurl}{...}
-\newcommand{\shorten}[1]{%
-  \immediate\write18{/code/books/src/shorten.rb #1 > /tmp/shorten.tex}%
-  \makeatletter\everyeof{\noexpand}
-  \edef\shortenurl{\@@input /tmp/shorten.tex }
-  \makeatother}
 
 \newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
@@ -461,8 +337,5 @@
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
 \newcommand*\theyear{\textbackslash{}theyear}
 \newcommand*\theprice{\textbackslash{}theprice}
-\newcommand*\thespinetext{\textbackslash{}thespinetext}
-\newcommand*\theimage{}
-\newcommand*\thetldr{You have to renew the \ff{\textbackslash{}thetldr} command in order to change this text.}
 
 \endinput

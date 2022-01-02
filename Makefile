@@ -27,7 +27,6 @@
 all: ybook.pdf make-samples zip
 
 ybook.pdf: ybook.tex ybook.cls
-	texliveonfly $<
 	latexmk -pdf $<
 	texsc $<
 	texqc --ignore 'You have requested document class' $<
