@@ -60,7 +60,7 @@
     \fi
   \fi\makeatother
 
-\RequirePackage[T2A,T1]{fontenc}
+\RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{anyfontsize}
 \RequirePackage{tikz}
