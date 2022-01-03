@@ -57,8 +57,8 @@ zip: ybook.pdf ybook.cls
 	cp ../../samples/*.tex samples
 	cat ybook.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
-	zip -r ybook.zip *
-	cp ybook.zip ..
+	zip -r ybook-$${version}.zip *
+	cp ybook-$${version}.zip ..
 	cd ..
 
 clean:

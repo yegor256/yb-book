@@ -24,7 +24,7 @@
 
 .ONESHELL:
 
-all: ybook-sample.pdf ybook-cover.pdf
+all: ybook-sample.pdf
 
 clean:
 	git clean -dfX
