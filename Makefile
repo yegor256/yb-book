@@ -24,41 +24,43 @@
 
 .ONESHELL:
 
-all: ybook.pdf make-samples zip
+all: yb-book.pdf make-samples zip
 
-ybook.pdf: ybook.tex ybook.cls
+yb-book.pdf: yb-book.tex yb-book.cls
 	latexmk -pdf $<
 	texsc $<
-	texqc --ignore 'You have requested document class' --ignore 'parboxrestore  has changed' $<
+	texqc --ignore 'You have requested document class' \
+		--ignore 'csquotes should be loaded after fvextra' \
+		--ignore 'parboxrestore  has changed' $<
 
-zip: ybook.pdf ybook.cls
+zip: yb-book.pdf yb-book.cls
 	rm -rf package
 	mkdir package
 	cd package
-	mkdir ybook
-	cd ybook
-	cp -r ../../ybook-signature.pdf .
+	mkdir yb-book
+	cd yb-book
+	cp -r ../../yb-book-logo.pdf .
 	cp ../../README.md .
 	version=$$(cat ../../VERSION.txt)
 	echo "Version is: $${version}"
 	date=$$(date +%Y/%m/%d)
 	echo "Date is: $${date}"
-	cp ../../ybook.cls .
-	gsed -i "s|0\.0\.0|$${version}|" ybook.cls
-	gsed -i "s|00\.00\.0000|$${date}|" ybook.cls
-	cp ../../ybook.tex .
-	gsed -i "s|0\.0\.0|$${version}|" ybook.tex
-	gsed -i "s|00\.00\.0000|$${date}|" ybook.tex
+	cp ../../yb-book.cls .
+	gsed -i "s|0\.0\.0|$${version}|" yb-book.cls
+	gsed -i "s|00\.00\.0000|$${date}|" yb-book.cls
+	cp ../../yb-book.tex .
+	gsed -i "s|0\.0\.0|$${version}|" yb-book.tex
+	gsed -i "s|00\.00\.0000|$${date}|" yb-book.tex
 	cp ../../.latexmkrc .
-	latexmk -pdf ybook.tex
+	latexmk -pdf yb-book.tex
 	rm .latexmkrc
 	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.ind *.idx *.ilg
 	mkdir samples
 	cp ../../samples/*.tex samples
-	cat ybook.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
+	cat yb-book.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
-	zip -r ybook-$${version}.zip *
-	cp ybook-$${version}.zip ..
+	zip -r yb-book-$${version}.zip *
+	cp yb-book-$${version}.zip ..
 	cd ..
 
 clean:

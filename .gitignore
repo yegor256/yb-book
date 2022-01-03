@@ -1,7 +1,7 @@
 .DS_Store
 target/
 _minted-*
-ybook.pdf
+yb-book.pdf
 *.zip
 *.toc
 *.bbl

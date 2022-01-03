@@ -24,10 +24,10 @@
 
 .ONESHELL:
 
-all: ybook-sample.pdf
+all: sample.pdf
 
 clean:
 	git clean -dfX
 
-%.pdf: %.tex ../ybook.cls
+%.pdf: %.tex ../yb-book.cls
 	latexmk -pdf $<
