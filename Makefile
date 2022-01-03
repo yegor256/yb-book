@@ -29,7 +29,7 @@ all: ybook.pdf make-samples zip
 ybook.pdf: ybook.tex ybook.cls
 	latexmk -pdf $<
 	texsc $<
-	texqc --ignore 'You have requested document class' $<
+	texqc --ignore 'You have requested document class' --ignore 'parboxrestore  has changed' $<
 
 zip: ybook.pdf ybook.cls
 	rm -rf package
@@ -37,7 +37,7 @@ zip: ybook.pdf ybook.cls
 	cd package
 	mkdir ybook
 	cd ybook
-	cp -r ../../images .
+	cp -r ../../ybook-signature.pdf .
 	cp ../../README.md .
 	version=$$(cat ../../VERSION.txt)
 	echo "Version is: $${version}"
