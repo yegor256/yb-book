@@ -240,19 +240,6 @@
   \fi
 }\makeatother
 
-\newcommand\ybPrintIcons{%
-  \ifdefempty{\theemail{}}{}{%
-    \includegraphics[height=1em]{images/icon-email.pdf}%
-    \theemail{}%
-  }%
-  \includegraphics[height=1em]{images/icon-twitter.pdf}%
-  \includegraphics[height=1em]{images/icon-linkedin.pdf}%
-  \includegraphics[height=1em]{images/icon-github.pdf}%
-  \includegraphics[height=1em]{images/icon-instagram.pdf}%
-  \includegraphics[height=1em]{images/icon-facebook.pdf}%
-  \thesocial{}%
-}
-
 % quotes
 \RequirePackage{wrapfig}
 \RequirePackage{mdframed}
