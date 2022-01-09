@@ -323,6 +323,7 @@
   \raggedbottom%
   \setlength\topskip{0mm}%
   \setlength\parindent{0pt}%
+  \setlength\fboxsep{0pt}%
   \setlength\parskip{6pt}%
   \interfootnotelinepenalty=10000%
 }
