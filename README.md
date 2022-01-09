@@ -10,10 +10,14 @@ and then use in the preamble:
 
 ```tex
 \documentclass{yb-book}
+\renewcommand*\thetitle{New Book About OOP}
 \renewcommand*\theauthor{Jeff Lebowski}
 \renewcommand*\thevolume{1}
-\renewcommand*\thetitle{New Book About OOP}
+\renewcommand*\theversion{1.0}
 \begin{document}
+\ybPrintTitlePage
+\chapter{First One}
+\section{About Something Interesting}
 Hello, world!
 \end{document}
 ```
