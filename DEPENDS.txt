@@ -28,3 +28,4 @@ hard mdframed
 hard changepage
 hard ifmtarg
 hard bigfoot
+hard zref
