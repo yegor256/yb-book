@@ -7,7 +7,7 @@ docfiles = {"yb-book-logo.pdf"}
 
 uploadconfig = {
   pkg = "yb-book",
-  version = "0.0.0",
+  version = "0.2.0",
   author = "Yegor Bugayenko",
   uploader = "Yegor Bugayenko",
   email = "yegor256@gmail.com",
