@@ -10,7 +10,6 @@ hard paralist
 hard xcolor
 hard graphicx
 hard setspace
-hard textcomp
 hard enumitem
 hard float
 hard ulem
