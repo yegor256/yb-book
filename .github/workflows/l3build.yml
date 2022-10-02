@@ -12,5 +12,5 @@ jobs:
       - uses: teatimeguest/setup-texlive-action@v2.4.1
         with:
           package-file: DEPENDS.txt
-          packages: scheme-basic xetex xkeyval libertine minted fvextra catchfile xstring framed tcolorbox environ anyfontsize chngcntr lastpage paralist enumitem qrcode wrapfig soul xifthen ifmtarg csquotes biblatex imakeidx footmisc titlesec mdframed zref needspace changepage ffcode href-ul
+          packages: scheme-basic xetex l3build biblatex imakeidx href-ul
       - run: l3build check -q --show-log-on-error

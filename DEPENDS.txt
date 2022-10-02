@@ -1,3 +1,4 @@
+hard pgf
 hard xkeyval
 hard geometry
 hard anyfontsize
