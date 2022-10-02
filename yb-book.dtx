@@ -146,6 +146,28 @@ Hello, world!
 %\fi
 % \end{macro}
 
+% \section{Meta Commands}
+
+% There are a number of commands that you may redefine in the preamble:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{yb-book}
+\newcommand*\thetitle{My New Book About OOP}
+\newcommand*\theauthor{Yegor Bugayenko}
+\newcommand*\thevolume{1}
+\newcommand*\thedate{24 Feb 2022}
+\newcommand*\theversion{1.4}
+\newcommand*\thereviewer{Jeff Lebowski}
+\begin{document}
+... the content goes here ...
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \section{Printers}
 
 % There are a number of printers --- commands that print large blocks of text
@@ -287,12 +309,11 @@ Hello, world!
 \RequirePackage{float}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{qrcode}
-\RequirePackage{wrapfig}
-  \pagestyle{plain}
 \RequirePackage{xfp}
-\RequirePackage{soul} % in order to use \st{} to strikethrough
+\RequirePackage{soul}
 \RequirePackage{xifthen}
 \RequirePackage[autostyle=try]{csquotes}
+\pagestyle{plain}
 %    \end{macrocode}
 
 % Then, using |setspace| package we set the spacing between lines in the text:
@@ -504,7 +525,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\ybQuote}
-% Then, with the hep of |wrapfig| and |mdframed|, we define |\ybQuote| command:
+% Then, with the help of |wrapfig| and |mdframed|, we define |\ybQuote| command:
 %    \begin{macrocode}
 \RequirePackage{wrapfig}
 \RequirePackage{mdframed}
@@ -592,18 +613,14 @@ Hello, world!
 }
 %    \end{macrocode}
 
-% Then, a few meta commands with default values:
+% Finally, a few meta commands with default values:
 %    \begin{macrocode}
 \newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
 \newcommand*\thedate{}
-\newcommand*\theemail{\textbackslash{}theemail}
-\newcommand*\thesocial{\textbackslash{}thesocial}
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
-\newcommand*\theyear{\textbackslash{}theyear}
-\newcommand*\theprice{\textbackslash{}theprice}
 %    \end{macrocode}
 
 % \Finale
