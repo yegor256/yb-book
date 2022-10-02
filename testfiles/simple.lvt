@@ -1,0 +1,20 @@
+\input{regression-test.tex}
+\documentclass{yb-book}
+\begin{document}
+\START
+
+\renewcommand*\thetitle{Simple}
+\renewcommand*\theauthor{Yegor Bugayenko}
+Hello, world!
+\ybPrintTitlePage
+\newpage
+\chapter{Overview}
+\section{Purpose}
+\index{computer}
+This is a very interesting book about computers.
+\ybQuote{Never tell the truth to people who
+  are not worthy of it}{Mark Twain}{}
+\ybPrintIndex
+\ybPrintBibliography
+
+\END

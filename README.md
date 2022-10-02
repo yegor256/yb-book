@@ -1,4 +1,5 @@
-[![make](https://github.com/yegor256/yb-book/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/yb-book/actions/workflows/make.yml)
+[![make](https://github.com/yegor256/yb-book/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/yb-book/actions/workflows/l3build.yml)
+[![CTAN](https://img.shields.io/ctan/v/yb-book)](https://ctan.org/pkg/yb-book)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/yb-book/blob/master/LICENSE.txt)
 
 This LaTeX class I use to format [my books](https://www.yegor256.com/books.html), 
