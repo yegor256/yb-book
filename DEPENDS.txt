@@ -26,6 +26,5 @@ hard fancyhdr
 hard wrapfig
 hard mdframed
 hard changepage
-soft ifmtarg
-soft perpage
-soft zref-abspage
+hard ifmtarg
+hard bigfoot
