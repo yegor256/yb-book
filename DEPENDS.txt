@@ -17,7 +17,7 @@ hard ulem
 hard qrcode
 hard wrapfig
 hard xfp
-hard soul} % in order to use \st{
+hard soul
 hard xifthen
 hard csquotes
 hard biblatex
