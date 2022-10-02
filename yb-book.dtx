@@ -274,6 +274,7 @@ Hello, world!
 \LoadClass{book}
 %    \end{macrocode}
 
+% \begin{macro}{geometry}
 % Then, using |geometry|, we setup page layout:
 %    \begin{macrocode}
 \RequirePackage{geometry}
@@ -287,11 +288,13 @@ Hello, world!
   \fi
 \fi\makeatother
 %    \end{macrocode}
+% \end{macro}
 
 % Then, we configure input encoding for UTF-8:
 %    \begin{macrocode}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage{lmodern}
 %    \end{macrocode}
 
 % Then, we load many important packages:
@@ -317,11 +320,14 @@ Hello, world!
 \RequirePackage[autostyle=try]{csquotes}
 %    \end{macrocode}
 
+% \begin{macro}{\pagestyle}
 % Then, we set the layout of a page to |plain|:
 %    \begin{macrocode}
 \pagestyle{plain}
 %    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{setspace}
 % Then, using |setspace| package we set the spacing between lines in the text,
 % depending on the package options:
 %    \begin{macrocode}
@@ -331,7 +337,9 @@ Hello, world!
   \makeatletter\ifyb@compact\setstretch{1.0}\fi\makeatother
   \makeatletter\ifyb@manuscript\setstretch{1.1}\fi\makeatother
 %    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{biblatex}
 % Then, we configure |biblatex|, for citation management:
 %    \begin{macrocode}
 \RequirePackage[indexing=cite,style=authoryear,
@@ -358,6 +366,7 @@ Hello, world!
     {\multicitedelim}
     {\usebibmacro{postnote}}
 %    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{condensed}
 % Then, we define |condensed| environment for snippets
@@ -369,19 +378,23 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{microtype}
 % Then, we include |microtype| for better rendering:
 %    \begin{macrocode}
 \makeatletter\ifyb@draft\else
   \RequirePackage[letterspace=-50]{microtype}
 \fi\makeatother
 %    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{libertine}
 % Then, we include |libertine|, for a good looking font:
 %    \begin{macrocode}
 \makeatletter\ifyb@manuscript
   \RequirePackage[tt=false,type1=true]{libertine}
 \fi\makeatother
 %    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\section}
 % Then, we redefine |\section| command:
