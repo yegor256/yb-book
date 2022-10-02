@@ -375,20 +375,6 @@ Hello, world!
 \fi\makeatother
 %    \end{macrocode}
 
-% Then, we use and configure |footmisc| as suggested
-% \href{https://tex.stackexchange.com/questions/40072/incompatibility-between-footmisc-option-multiple-and-hyperref/62091#62091}{here}:
-%    \begin{macrocode}
-\RequirePackage[bottom,perpage,multiple]{footmisc}
-\makeatletter
-  \let\yb@oldfootnote\footnote
-\newcommand\yb@nexttoken\relax
-\newcommand\yb@isfootnote{%
-  \ifx\footnote\yb@nexttoken\textsuperscript{,}\fi}
-\renewcommand\footnote[1]{%
-  \yb@oldfootnote{#1}\futurelet\yb@nexttoken\yb@isfootnote}
-\makeatother
-%    \end{macrocode}
-
 % \begin{macro}{\section}
 % Then, we redefine |\section| command:
 %    \begin{macrocode}
@@ -580,6 +566,21 @@ Hello, world!
 }\makeatother
 %    \end{macrocode}
 % \end{macro}
+
+% Then, we use and configure |footmisc| as suggested
+% \href{https://tex.stackexchange.com/questions/40072/incompatibility-between-footmisc-option-multiple-and-hyperref/62091#62091}{here}:
+%    \begin{macrocode}
+\RequirePackage{perpage}
+\RequirePackage[bottom,perpage,multiple]{footmisc}
+\makeatletter
+  \let\yb@oldfootnote\footnote
+\newcommand\yb@nexttoken\relax
+\newcommand\yb@isfootnote{%
+  \ifx\footnote\yb@nexttoken\textsuperscript{,}\fi}
+\renewcommand\footnote[1]{%
+  \yb@oldfootnote{#1}\futurelet\yb@nexttoken\yb@isfootnote}
+\makeatother
+%    \end{macrocode}
 
 % \begin{macro}{\ybPrintBibliography}
 % Then, we define |\ybPrintBibliography|, to print a list of references:

@@ -27,3 +27,4 @@ hard wrapfig
 hard mdframed
 hard changepage
 hard ifmtarg
+hard perpage
