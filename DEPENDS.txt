@@ -26,3 +26,4 @@ hard fancyhdr
 hard wrapfig
 hard mdframed
 hard changepage
+hard ifmtarg
