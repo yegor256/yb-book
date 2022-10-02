@@ -22,7 +22,7 @@ uploadconfig = {
   summary = "Template for YB Branded Books",
   repository = "https://github.com/yegor256/yb-book",
   support = "",
-  topic = {"class", "document-template", "book-publication"}
+  topic = {"class", "doc-templ", "book-pub"}
 }
 
 function update_tag(file, content, tagname, tagdate)
