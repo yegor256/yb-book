@@ -288,10 +288,14 @@ Hello, world!
 \fi\makeatother
 %    \end{macrocode}
 
-% Then, we load many important packages:
+% Then, we configure input encoding for UTF-8:
 %    \begin{macrocode}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+%    \end{macrocode}
+
+% Then, we load many important packages:
+%    \begin{macrocode}
 \RequirePackage{anyfontsize}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
@@ -307,15 +311,19 @@ Hello, world!
   \setlist{nosep}
 \RequirePackage{float}
 \RequirePackage[normalem]{ulem}
-\RequirePackage{qrcode}
 \RequirePackage{xfp}
 \RequirePackage{soul}
 \RequirePackage{xifthen}
 \RequirePackage[autostyle=try]{csquotes}
+%    \end{macrocode}
+
+% Then, we set the layout of a page to |plain|:
+%    \begin{macrocode}
 \pagestyle{plain}
 %    \end{macrocode}
 
-% Then, using |setspace| package we set the spacing between lines in the text:
+% Then, using |setspace| package we set the spacing between lines in the text,
+% depending on the package options:
 %    \begin{macrocode}
 \RequirePackage{setspace}
   \setstretch{1.2}
@@ -412,8 +420,7 @@ Hello, world!
       this book may be reproduced or transmitted in any
       form or by any means without the written permission
       of the publisher. This particular manuscript is
-      printed for \textbf{\if\defined\thereviewer\thereviewer\else
-      designated reviewer\fi} and may be used only
+      printed for \textbf{\thereviewer}} and may be used only
       for one-time review. The manuscript has to be destroyed
       after the review.
     };
