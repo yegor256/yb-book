@@ -4,6 +4,7 @@ typesetopts = "--interaction=batchmode --shell-escape"
 checkopts = "--interaction=batchmode --shell-escape"
 tagfiles = {"build.lua", "yb-book.dtx"}
 docfiles = {"yb-book-logo.pdf"}
+cleanfiles = {"*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux"}
 
 uploadconfig = {
   pkg = "yb-book",
