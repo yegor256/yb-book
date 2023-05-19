@@ -1,0 +1,12 @@
+\input{regression-test.tex}
+\documentclass[draft]{yb-book}
+\begin{document}
+\START
+
+\renewcommand*\thereviewer{Jeff Lebowski}
+\renewcommand*\thetitle{Simple}
+\renewcommand*\theauthor{Yegor Bugayenko}
+
+Hello, world!
+
+\END
