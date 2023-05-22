@@ -1,4 +1,5 @@
 hard pgf
+hard pgfopts
 hard xkeyval
 hard textpos
 hard geometry
