@@ -1,5 +1,6 @@
 hard pgf
 hard xkeyval
+hard textpos
 hard geometry
 hard anyfontsize
 hard chngcntr
