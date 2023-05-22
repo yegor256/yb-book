@@ -421,6 +421,7 @@ Hello, world!
 % Then, if it's a |draft|, we put a watermark comment:
 %    \begin{macrocode}
 \makeatletter\ifyb@draft
+\RequirePackage{textpos}
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand\headrulewidth{0pt}
