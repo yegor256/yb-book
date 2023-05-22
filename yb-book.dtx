@@ -245,28 +245,27 @@ Hello, world!
 % \changes{v0.1.0}{2022/01/09}{Initial version}
 % \changes{v0.2.0}{2022/10/02}{Started using l3build}
 
-% First, we use |xkeyval| package for package options parsing:
+% First, we parse package options:
+% \changes{v0.3.0}{2023/05/22}{The \texttt{pgfopts} package is now used to parse package options.}
 %    \begin{macrocode}
-\RequirePackage{xkeyval}
-\makeatletter
-\newif\ifyb@draft
-\DeclareOptionX{draft}{\yb@drafttrue}
-\newif\ifyb@compact
-\DeclareOptionX{compact}{\yb@compacttrue}
-\newif\ifyb@manuscript
-\DeclareOptionX{manuscript}{\yb@manuscripttrue}
-\ProcessOptionsX
-\makeatother
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /yb/.cd,
+  draft/.store in=\yb@draft,
+  compact/.store in=\yb@compact,
+  manuscript/.store in=\yb@manuscript,
+}
+\ProcessPgfPackageOptions{/yb}
 %    \end{macrocode}
 
 % Then, depending on the options like |draft| and |manuscript|, we preset
 % options of the class |book| and then load it:
 %    \begin{macrocode}
-\makeatletter\ifyb@draft
+\makeatletter\ifdefined\yb@draft
   \PassOptionsToClass{11pt}{book}
   \PassOptionsToClass{oneside}{book}
 \else
-  \ifyb@manuscript
+  \ifdefined\yb@manuscript
     \PassOptionsToClass{12pt}{book}
     \PassOptionsToClass{oneside}{book}
   \else
@@ -283,10 +282,10 @@ Hello, world!
 \RequirePackage{geometry}
 \geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in,
   left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
-\makeatletter\ifyb@draft
+\makeatletter\ifdefined\yb@draft
   \geometry{a4paper, margin=1in, left=1.5in}
 \else
-  \ifyb@manuscript
+  \ifdefined\yb@manuscript
     \geometry{a4paper, margin=1.2in}
   \fi
 \fi\makeatother
@@ -336,9 +335,9 @@ Hello, world!
 %    \begin{macrocode}
 \RequirePackage{setspace}
   \setstretch{1.2}
-  \makeatletter\ifyb@draft\setstretch{1.1}\fi\makeatother
-  \makeatletter\ifyb@compact\setstretch{1.0}\fi\makeatother
-  \makeatletter\ifyb@manuscript\setstretch{1.1}\fi\makeatother
+  \makeatletter\ifdefined\yb@draft\setstretch{1.1}\fi\makeatother
+  \makeatletter\ifdefined\yb@compact\setstretch{1.0}\fi\makeatother
+  \makeatletter\ifdefined\yb@manuscript\setstretch{1.1}\fi\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -384,7 +383,7 @@ Hello, world!
 % \begin{macro}{microtype}
 % Then, we include |microtype| for better rendering:
 %    \begin{macrocode}
-\makeatletter\ifyb@draft\else
+\makeatletter\ifdefined\yb@draft\else
   \RequirePackage[letterspace=-50]{microtype}
 \fi\makeatother
 %    \end{macrocode}
@@ -393,7 +392,7 @@ Hello, world!
 % \begin{macro}{libertine}
 % Then, we include |libertine|, for a good looking font:
 %    \begin{macrocode}
-\makeatletter\ifyb@manuscript
+\makeatletter\ifdefined\yb@manuscript
   \RequirePackage[tt=false,type1=true]{libertine}
 \fi\makeatother
 %    \end{macrocode}
@@ -404,14 +403,14 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \let\yb@oldsection\section
-\ifyb@draft
+\ifdefined\yb@draft
   \RequirePackage[medium]{titlesec}
 \else
   \RequirePackage[raggedright]{titlesec}
     \titlespacing{\section}{0in}{6pt}{6pt}[1in]
   \renewcommand\section{\newpage\yb@oldsection}
 \fi
-\ifyb@compact
+\ifdefined\yb@compact
   \renewcommand\section{\vspace{2em}\yb@oldsection}
 \fi
 \makeatother
@@ -420,7 +419,7 @@ Hello, world!
 
 % Then, if it's a |draft|, we put a watermark comment:
 %    \begin{macrocode}
-\makeatletter\ifyb@draft
+\makeatletter\ifdefined\yb@draft
 \RequirePackage{textpos}
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -474,7 +473,7 @@ Hello, world!
 % Then, we define |\ybPrintTitlePage| command:
 %    \begin{macrocode}
 \makeatletter\newcommand\ybPrintTitlePage{
-  \ifyb@draft\else
+  \ifdefined\yb@draft\else
     \begin{titlepage}
       \ttfamily
       \vspace*{\fill}
@@ -504,8 +503,8 @@ Hello, world!
 % Then, we define |ybPrintTOC| command to print table of contents:
 %    \begin{macrocode}
 \makeatletter\newcommand\ybPrintTOC{
-  \ifyb@draft\else
-    \ifyb@compact\else\cleardoublepage\fi
+  \ifdefined\yb@draft\else
+    \ifdefined\yb@compact\else\cleardoublepage\fi
     {\setstretch{0.7}\tableofcontents}
   \fi
 }\makeatother
@@ -520,7 +519,7 @@ Hello, world!
   \makeindex
   \indexsetup{othercode={\hyphenpenalty=10000}}
 \makeatletter\newcommand\ybPrintIndex[1][Index]{
-  \ifyb@draft\else
+  \ifdefined\yb@draft\else
     \cleardoublepage
     {
       \setstretch{1.0}
@@ -570,7 +569,7 @@ Hello, world!
       ``#1''\\\raggedleft---#2 #3%
     \fi%
   }
-  \ifyb@draft%
+  \ifdefined\yb@draft%
     \begin{wrapfigure}{r}{0.4\textwidth}%
       \begin{mdframed}[style=quoteodd]%
         \yb@body%
@@ -612,7 +611,7 @@ Hello, world!
 \makeatletter\newcommand\ybPrintBibliography{%
   \AtNextBibliography{\small}%
   \raggedright%
-  \ifyb@manuscript%
+  \ifdefined\yb@manuscript%
     \setlength\bibitemsep{0pt}%
     \newpage%
     \begin{multicols}{2}
