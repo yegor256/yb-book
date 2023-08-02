@@ -12,5 +12,5 @@ jobs:
       - uses: teatimeguest/setup-texlive-action@v2.6.2
         with:
           package-file: DEPENDS.txt
-          packages: scheme-basic xetex l3build biblatex imakeidx href-ul pgfopts
+          update-all-packages: true
       - run: l3build check -q --show-log-on-error
