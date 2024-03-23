@@ -127,7 +127,7 @@ Hello, world!
 % printing on paper for review purposes.
 % \end{macro}
 
-% \begin{macro}{draft}
+% \begin{macro}{authordraft}
 % When it's a draft for reviewers (the page size is A4)
 % and you want to have a watermark and a compact form of the content. This
 % option goes together with |\thereviewer{}| command, which you may redefine,
@@ -137,7 +137,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass[draft]{yb-book}
+\documentclass[authordraft]{yb-book}
 \renewcommand*\thereviewer{Walter Sobchak}
 \begin{document}
 Hello, world!
@@ -251,17 +251,17 @@ Hello, world!
 \RequirePackage{pgfopts}
 \pgfkeys{
   /yb/.cd,
-  draft/.store in=\yb@draft,
+  authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
 }
 \ProcessPgfPackageOptions{/yb}
 %    \end{macrocode}
 
-% Then, depending on the options like |draft| and |manuscript|, we preset
+% Then, depending on the options like |authordraft| and |manuscript|, we preset
 % options of the class |book| and then load it:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@draft
+\makeatletter\ifdefined\yb@authordraft
   \PassOptionsToClass{11pt}{book}
   \PassOptionsToClass{oneside}{book}
 \else
@@ -282,7 +282,7 @@ Hello, world!
 \RequirePackage{geometry}
 \geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in,
   left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
-\makeatletter\ifdefined\yb@draft
+\makeatletter\ifdefined\yb@authordraft
   \geometry{a4paper, margin=1in, left=1.5in}
 \else
   \ifdefined\yb@manuscript
@@ -335,7 +335,7 @@ Hello, world!
 %    \begin{macrocode}
 \RequirePackage{setspace}
   \setstretch{1.2}
-  \makeatletter\ifdefined\yb@draft\setstretch{1.1}\fi\makeatother
+  \makeatletter\ifdefined\yb@authordraft\setstretch{1.1}\fi\makeatother
   \makeatletter\ifdefined\yb@compact\setstretch{1.0}\fi\makeatother
   \makeatletter\ifdefined\yb@manuscript\setstretch{1.1}\fi\makeatother
 %    \end{macrocode}
@@ -383,7 +383,7 @@ Hello, world!
 % \begin{macro}{microtype}
 % Then, we include |microtype| for better rendering:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@draft\else
+\makeatletter\ifdefined\yb@authordraft\else
   \RequirePackage[letterspace=-50]{microtype}
 \fi\makeatother
 %    \end{macrocode}
@@ -403,7 +403,7 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \let\yb@oldsection\section
-\ifdefined\yb@draft
+\ifdefined\yb@authordraft
   \RequirePackage[medium]{titlesec}
 \else
   \RequirePackage[raggedright]{titlesec}
@@ -417,9 +417,9 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
-% Then, if it's a |draft|, we put a watermark comment:
+% Then, if it's a |authordraft|, we put a watermark comment:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@draft
+\makeatletter\ifdefined\yb@authordraft
   \RequirePackage[absolute]{textpos}
     \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
@@ -475,7 +475,7 @@ Hello, world!
 % Then, we define |\ybPrintTitlePage| command:
 %    \begin{macrocode}
 \makeatletter\newcommand\ybPrintTitlePage{
-  \ifdefined\yb@draft\else
+  \ifdefined\yb@authordraft\else
     \begin{titlepage}
       \ttfamily
       \vspace*{\fill}
@@ -505,7 +505,7 @@ Hello, world!
 % Then, we define |ybPrintTOC| command to print table of contents:
 %    \begin{macrocode}
 \makeatletter\newcommand\ybPrintTOC{
-  \ifdefined\yb@draft\else
+  \ifdefined\yb@authordraft\else
     \ifdefined\yb@compact\else\cleardoublepage\fi
     {\setstretch{0.7}\tableofcontents}
   \fi
@@ -521,7 +521,7 @@ Hello, world!
   \makeindex
   \indexsetup{othercode={\hyphenpenalty=10000}}
 \makeatletter\newcommand\ybPrintIndex[1][Index]{
-  \ifdefined\yb@draft\else
+  \ifdefined\yb@authordraft\else
     \cleardoublepage
     {
       \setstretch{1.0}
@@ -571,7 +571,7 @@ Hello, world!
       ``#1''\\\raggedleft---#2 #3%
     \fi%
   }
-  \ifdefined\yb@draft%
+  \ifdefined\yb@authordraft%
     \begin{wrapfigure}{r}{0.4\textwidth}%
       \begin{mdframed}[style=quoteodd]%
         \yb@body%
