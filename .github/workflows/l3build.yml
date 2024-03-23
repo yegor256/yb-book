@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@master
-      - uses: teatimeguest/setup-texlive-action@v3.0.1
+      - uses: teatimeguest/setup-texlive-action@v3.2.1
         with:
           package-file: DEPENDS.txt
           update-all-packages: true
