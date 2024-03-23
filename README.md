@@ -10,7 +10,7 @@ which I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
 
 First,
 [install it](https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages)
-from [CTAN](https://ctan.org/pkg/yb-book) 
+from [CTAN](https://ctan.org/pkg/yb-book)
 and then use in the preamble:
 
 ```tex
@@ -27,7 +27,7 @@ Hello, world!
 \end{document}
 ```
 
-If you want to contribute yourself, make a fork, then create a branch, 
+If you want to contribute yourself, make a fork, then create a branch,
 then run `make` in the root directory.
 It should compile everything without errors. If not, submit an issue and wait.
 Otherwise, make your changes and then run `make` again. If the build is
