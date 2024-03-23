@@ -17,6 +17,7 @@ hard mdframed
 hard microtype
 hard needspace
 hard paralist
+hard hypdoc
 hard pgf
 hard pgfopts
 hard qrcode
