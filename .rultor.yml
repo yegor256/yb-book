@@ -35,7 +35,9 @@ merge:
 release:
   script: |-
     l3build tag ${tag}
-    l3build ctan --show-log-on-error
+    l3build ctan --show-log-on-error || echo 1
+    cat build/doc/yb-book.log
+    exit 1
     texsc
     texqc
     git commit -am "version set to ${tag}"

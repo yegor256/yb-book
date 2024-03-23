@@ -300,21 +300,53 @@ Hello, world!
 \RequirePackage{lmodern}
 %    \end{macrocode}
 
-% Then, we load many important packages:
+% Then, we load \href{https://ctan.org/pkg/anyfontsize}{anyfontsize} to enable all sizes of fonts:
 %    \begin{macrocode}
 \RequirePackage{anyfontsize}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/tikz}{tikz} for graphics:
+%    \begin{macrocode}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
   \usetikzlibrary{shapes}
   \usetikzlibrary{fit}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/chngcntr}{chngcntr} for something else:
+%    \begin{macrocode}
 \RequirePackage{chngcntr}
   \counterwithout{footnote}{chapter}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/lastpage}{lastpage} to enable rendering of the last page number:
+%    \begin{macrocode}
 \RequirePackage{lastpage}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/paralist}{paralist} for inline enumeration:
+%    \begin{macrocode}
 \RequirePackage{paralist}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/xcolor}{xcolor} for colors:
+%    \begin{macrocode}
 \RequirePackage{xcolor}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/graphicx}{graphicx} to enable graphic files inclusion:
+%    \begin{macrocode}
 \RequirePackage{graphicx}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/enumitem}{enumitem} for inline enumeration:
+%    \begin{macrocode}
 \RequirePackage[inline]{enumitem}
   \setlist{nosep}
+%    \end{macrocode}
+
+% Then, we load more packages:
+%    \begin{macrocode}
 \RequirePackage{float}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{xfp}
