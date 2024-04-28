@@ -32,5 +32,5 @@ jobs:
   yamllint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: ibiqlik/action-yamllint@v3

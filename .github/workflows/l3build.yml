@@ -30,7 +30,7 @@ jobs:
   l3build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: teatimeguest/setup-texlive-action@v3.2.1
         with:
           package-file: DEPENDS.txt
