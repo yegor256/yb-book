@@ -345,13 +345,30 @@ Hello, world!
   \setlist{nosep}
 %    \end{macrocode}
 
-% Then, we load more packages:
+% Then, we load \href{https://ctan.org/pkg/float}{float} for floating figures:
 %    \begin{macrocode}
 \RequirePackage{float}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/ulem}{ulem} for inline lists:
+%    \begin{macrocode}
 \RequirePackage[normalem]{ulem}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/xfp}{xfp} and
+% \href{https://ctan.org/pkg/xifthen}{xifthen} for if-then-else:
+%    \begin{macrocode}
 \RequirePackage{xfp}
-\RequirePackage{soul}
 \RequirePackage{xifthen}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/soul}{soul} for highlighting:
+%    \begin{macrocode}
+\RequirePackage{soul}
+%    \end{macrocode}
+
+% Then, we load \href{https://ctan.org/pkg/csquotes}{csquotes} for better rendering:
+%    \begin{macrocode}
 \RequirePackage[autostyle=try]{csquotes}
 %    \end{macrocode}
 
