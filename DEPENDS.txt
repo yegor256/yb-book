@@ -4,11 +4,13 @@ hard bigfoot
 hard changepage
 hard chngcntr
 hard csquotes
+hard cyrillic
 hard enumitem
 hard fancyhdr
 hard float
 hard footmisc
 hard geometry
+hard hypdoc
 hard ifmtarg
 hard imakeidx
 hard lastpage
@@ -17,7 +19,6 @@ hard mdframed
 hard microtype
 hard needspace
 hard paralist
-hard hypdoc
 hard pgf
 hard pgfopts
 hard qrcode
