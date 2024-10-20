@@ -16,6 +16,7 @@ hard hypdoc
 hard ifmtarg
 hard imakeidx
 hard lastpage
+hard lh
 hard libertine
 hard mdframed
 hard microtype
