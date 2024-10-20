@@ -3,6 +3,8 @@ hard biblatex
 hard bigfoot
 hard changepage
 hard chngcntr
+hard collection-fontsextra
+hard collection-fontsrecommended
 hard csquotes
 hard cyrillic
 hard enumitem
