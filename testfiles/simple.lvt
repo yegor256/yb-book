@@ -7,7 +7,7 @@
 \renewcommand*\thetitle{Simple}
 \renewcommand*\theauthor{Yegor Bugayenko}
 
-\ybPrintTitlePage
+% \ybPrintTitlePage
 
 \chapter{Overview}
 
