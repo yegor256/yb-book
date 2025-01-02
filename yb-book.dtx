@@ -262,7 +262,8 @@ Hello, world!
 % Then, depending on the options like |authordraft| and |manuscript|, we preset
 % options of the class |book| and then load it:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@authordraft
+\makeatletter
+\ifdefined\yb@authordraft
   \PassOptionsToClass{11pt}{book}
   \PassOptionsToClass{oneside}{book}
 \else
@@ -273,7 +274,8 @@ Hello, world!
     \PassOptionsToClass{11pt}{book}
     \PassOptionsToClass{twoside}{book}
   \fi
-\fi\makeatother
+\fi
+\makeatother
 \LoadClass{book}
 %    \end{macrocode}
 
@@ -281,15 +283,19 @@ Hello, world!
 % Then, using |geometry|, we setup page layout:
 %    \begin{macrocode}
 \RequirePackage{geometry}
-\geometry{paperwidth=6in, paperheight=9in, bindingoffset=0.25in,
+\geometry{
+  paperwidth=6in, paperheight=9in,
+  bindingoffset=0.25in,
   left=0.75in, right=0.75in, top=0.75in, bottom=1.25in}
-\makeatletter\ifdefined\yb@authordraft
+\makeatletter
+\ifdefined\yb@authordraft
   \geometry{a4paper, margin=1in, left=1.5in}
 \else
   \ifdefined\yb@manuscript
     \geometry{a4paper, margin=1.2in}
   \fi
-\fi\makeatother
+\fi
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -383,9 +389,11 @@ Hello, world!
 %    \begin{macrocode}
 \RequirePackage{setspace}
   \setstretch{1.2}
-  \makeatletter\ifdefined\yb@authordraft\setstretch{1.1}\fi\makeatother
-  \makeatletter\ifdefined\yb@compact\setstretch{1.0}\fi\makeatother
-  \makeatletter\ifdefined\yb@manuscript\setstretch{1.1}\fi\makeatother
+  \makeatletter
+  \ifdefined\yb@authordraft\setstretch{1.1}\fi
+  \ifdefined\yb@compact\setstretch{1.0}\fi
+  \ifdefined\yb@manuscript\setstretch{1.1}\fi
+  \makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -431,18 +439,22 @@ Hello, world!
 % \begin{macro}{microtype}
 % Then, we include |microtype| for better rendering:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@authordraft\else
+\makeatletter
+\ifdefined\yb@authordraft\else
   \RequirePackage[letterspace=-50]{microtype}
-\fi\makeatother
+\fi
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{libertine}
 % Then, we include |libertine|, for a good looking font:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@manuscript
+\makeatletter
+\ifdefined\yb@manuscript
   \RequirePackage[tt=false,type1=true]{libertine}
-\fi\makeatother
+\fi
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -467,7 +479,8 @@ Hello, world!
 
 % Then, if it's a |authordraft|, we put a watermark comment:
 %    \begin{macrocode}
-\makeatletter\ifdefined\yb@authordraft
+\makeatletter
+\ifdefined\yb@authordraft
   \RequirePackage[absolute]{textpos}
     \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
@@ -494,7 +507,8 @@ Hello, world!
   }
   \fancyfoot[C,CO,CE]{\small\ttfamily
     page \#\thepage{} of \pageref{LastPage}}
-\fi\makeatother
+\fi
+\makeatother
 %    \end{macrocode}
 
 % \begin{macro}{\maketitle}
@@ -522,7 +536,8 @@ Hello, world!
 % \begin{macro}{\ybPrintTitlePage}
 % Then, we define |\ybPrintTitlePage| command:
 %    \begin{macrocode}
-\makeatletter\newcommand\ybPrintTitlePage{
+\makeatletter
+\newcommand\ybPrintTitlePage{
   \ifdefined\yb@authordraft\else
     \begin{titlepage}
       \ttfamily
@@ -545,19 +560,22 @@ Hello, world!
       \vspace*{\fill}
     \end{titlepage}
   \fi
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\ybPrintTOC}
 % Then, we define |ybPrintTOC| command to print table of contents:
 %    \begin{macrocode}
-\makeatletter\newcommand\ybPrintTOC{
+\makeatletter
+\newcommand\ybPrintTOC{
   \ifdefined\yb@authordraft\else
     \ifdefined\yb@compact\else\cleardoublepage\fi
     {\setstretch{0.7}\tableofcontents}
   \fi
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -568,7 +586,8 @@ Hello, world!
   \renewbibmacro*{citeindex}{\indexnames{labelname}{}}
   \makeindex
   \indexsetup{othercode={\hyphenpenalty=10000}}
-\makeatletter\newcommand\ybPrintIndex[1][Index]{
+\makeatletter
+\newcommand\ybPrintIndex[1][Index]{
   \ifdefined\yb@authordraft\else
     \cleardoublepage
     {
@@ -578,7 +597,8 @@ Hello, world!
       \printindex
     }
   \fi
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -603,7 +623,8 @@ Hello, world!
   skipabove=0pt,skipbelow=0pt,
   linewidth=2pt,
   topline=false,bottomline=false,leftline=false}
-\makeatletter\newcommand\ybQuote[3]{%
+\makeatletter
+\newcommand\ybQuote[3]{%
   \ifthenelse{\isempty{#3}}{}{
     \ifx\hfuzz#2\hfuzz%
       \index{#3}%
@@ -636,7 +657,8 @@ Hello, world!
       \vspace{-12pt}
     \end{wrapfigure}%
   \fi%
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -658,7 +680,8 @@ Hello, world!
 % \begin{macro}{\ybPrintBibliography}
 % Then, we define |\ybPrintBibliography|, to print a list of references:
 %    \begin{macrocode}
-\makeatletter\newcommand\ybPrintBibliography{%
+\makeatletter
+\newcommand\ybPrintBibliography{%
   \AtNextBibliography{\small}%
   \raggedright%
   \ifdefined\yb@manuscript%
@@ -670,7 +693,8 @@ Hello, world!
   \else
     \printbibliography
   \fi
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -694,6 +718,8 @@ Hello, world!
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
+
+\endinput
 %    \end{macrocode}
 
 % \Finale
