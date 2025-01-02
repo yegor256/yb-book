@@ -255,6 +255,7 @@ Hello, world!
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
+  sparse/.store in=\yb@sparse,
 }
 \ProcessPgfPackageOptions{/yb}
 %    \end{macrocode}
@@ -458,15 +459,16 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \let\yb@oldsection\section
+\def\yb@secstart{\ifdefined\yb@sparse\newpage\fi}
 \ifdefined\yb@authordraft
   \RequirePackage[medium]{titlesec}
 \else
   \RequirePackage[raggedright]{titlesec}
     \titlespacing{\section}{0in}{6pt}{6pt}[1in]
-  \renewcommand\section{\newpage\yb@oldsection}
+  \renewcommand\section{\yb@secstart\newpage\yb@oldsection}
 \fi
 \ifdefined\yb@compact
-  \renewcommand\section{\vspace{2em}\yb@oldsection}
+  \renewcommand\section{\yb@secstart\vspace{2em}\yb@oldsection}
 \fi
 \makeatother
 %    \end{macrocode}

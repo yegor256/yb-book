@@ -43,4 +43,5 @@ soft imakeidx
 soft l3build
 soft pgfopts
 soft scheme-basic
+soft silence
 soft xetex

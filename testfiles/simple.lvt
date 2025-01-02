@@ -1,5 +1,6 @@
 \input{regression-test.tex}
 \documentclass{yb-book}
+\usepackage{silence}\WarningsOff
 \begin{document}
 \START
 
