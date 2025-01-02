@@ -7,20 +7,6 @@
 \renewcommand*\thetitle{Simple}
 \renewcommand*\theauthor{Yegor Bugayenko}
 
-\chapter{First}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elit tellus, varius a enim lacinia, finibus lacinia magna. Donec non feugiat neque. Sed et euismod risus, in viverra mi. Ut velit enim, elementum non consequat non, hendrerit nec felis. Vivamus tincidunt pellentesque mauris a fringilla. Mauris orci nunc, auctor id auctor bibendum, efficitur ac metus. Quisque vestibulum vehicula sapien, in vulputate mi bibendum sed. Fusce massa nunc, facilisis vitae leo ac, mattis venenatis urna. Aliquam id est ut massa finibus rutrum vitae ac sapien. Curabitur bibendum tincidunt sapien. Etiam elit ligula, egestas a hendrerit nec, aliquam quis turpis. Fusce commodo efficitur justo, quis consequat orci molestie in.
-
-\section{One}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elit tellus, varius a enim lacinia, finibus lacinia magna. Donec non feugiat neque. Sed et euismod risus, in viverra mi. Ut velit enim, elementum non consequat non, hendrerit nec felis. Vivamus tincidunt pellentesque mauris a fringilla. Mauris orci nunc, auctor id auctor bibendum, efficitur ac metus. Quisque vestibulum vehicula sapien, in vulputate mi bibendum sed. Fusce massa nunc, facilisis vitae leo ac, mattis venenatis urna. Aliquam id est ut massa finibus rutrum vitae ac sapien. Curabitur bibendum tincidunt sapien. Etiam elit ligula, egestas a hendrerit nec, aliquam quis turpis. Fusce commodo efficitur justo, quis consequat orci molestie in.
-
-\chapter{Second}
-
-Fusce facilisis diam eu tortor efficitur fringilla. Pellentesque egestas mi sed libero aliquet iaculis. Proin luctus libero vel ultrices pulvinar. Donec eleifend dolor at est lobortis hendrerit rutrum sed dolor. Quisque vel efficitur turpis. Curabitur convallis, felis et tempor posuere, velit enim placerat ligula, in consequat lorem lectus et mauris. Maecenas dignissim, sem vel placerat auctor, sem nunc luctus ipsum, vitae convallis mauris magna fermentum lacus. Maecenas semper, arcu vel semper dapibus, nisi sem porttitor purus, a ultrices urna tortor hendrerit leo. Cras enim leo, consequat vitae posuere non, scelerisque ac arcu. Curabitur eu magna sapien. Nulla non facilisis nulla. Proin at feugiat magna, id viverra erat. Phasellus neque arcu, vestibulum eget accumsan in, eleifend ut dolor. Etiam condimentum aliquam lacinia. Curabitur viverra tempus mauris, vitae sollicitudin nisl faucibus id.
-
-\section{Two}
-
-Nulla gravida quis sem eu tincidunt. Nunc eget tortor faucibus, elementum turpis eu, tempor dui. Integer rhoncus odio sed facilisis sollicitudin. Vestibulum aliquam, urna at venenatis euismod, mauris magna facilisis diam, at viverra ante mi a dui. Aliquam at dui ornare, maximus lectus sed, feugiat risus. Maecenas erat est, accumsan at dolor quis, pharetra laoreet magna. Integer accumsan nisl quis nibh lobortis accumsan. Maecenas eleifend elementum magna vel mattis. Phasellus dignissim, odio quis malesuada vulputate, libero felis iaculis nulla, nec blandit ligula est et quam. Nunc non rhoncus eros, vel mattis nibh. Duis vel sapien elit. Ut commodo rhoncus tortor vitae molestie. Vestibulum iaculis ligula vel tincidunt consequat.
+Hello, world!
 
 \END
