@@ -120,6 +120,10 @@ Hello, world!
 % I use this option to render \href{https://www.yegor256.com/code-ahead.html}{Code Ahead} book.
 % \end{macro}
 
+% \begin{macro}{sparse}
+% With this package option every section will start from a new page.
+% \end{macro}
+
 % \begin{macro}{manuscript}
 % When the format is not for Amazon printing,
 % but for some other purposes (the page size is A4), this option may be
@@ -248,6 +252,7 @@ Hello, world!
 
 % First, we parse package options:
 % \changes{v0.3.0}{2023/05/22}{The \texttt{pgfopts} package is now used to parse package options.}
+% \changes{v0.5.0}{2024/01/02}{The \texttt{sparse} package option added, to place every section in a new page.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \pgfkeys{
