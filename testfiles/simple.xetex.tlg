@@ -23,29 +23,6 @@ Package mdframed Info: mdframed inside float
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line ....
 LaTeX Warning: Reference `mdf@pagelabel-1' on page 4 undefined on input line ....
-Underfull \hbox (badness 10000) in paragraph at lines 14--16
-\TU/lmr/m/n/10.95 This is a very interesting book about computers.
-\hbox(7.5993+2.25569)x307.1475, glue set 5.93483
-.\kern-0.3942 (left margin)
-.\TU/lmr/m/n/10.95 This
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 is
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 a
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 very
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 interesting
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 book
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 about
-.\glue 3.64635 plus 1.82317 minus 1.21544
-.\TU/lmr/m/n/10.95 computers.
-.\penalty 10000
-.\kern-2.13525 (right margin)
-.\glue(\parfillskip) 0.0
-.\glue(\rightskip) 0.0
 [4]
 runsystem(makeindex simple.idx)...executed.
 (simple.ind)
