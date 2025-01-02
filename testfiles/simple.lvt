@@ -10,7 +10,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elit tellus, variu
 
 Hello, world!
 
-%\ybPrintTitlePage
+\ybPrintTitlePage
 
 \newpage
 \chapter{Overview}
