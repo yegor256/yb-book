@@ -35,8 +35,22 @@ jobs:
       TERM: xterm-256color
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get -y install ghostscript
+        if: matrix.os == 'ubuntu-24.04'
       - uses: teatimeguest/setup-texlive-action@v3.3.4
         with:
-          package-file: DEPENDS.txt
           update-all-packages: true
-      - run: l3build check -q --show-log-on-error
+          package-file: DEPENDS.txt
+      - run: l3build ctan --show-log-on-error --halt-on-error
+      - run: |
+          mkdir build/gh-pages
+          cp build/distrib/tds/tex/latex/yb-book/yb-book.sty build/gh-pages
+          sed -i "s/0\.0\.0/$(date +%H.%M.%S)/g" build/gh-pages/yb-book.sty
+          sed -i "s|0000/00/00|$(date +%Y/%m/%d)|g" build/gh-pages/yb-book.sty
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
+      - uses: JamesIves/github-pages-deploy-action@v4.7.2
+        with:
+          branch: gh-pages
+          folder: build/gh-pages
+          clean: true
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
