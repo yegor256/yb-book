@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/02 16.27.30 YB Branded Book Style]
+[2025/01/05 02.02.16 YB Branded Book Style]
 
 
 
@@ -79,6 +79,8 @@
 \fi
 \makeatother
 \LoadClass{book}
+
+\RequirePackage[utf8]{inputenc}
 
 \RequirePackage{geometry}
 \geometry{
