@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/05 02.02.16 YB Branded Book Style]
+[2025/01/05 02.03.57 YB Branded Book Style]
 
 
 
@@ -206,9 +206,9 @@
   \fancyhf{}
   \fancyhead[L,C,LO,CO]{}
   \fancyhead[R,RO]{
-    \begin{textblock}{4}(11.5,1)
+    \begin{textblock}{4}(11.5,1)%
       \tikz \node [color=gray, rotate=270,
-        font=\ttfamily\scriptsize, text width=5in] at (0,0) {
+        font=\ttfamily\scriptsize, text width=5in] at (0,0) {%
         Copyright \textcopyright{} \the\year{} by \theauthor{}.
         All rights reserved. No part of the contents of
         this book may be reproduced or transmitted in any
@@ -216,11 +216,11 @@
         of the publisher. This particular manuscript is
         printed for \textbf{\thereviewer{}} and may be used only
         for one-time review. The manuscript has to be destroyed
-        after the review.
+        after the review.%
       };
     \end{textblock}
   }
-  \fancyfoot[C,CO,CE]{\small\ttfamily
+  \fancyfoot[C,CO,CE]{\small\ttfamily%
     page \#\thepage{} of \pageref{LastPage}}
 \fi
 \makeatother
@@ -283,16 +283,16 @@
   \makeindex
   \indexsetup{othercode={\hyphenpenalty=10000}}
 \makeatletter
-\newcommand\ybPrintIndex[1][Index]{
+\newcommand\ybPrintIndex[1][Index]{%
   \ifdefined\yb@authordraft\else
-    \cleardoublepage
-    {
-      \setstretch{1.0}
-      \small
-      \addcontentsline{toc}{chapter}{#1}
-      \printindex
-    }
-  \fi
+    \cleardoublepage%
+    {%
+      \setstretch{1.0}%
+      \small%
+      \addcontentsline{toc}{chapter}{#1}%
+      \printindex%
+    }%
+  \fi%
 }
 \makeatother
 
