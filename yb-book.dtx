@@ -492,7 +492,7 @@ Hello, world!
 \else
   \RequirePackage[raggedright]{titlesec}
     \titlespacing{\section}{0in}{6pt}{6pt}[1in]
-  \renewcommand\section{\yb@secstart\newpage\yb@oldsection}
+  \renewcommand\section{\yb@secstart\yb@oldsection}
 \fi
 \ifdefined\yb@compact
   \renewcommand\section{\yb@secstart\vspace{2em}\yb@oldsection}
