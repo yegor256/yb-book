@@ -7,11 +7,13 @@ hard collection-fontsextra
 hard collection-fontsrecommended
 hard csquotes
 hard cyrillic
+hard doi
 hard enumitem
 hard fancyhdr
 hard float
 hard footmisc
 hard geometry
+hard href-ul
 hard hypdoc
 hard ifmtarg
 hard imakeidx
@@ -38,7 +40,6 @@ hard xifthen
 hard xkeyval
 hard zref
 soft biblatex
-soft href-ul
 soft imakeidx
 soft l3build
 soft pgfopts
