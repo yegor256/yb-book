@@ -515,9 +515,19 @@ Hello, world!
   \fancyhf{}
   \fancyhead[L,C,LO,CO]{}
   \fancyhead[R,RO]{
+    \begin{textblock}{16}[0.5,0.5](8,8)%
+      \tikz \node[minimum width=16\TPHorizModule] {%
+        \fontsize{64}{64}\selectfont\bfseries%
+        \rotatebox{45}{
+          \tikz \node
+          [fill=gray!8, font=\ttfamily\color{white}]
+          {it is a draft};%
+        }%
+      };%
+    \end{textblock}%
     \begin{textblock}{4}(11.5,1)%
       \tikz \node [color=gray, rotate=270,
-        font=\ttfamily\scriptsize, text width=5in] at (0,0) {%
+        font=\ttfamily\scriptsize, text width=8in] at (0,0) {%
         Copyright \textcopyright{} \the\year{} by \theauthor{}.
         All rights reserved. No part of the contents of
         this book may be reproduced or transmitted in any
@@ -529,7 +539,7 @@ Hello, world!
       };
     \end{textblock}
   }
-  \fancyfoot[C,CO,CE]{\small\ttfamily%
+  \fancyfoot[C,CO,C]{\small\ttfamily%
     page \#\thepage{} of \pageref{LastPage}}
 \fi
 \makeatother
