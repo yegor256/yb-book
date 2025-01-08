@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/08 06.43.16 YB Branded Book Style]
+[2025/01/08 07.02.40 YB Branded Book Style]
 
 
 
@@ -181,7 +181,8 @@
 
 \makeatletter
 \ifdefined\yb@authordraft\else
-  \RequirePackage[letterspace=-50]{microtype}
+  \PassOptionsToPackage{letterspace=-50,nopatch=footnote}{microtype}
+  \RequirePackage{microtype}
 \fi
 \makeatother
 
