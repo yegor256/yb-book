@@ -464,7 +464,8 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \ifdefined\yb@authordraft\else
-  \RequirePackage[letterspace=-50]{microtype}
+  \PassOptionsToPackage{letterspace=-50,nopatch=footnote}{microtype}
+  \RequirePackage{microtype}
 \fi
 \makeatother
 %    \end{macrocode}
