@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/05 02.05.26 YB Branded Book Style]
+[2025/01/08 06.43.16 YB Branded Book Style]
 
 
 
@@ -57,6 +57,7 @@
 \RequirePackage{pgfopts}
 \pgfkeys{
   /yb/.cd,
+  apa/.store in=\yb@apa,
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
@@ -96,6 +97,8 @@
   \fi
 \fi
 \makeatother
+
+\RequirePackage{href-ul}
 
 \RequirePackage{anyfontsize}
 
@@ -139,9 +142,18 @@
   \ifdefined\yb@manuscript\setstretch{1.1}\fi
   \makeatother
 
-\RequirePackage[indexing=cite,style=authoryear,
-  natbib=true,maxnames=1,minnames=1,doi=false,
-  url=false,isbn=false,isbn=false]{biblatex}
+\PassOptionsToPackage{indexing=cite,
+  natbib=true,maxnames=2,minnames=1,doi=true,
+  url=false,isbn=false,isbn=false}{biblatex}
+\makeatletter
+\ifdefined\yb@apa
+  \PassOptionsToPackage{style=authoryear}{biblatex}
+\else
+  \PassOptionsToPackage{style=numeric}{biblatex}
+\fi
+\makeatother
+\RequirePackage{doi}
+\RequirePackage{biblatex}
   \DeclareCiteCommand{\citetitle}
     {\boolfalse{citetracker}%
      \boolfalse{pagetracker}%
@@ -187,7 +199,7 @@
 \else
   \RequirePackage[raggedright]{titlesec}
     \titlespacing{\section}{0in}{6pt}{6pt}[1in]
-  \renewcommand\section{\yb@secstart\newpage\yb@oldsection}
+  \renewcommand\section{\yb@secstart\yb@oldsection}
 \fi
 \ifdefined\yb@compact
   \renewcommand\section{\yb@secstart\vspace{2em}\yb@oldsection}
@@ -206,9 +218,19 @@
   \fancyhf{}
   \fancyhead[L,C,LO,CO]{}
   \fancyhead[R,RO]{
+    \begin{textblock}{16}[0.5,0.5](8,8)%
+      \tikz \node[minimum width=16\TPHorizModule] {%
+        \fontsize{64}{64}\selectfont\bfseries%
+        \rotatebox{45}{
+          \tikz \node
+          [fill=gray!8, font=\ttfamily\color{white}]
+          {it is a draft};%
+        }%
+      };%
+    \end{textblock}%
     \begin{textblock}{4}(11.5,1)%
       \tikz \node [color=gray, rotate=270,
-        font=\ttfamily\scriptsize, text width=5in] at (0,0) {%
+        font=\ttfamily\scriptsize, text width=8in] at (0,0) {%
         Copyright \textcopyright{} \the\year{} by \theauthor{}.
         All rights reserved. No part of the contents of
         this book may be reproduced or transmitted in any
@@ -220,7 +242,7 @@
       };
     \end{textblock}
   }
-  \fancyfoot[C,CO,CE]{\small\ttfamily%
+  \fancyfoot[C,CO,C]{\small\ttfamily%
     page \#\thepage{} of \pageref{LastPage}}
 \fi
 \makeatother
