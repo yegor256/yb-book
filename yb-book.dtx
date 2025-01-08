@@ -253,10 +253,12 @@ Hello, world!
 % First, we parse package options:
 % \changes{v0.3.0}{2023/05/22}{The \texttt{pgfopts} package is now used to parse package options.}
 % \changes{v0.5.0}{2024/01/02}{The \texttt{sparse} package option added, to place every section in a new page.}
+% \changes{v0.6.0}{2025/01/08}{The \texttt{apa} package option added, to enable APA citation style.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \pgfkeys{
   /yb/.cd,
+  apa/.store in=\yb@apa,
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
@@ -310,6 +312,11 @@ Hello, world!
 \makeatother
 %    \end{macrocode}
 % \end{macro}
+
+% Then, we load \href{https://ctan.org/pkg/href-ul}{href-ul} to underline links correctly:
+%    \begin{macrocode}
+\RequirePackage{href-ul}
+%    \end{macrocode}
 
 % Then, we load \href{https://ctan.org/pkg/anyfontsize}{anyfontsize} to enable all sizes of fonts:
 %    \begin{macrocode}
@@ -407,9 +414,18 @@ Hello, world!
 % \begin{macro}{biblatex}
 % Then, we configure |biblatex|, for citation management:
 %    \begin{macrocode}
-\RequirePackage[indexing=cite,style=authoryear,
-  natbib=true,maxnames=1,minnames=1,doi=false,
-  url=false,isbn=false,isbn=false]{biblatex}
+\PassOptionsToPackage{indexing=cite,
+  natbib=true,maxnames=2,minnames=1,doi=true,
+  url=false,isbn=false,isbn=false}{biblatex}
+\makeatletter
+\ifdefined\yb@apa
+  \PassOptionsToPackage{style=authoryear}{biblatex}
+\else
+  \PassOptionsToPackage{style=ieee}{biblatex}
+\fi
+\makeatother
+\RequirePackage{doi}
+\RequirePackage{biblatex}
   \DeclareCiteCommand{\citetitle}
     {\boolfalse{citetracker}%
      \boolfalse{pagetracker}%
