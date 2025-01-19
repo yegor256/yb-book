@@ -716,18 +716,18 @@ Hello, world!
 % Then, we define |\ybPrintBibliography|, to print a list of references:
 %    \begin{macrocode}
 \makeatletter
-\newcommand\ybPrintBibliography{%
+\newcommand\ybPrintBibliography[1][Bibliography]{%
   \AtNextBibliography{\small}%
   \raggedright%
   \ifdefined\yb@manuscript%
     \setlength\bibitemsep{0pt}%
     \newpage%
-    \begin{multicols}{2}
-      {\setstretch{1.0}\printbibliography}
-    \end{multicols}
-  \else
-    \printbibliography
-  \fi
+    \begin{multicols}{2}%
+      {\setstretch{1.0}\printbibliography}%
+    \end{multicols}%
+  \else%
+    \printbibliography[heading=bibintoc,title={#1}]%
+  \fi%
 }
 \makeatother
 %    \end{macrocode}
