@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/19 13.05.00 YB Branded Book Style]
+[2025/01/19 13.42.34 YB Branded Book Style]
 
 
 
@@ -396,6 +396,7 @@
       {\setstretch{1.0}\printbibliography}%
     \end{multicols}%
   \else%
+    \setlength\bibitemsep{.2em}%
     \printbibliography[heading=bibintoc,title={#1}]%
   \fi%
 }
