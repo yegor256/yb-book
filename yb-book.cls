@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/19 13.03.42 YB Branded Book Style]
+[2025/01/19 13.04.08 YB Branded Book Style]
 
 
 
@@ -386,18 +386,18 @@
 \makeatother
 
 \makeatletter
-\newcommand\ybPrintBibliography{%
+\newcommand\ybPrintBibliography[1][Bibliography]{%
   \AtNextBibliography{\small}%
   \raggedright%
   \ifdefined\yb@manuscript%
     \setlength\bibitemsep{0pt}%
     \newpage%
-    \begin{multicols}{2}
-      {\setstretch{1.0}\printbibliography}
-    \end{multicols}
-  \else
-    \printbibliography
-  \fi
+    \begin{multicols}{2}%
+      {\setstretch{1.0}\printbibliography}%
+    \end{multicols}%
+  \else%
+    \printbibliography[heading=bibintoc,title={#1}]%
+  \fi%
 }
 \makeatother
 
