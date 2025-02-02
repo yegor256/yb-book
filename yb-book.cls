@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/01/19 13.42.34 YB Branded Book Style]
+[2025/02/02 13.34.27 YB Branded Book Style]
 
 
 
@@ -137,9 +137,9 @@
 \RequirePackage{setspace}
   \setstretch{1.2}
   \makeatletter
-  \ifdefined\yb@authordraft\setstretch{1.1}\fi
   \ifdefined\yb@compact\setstretch{1.0}\fi
   \ifdefined\yb@manuscript\setstretch{1.1}\fi
+  \ifdefined\yb@authordraft\setstretch{1.4}\fi
   \makeatother
 
 \PassOptionsToPackage{indexing=cite,
@@ -224,7 +224,7 @@
         \fontsize{64}{64}\selectfont\bfseries%
         \rotatebox{45}{
           \tikz \node
-          [fill=gray!8, font=\ttfamily\color{white}]
+          [fill=gray!6, font=\ttfamily\color{white}]
           {it is a draft};%
         }%
       };%
@@ -402,14 +402,19 @@
 }
 \makeatother
 
+\makeatletter
 \AtBeginDocument{%
   \raggedbottom%
+  \ifdefined\yb@authordraft%
+    \raggedright%
+  \fi%
   \setlength\topskip{0mm}%
   \setlength\parindent{0pt}%
   \setlength\fboxsep{0pt}%
   \setlength\parskip{6pt}%
   \interfootnotelinepenalty=10000%
 }
+\makeatother
 
 \newcommand*\thetitle{\textbackslash{}thetitle}
 \newcommand*\thevolume{}
