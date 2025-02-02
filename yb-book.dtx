@@ -404,7 +404,7 @@ Hello, world!
 \RequirePackage{setspace}
   \setstretch{1.2}
   \makeatletter
-  \ifdefined\yb@authordraft\setstretch{1.1}\fi
+  \ifdefined\yb@authordraft\setstretch{1.8}\fi
   \ifdefined\yb@compact\setstretch{1.0}\fi
   \ifdefined\yb@manuscript\setstretch{1.1}\fi
   \makeatother
@@ -521,7 +521,7 @@ Hello, world!
         \fontsize{64}{64}\selectfont\bfseries%
         \rotatebox{45}{
           \tikz \node
-          [fill=gray!8, font=\ttfamily\color{white}]
+          [fill=gray!6, font=\ttfamily\color{white}]
           {it is a draft};%
         }%
       };%
@@ -739,6 +739,11 @@ Hello, world!
 %    \begin{macrocode}
 \AtBeginDocument{%
   \raggedbottom%
+  \makeatletter
+    \ifdefined\yb@authordraft
+      \raggedright%
+    \fi%
+  \makeatother
   \setlength\topskip{0mm}%
   \setlength\parindent{0pt}%
   \setlength\fboxsep{0pt}%
