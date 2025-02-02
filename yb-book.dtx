@@ -737,19 +737,19 @@ Hello, world!
 
 % Then, a few layout configurations at the beginning of the document:
 %    \begin{macrocode}
+\makeatletter
 \AtBeginDocument{%
   \raggedbottom%
-  \makeatletter
-    \ifdefined\yb@authordraft
-      \raggedright%
-    \fi%
-  \makeatother
+  \ifdefined\yb@authordraft%
+    \raggedright%
+  \fi%
   \setlength\topskip{0mm}%
   \setlength\parindent{0pt}%
   \setlength\fboxsep{0pt}%
   \setlength\parskip{6pt}%
   \interfootnotelinepenalty=10000%
 }
+\makeatother
 %    \end{macrocode}
 
 % Finally, a few meta commands with default values:
