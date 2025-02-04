@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/02/02 13.34.27 YB Branded Book Style]
+[2025/02/04 11.38.33 YB Branded Book Style]
 
 
 
