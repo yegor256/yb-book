@@ -8,6 +8,7 @@ checkopts = "-interaction=batchmode -shell-escape -halt-on-error"
 tagfiles = {"build.lua", "yb-book.dtx"}
 docfiles = {"yb-book-logo.pdf"}
 cleanfiles = {"*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.cls"}
+checkruns = 3
 
 uploadconfig = {
   pkg = "yb-book",
@@ -28,6 +29,14 @@ uploadconfig = {
   support = "",
   topic = {"class", "doc-templ", "book-pub"}
 }
+
+function runtest_tasks(name, run)
+  if run == 1 then
+    return "biber " .. name
+  else
+    return ""
+  end
+end
 
 function update_tag(file, content, tagname, tagdate)
   return string.gsub(
