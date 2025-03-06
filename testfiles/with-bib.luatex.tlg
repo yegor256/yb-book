@@ -2,3 +2,13 @@ This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 LaTeX Warning: Citation 'beck2002test' on page 1 undefined on input line ....
 LaTeX Warning: Empty bibliography on input line ....
+AED: lastpage setting LastPage
+[1
+] (with-bib.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Info: File `with-bib.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                with-bib
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'with-bib.run.xml'.

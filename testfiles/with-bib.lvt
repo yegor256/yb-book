@@ -3,9 +3,12 @@
 
 \input{regression-test.tex}
 \documentclass{yb-book}
+\usepackage{ifluatex}
+\usepackage{ifxetex}
 \renewcommand*\thetitle{With Cite}
 \renewcommand*\theauthor{Yegor Bugayenko}
-\begin{filecontents}{with-bib.bib}
+\def\suffix{\ifxetex-xe\else\ifluatex-lua\fi\fi}
+\begin{filecontents}{\jobname\suffix.bib}
   @book{beck2002test,
     title={{Test Driven Development: By Example}},
     author={Beck, Kent},
@@ -14,7 +17,7 @@
     doi={10.5555/579193}
   }
 \end{filecontents}
-\addbibresource{with-bib.bib}
+\addbibresource{\jobname\suffix.bib}
 \begin{document}
 \START
 
@@ -22,4 +25,5 @@ Read \cite{beck2002test} first!
 
 \ybPrintBibliography
 
+\end{document}
 \END
