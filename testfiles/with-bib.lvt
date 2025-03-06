@@ -1,0 +1,24 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2025 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass{yb-book}
+\begin{filecontents}{main.bib}
+    @book{beck2002test,
+      title={{Test Driven Development: By Example}},
+      author={Beck, Kent},
+      year={2002},
+      publisher={Addison-Wesley},
+      doi={10.5555/579193}
+    }
+\end{filecontents}
+\addbibresource{main.bib}
+\begin{document}
+\START
+
+\renewcommand*\thetitle{With Cite}
+\renewcommand*\theauthor{Yegor Bugayenko}
+\citet{beck2002test}
+\ybPrintBibliography
+
+\END
