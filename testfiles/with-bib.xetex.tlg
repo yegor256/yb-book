@@ -1,15 +1,23 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 [1
-] [2
-] (../mt-cmr.cfg
+]
+[2
+]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+(../mt-cmr.cfg
 File: mt-cmr.cfg ....-..-.. v... microtype config. file: Computer Modern Roman (RS)
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
-! Argument of \hyper@n@rmalise has an extra }.
-<inserted text> 
-                \par 
-l. ...
+[3] 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+(with-bib.aux)
+Package rerunfilecheck Info: File `with-bib.out' has not changed.
+(rerunfilecheck)             Checksum: D4ED152555F4DEE3DC3FE5F5FDC62FD3;104.
+Package logreq Info: Writing requests to 'with-bib.run.xml'.

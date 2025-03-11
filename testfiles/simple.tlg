@@ -14,10 +14,11 @@ Package mdframed Info: mdframed inside a box
  mdframed uses option nobreak mdframed on input line ....
 [2]
 runsystem(makeindex simple.idx)...executed.
-(simple.ind) 
-AED: lastpage setting LastPage
+(simple.ind)
 [3
-] (simple.aux)
+] 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+(simple.aux)
 Package rerunfilecheck Info: File `simple.out' has not changed.
 (rerunfilecheck)             Checksum: C5A39CB9B90C78428B5DC65EDAA2069A;242.
 Package logreq Info: Writing requests to 'simple.run.xml'.

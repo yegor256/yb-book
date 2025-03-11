@@ -271,7 +271,8 @@ Hello, world!
 % Then, we load \href{https://ctan.org/pkg/inputenc}{inputenc} for UTF-8 encoding of the sources:
 % \changes{v0.5.1}{2025/01/05}{Added the usage of \texttt{inputenc} in order to ensure UTF-8 encoding for the sources.}
 %    \begin{macrocode}
-\RequirePackage[utf8]{inputenc}
+\PassOptionsToPackage{utf8}{inputenc}
+\RequirePackage{inputenc}
 %    \end{macrocode}
 
 % \begin{macro}{geometry}
@@ -340,7 +341,8 @@ Hello, world!
 
 % Then, we load \href{https://ctan.org/pkg/enumitem}{enumitem} for inline enumeration:
 %    \begin{macrocode}
-\RequirePackage[inline]{enumitem}
+\PassOptionsToPackage{inline}{enumitem}
+\RequirePackage{enumitem}
   \setlist{nosep}
 %    \end{macrocode}
 
@@ -351,7 +353,8 @@ Hello, world!
 
 % Then, we load \href{https://ctan.org/pkg/ulem}{ulem} for inline lists:
 %    \begin{macrocode}
-\RequirePackage[normalem]{ulem}
+\PassOptionsToPackage{normalem}{url}
+\RequirePackage{ulem}
 %    \end{macrocode}
 
 % Then, we load \href{https://ctan.org/pkg/xfp}{xfp} and
@@ -368,7 +371,8 @@ Hello, world!
 
 % Then, we load \href{https://ctan.org/pkg/csquotes}{csquotes} for better rendering:
 %    \begin{macrocode}
-\RequirePackage[autostyle=try]{csquotes}
+\PassOptionsToPackage{autostyle=try}{csquotes}
+\RequirePackage{csquotes}
 %    \end{macrocode}
 
 % \begin{macro}{\pagestyle}
@@ -457,7 +461,8 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \ifdefined\yb@manuscript
-  \RequirePackage[tt=false,type1=true]{libertine}
+  \PassOptionsToPackage{tt=false,type1=true}{libertine}
+  \RequirePackage{libertine}
 \fi
 \makeatother
 %    \end{macrocode}
@@ -470,9 +475,11 @@ Hello, world!
 \let\yb@oldsection\section
 \def\yb@secstart{\ifdefined\yb@sparse\newpage\fi}
 \ifdefined\yb@authordraft
-  \RequirePackage[medium]{titlesec}
+  \PassOptionsToPackage{medium}{titlesec}
+  \RequirePackage{titlesec}
 \else
-  \RequirePackage[raggedright]{titlesec}
+  \PassOptionsToPackage{raggedright}{titlesec}
+  \RequirePackage{titlesec}
     \titlespacing{\section}{0in}{6pt}{6pt}[1in]
   \renewcommand\section{\yb@secstart\yb@oldsection}
 \fi
@@ -487,7 +494,8 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \ifdefined\yb@authordraft
-  \RequirePackage[absolute]{textpos}
+  \PassOptionsToPackage{absolute}{textpos}
+  \RequirePackage{textpos}
     \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
   \pagestyle{fancy}
@@ -682,7 +690,8 @@ Hello, world!
 % \href{https://tex.stackexchange.com/questions/40072/incompatibility-between-footmisc-option-multiple-and-hyperref/62091#62091}{here}:
 %    \begin{macrocode}
 \RequirePackage{perpage}
-\RequirePackage[bottom,perpage,multiple]{footmisc}
+\PassOptionsToPackage{bottom,perpage,multiple}{footmisc}
+\RequirePackage{footmisc}
 \makeatletter
   \let\yb@oldfootnote\footnote
 \newcommand\yb@nexttoken\relax
