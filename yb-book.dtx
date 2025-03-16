@@ -718,7 +718,10 @@ Hello, world!
     \end{multicols}%
   \else%
     \setlength\bibitemsep{.2em}%
+    \ifdefined\yb@compact\@openrightfalse\fi%
+    \@openrightfalse%
     \printbibliography[heading=bibintoc,title={#1}]%
+    \ifdefined\yb@compact\@openrighttrue\fi%
   \fi%
 }
 \makeatother
