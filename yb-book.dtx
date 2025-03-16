@@ -593,11 +593,11 @@ Hello, world!
 % Then, we define |ybPrintTOC| command to print table of contents:
 %    \begin{macrocode}
 \makeatletter
-\newcommand\ybPrintTOC{
-  \ifdefined\yb@authordraft\else
-    \ifdefined\yb@compact\else\cleardoublepage\fi
-    {\setstretch{0.7}\tableofcontents}
-  \fi
+\newcommand\ybPrintTOC{%
+  \ifdefined\yb@authordraft\else%
+    \ifdefined\yb@compact\else\cleardoublepage\fi%
+    {\setstretch{0.7}\tableofcontents}%
+  \fi%
 }
 \makeatother
 %    \end{macrocode}
@@ -612,8 +612,8 @@ Hello, world!
   \indexsetup{othercode={\hyphenpenalty=10000}}
 \makeatletter
 \newcommand\ybPrintIndex[1][Index]{%
-  \ifdefined\yb@authordraft\else
-    \cleardoublepage%
+  \ifdefined\yb@authordraft\else%
+    \ifdefined\yb@compact\else\cleardoublepage\fi%
     {%
       \setstretch{1.0}%
       \small%
