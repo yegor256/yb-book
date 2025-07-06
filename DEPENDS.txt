@@ -3,6 +3,7 @@ hard biblatex
 hard bigfoot
 hard changepage
 hard chngcntr
+hard cleveref
 hard collection-fontsextra
 hard collection-fontsrecommended
 hard csquotes
@@ -31,9 +32,7 @@ hard setspace
 hard soul
 hard textpos
 hard titlesec
-hard titlesec
 hard ulem
-hard wrapfig
 hard wrapfig
 hard xcolor
 hard xifthen
