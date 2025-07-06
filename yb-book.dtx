@@ -357,6 +357,13 @@ Hello, world!
 \RequirePackage{ulem}
 %    \end{macrocode}
 
+% Then, we load \href{https://ctan.org/pkg/cleveref}{cleveref} for the |\cref| command:
+%    \begin{macrocode}
+\PassOptionsToPackage{capitalize}{cleveref}
+\RequirePackage{cleveref}
+  \crefformat{section}{\S#2#1#3}
+%    \end{macrocode}
+
 % Then, we load \href{https://ctan.org/pkg/xfp}{xfp} and
 % \href{https://ctan.org/pkg/xifthen}{xifthen} for if-then-else:
 %    \begin{macrocode}
