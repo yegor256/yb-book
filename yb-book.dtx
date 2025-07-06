@@ -729,6 +729,7 @@ Hello, world!
 % \end{macro}
 
 % Then, a few layout configurations at the beginning of the document:
+% \changes{v0.6.6}{2025/07/06}{Penalties for widows and clubs specified.}
 %    \begin{macrocode}
 \makeatletter
 \AtBeginDocument{%
@@ -740,7 +741,10 @@ Hello, world!
   \setlength\parindent{0pt}%
   \setlength\fboxsep{0pt}%
   \setlength\parskip{6pt}%
-  \interfootnotelinepenalty=10000%
+  \exhyphenpenalty=10000% to avoid line breaks before and after mdash
+  \widowpenalty=5000% to have less widows
+  \clubpenalty=5000% to have less orphans
+  \interfootnotelinepenalty=10000% to format footnotes better
 }
 \makeatother
 %    \end{macrocode}
