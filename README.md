@@ -29,7 +29,7 @@ Hello, world!
 
 Otherwise, you can download
 [`yb-book.cls`](https://yegor256.github.io/yb-book/yb-book.cls) and
-use in your document.
+use it in your document.
 
 If you want to contribute yourself, make a fork, then create a branch,
 then run `make` in the root directory.

@@ -65,7 +65,7 @@
 % \href{https://www.yegor256.com/books.html}{my books} and
 % publish them
 % \href{https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK}{on Amazon}.
-% You are welcome to use is for your own books. It is as simple
+% You are welcome to use it for your own books. It is as simple
 % as this:
 %\iffalse
 %<*verb>
@@ -97,7 +97,7 @@ Hello, world!
 
 % \begin{macro}{compact}
 % Use this package option when you need to make text more compact
-% and take less vertical space. This may be convenient fiction books.
+% and take less vertical space. This may be convenient for fiction books.
 % I use this option to render \href{https://www.yegor256.com/code-ahead.html}{Code Ahead} book.
 % \end{macro}
 
@@ -113,11 +113,11 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{authordraft}
-% \changes{v0.4.0}{2024/03/23}{The package option \texttt{draft} renamed to \texttt{draft}}
+% \changes{v0.4.0}{2024/03/23}{The package option \texttt{draft} renamed to \texttt{authordraft}}
 % When it's a draft for reviewers (the page size is A4)
 % and you want to have a watermark and a compact form of the content. This
 % option goes together with |\thereviewer{}| command, which you may redefine,
-% in order to embed the name of the reviewed in the watermark. This may
+% in order to embed the name of the reviewer in the watermark. This may
 % help you prevent theft of your book:
 %\iffalse
 %<*verb>
@@ -353,7 +353,7 @@ Hello, world!
 
 % Then, we load \href{https://ctan.org/pkg/ulem}{ulem} for inline lists:
 %    \begin{macrocode}
-\PassOptionsToPackage{normalem}{url}
+\PassOptionsToPackage{normalem}{ulem}
 \RequirePackage{ulem}
 %    \end{macrocode}
 
@@ -401,7 +401,7 @@ Hello, world!
 %    \begin{macrocode}
 \PassOptionsToPackage{indexing=cite,
   natbib=true,maxnames=2,minnames=1,doi=true,
-  url=false,isbn=false,isbn=false}{biblatex}
+  url=false,isbn=false}{biblatex}
 \makeatletter
 \ifdefined\yb@apa
   \PassOptionsToPackage{style=authoryear}{biblatex}
@@ -530,7 +530,7 @@ Hello, world!
     \end{textblock}
   }
   \fancyfoot[C,CO,C]{\small\ttfamily%
-    page \#\thepage{} of \pageref{LastPage}}
+    page \thepage{} of \pageref{LastPage}}
 \fi
 \makeatother
 %    \end{macrocode}

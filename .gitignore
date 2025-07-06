@@ -27,3 +27,4 @@ node_modules/
 package/
 target/
 yb-book.pdf
+.claude/
