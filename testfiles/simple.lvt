@@ -10,15 +10,15 @@
 \renewcommand*\thetitle{Simple}
 \renewcommand*\theauthor{Yegor Bugayenko}
 
-% \ybPrintTitlePage
+\ybPrintTitlePage
 
 \chapter{Overview}
 
-Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you?
+Hello, world! How are you? Hello, world! How are \index{you}? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you?
 
 \section{Purpose}
 
-Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you?
+Hello, world! How are you? Hello, \index{world}! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you? Hello, world! How are you?
 
 \index{computer}
 
