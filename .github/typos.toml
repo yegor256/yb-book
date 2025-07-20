@@ -3,5 +3,6 @@
 
 [files]
 extend-exclude = [
-    "testfiles/**"
+    "testfiles/simple.tlg",
+    "testfiles/with-bib.tlg"
 ]
