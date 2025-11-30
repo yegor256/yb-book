@@ -373,11 +373,6 @@ Hello, world!
 \RequirePackage{xifthen}
 %    \end{macrocode}
 
-% Then, we load \href{https://ctan.org/pkg/soul}{soul} for highlighting:
-%    \begin{macrocode}
-\RequirePackage{soul}
-%    \end{macrocode}
-
 % Then, we load \href{https://ctan.org/pkg/csquotes}{csquotes} for better rendering:
 %    \begin{macrocode}
 \PassOptionsToPackage{autostyle=try}{csquotes}
@@ -734,6 +729,27 @@ Hello, world!
   \fi%
 }
 \makeatother
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\highlight}
+% Then, we define the |\highlight| command:
+% \changes{v0.7.0}{2025/11/30}{The \texttt{\char`\\highlight} command was added.}
+%    \begin{macrocode}
+\newcommand\highlight[1]{%
+  \tikz[baseline=(text.base)] {
+    \node[inner sep=0pt, outer sep=0pt] (text) {#1};
+    \begin{scope}
+      \path[use as bounding box] (text.east) rectangle (text.west);
+      \draw[decorate,
+        decoration={random steps, amplitude=0.05em, segment length=0.3em},
+        line join=round,
+        line cap=round,
+        line width=.08em,
+        draw=gray!80] ($(text.west) + (-0.2em, -.46em)$) rectangle ($(text.east) + (+0.2em, -.46em)$);
+    \end{scope}
+  }%
+}
 %    \end{macrocode}
 % \end{macro}
 
