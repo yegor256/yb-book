@@ -236,6 +236,7 @@ Hello, world!
 % \changes{v0.3.0}{2023/05/22}{The \texttt{pgfopts} package is now used to parse package options.}
 % \changes{v0.5.0}{2024/01/02}{The \texttt{sparse} package option added, to place every section in a new page.}
 % \changes{v0.6.0}{2025/01/08}{The \texttt{apa} package option added, to enable APA citation style.}
+% \changes{v0.7.0}{2025/12/14}{The \texttt{colored} package option added, to enable colors.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \pgfkeys{
@@ -244,6 +245,7 @@ Hello, world!
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
+  colored/.store in=\yb@manuscript,
   sparse/.store in=\yb@sparse,
 }
 \ProcessPgfPackageOptions{/yb}
@@ -732,7 +734,8 @@ Hello, world!
 %    \begin{macrocode}
 \newcommand\highlight[1]{%
   \tikz[baseline=(text.base)] {
-    \node[inner sep=0pt, outer sep=0pt] (text) {#1};
+    \node[inner sep=0pt, outer sep=0pt] (text) {%
+      {\ifdefined\yb@colored\color{orange}\fi#1}};
     \begin{scope}
       \path[use as bounding box] (text.east) rectangle (text.west);
       \draw[decorate,
