@@ -1,0 +1,27 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+[1
+]
+[2
+]
+Chapter 1.
+[3]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package mdframed Info: mdframed works in twoside mode on input line ....
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line ....
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line ....
+[4] 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+(simple.aux)
+Package rerunfilecheck Info: File `simple.out' has not changed.
+(rerunfilecheck)             Checksum: 044AB0E2DD65A6FAB0BEE5D0CCAF06E3;172.
+Package logreq Info: Writing requests to 'simple.run.xml'.
