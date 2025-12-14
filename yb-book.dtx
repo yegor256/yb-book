@@ -271,6 +271,14 @@ Hello, world!
 \LoadClass{book}
 %    \end{macrocode}
 
+% Then, we load \href{https://ctan.org/pkg/cleveref}{cleveref} for the |\cref| command:
+% \changes{v0.7.0}{2025/07/06}{Added \texttt{cleveref} package for the \texttt{\char`\\cref} command.}
+%    \begin{macrocode}
+\PassOptionsToPackage{capitalize}{cleveref}
+\RequirePackage{cleveref}
+  \crefformat{section}{\S#2#1#3}
+%    \end{macrocode}
+
 % Then, we load \href{https://ctan.org/pkg/inputenc}{inputenc} for UTF-8 encoding of the sources:
 % \changes{v0.5.1}{2025/01/05}{Added the usage of \texttt{inputenc} in order to ensure UTF-8 encoding for the sources.}
 %    \begin{macrocode}
@@ -306,14 +314,6 @@ Hello, world!
 % Then, we load \href{https://ctan.org/pkg/anyfontsize}{anyfontsize} to enable all sizes of fonts:
 %    \begin{macrocode}
 \RequirePackage{anyfontsize}
-%    \end{macrocode}
-
-% Then, we load \href{https://ctan.org/pkg/cleveref}{cleveref} for the |\cref| command:
-% \changes{v0.7.0}{2025/07/06}{Added \texttt{cleveref} package for the \texttt{\char`\\cref} command.}
-%    \begin{macrocode}
-\PassOptionsToPackage{capitalize}{cleveref}
-\RequirePackage{cleveref}
-  \crefformat{section}{\S#2#1#3}
 %    \end{macrocode}
 
 % Then, we load \href{https://ctan.org/pkg/tikz}{tikz} for graphics:
