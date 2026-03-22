@@ -449,7 +449,9 @@ Hello, world!
 % Then, we include |microtype| for better rendering:
 %    \begin{macrocode}
 \makeatletter
-\ifdefined\yb@authordraft\else
+\ifdefined\yb@authordraft
+  \PassOptionsToPackage{nopatch=footnote}{microtype}
+\else
   \PassOptionsToPackage{letterspace=-50,nopatch=footnote,protrusion=true}{microtype}
 \fi
 \makeatother
