@@ -12,7 +12,7 @@ checkruns = 3
 
 uploadconfig = {
   pkg = "yb-book",
-  version = "0.0.0",
+  version = "0.0.0 0000/00/00",
   author = "Yegor Bugayenko",
   uploader = "Yegor Bugayenko",
   email = "yegor256@gmail.com",
