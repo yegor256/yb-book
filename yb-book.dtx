@@ -474,7 +474,7 @@ Hello, world!
 \else
   \PassOptionsToPackage{raggedright}{titlesec}
   \RequirePackage{titlesec}
-    \titlespacing{\section}{0in}{6pt}{6pt}[1in]
+    \titlespacing{\section}{0em}{1em}{1em}[3em]
   \renewcommand\section{\yb@secstart\yb@oldsection}
 \fi
 \ifdefined\yb@compact
@@ -493,9 +493,9 @@ Hello, world!
     \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
   \pagestyle{fancy}
-  \renewcommand\headrulewidth{0pt}
-  \renewcommand\footrulewidth{0pt}
-  \setlength{\headheight}{16pt}
+  \renewcommand\headrulewidth{0em}
+  \renewcommand\footrulewidth{0em}
+  \setlength{\headheight}{3em}
   \fancyhf{}
   \fancyhead[L,C,LO,CO]{}
   \fancyhead[R,RO]{
@@ -511,7 +511,7 @@ Hello, world!
     \end{textblock}%
     \begin{textblock}{4}(11.5,1)%
       \tikz \node [color=gray, rotate=270,
-        font=\ttfamily\scriptsize, text width=8in] at (0,0) {%
+        font=\ttfamily\scriptsize, text width=24em] at (0,0) {%
         Copyright \textcopyright{} \the\year{} by \theauthor{}.
         All rights reserved. No part of the contents of
         this book may be reproduced or transmitted in any
@@ -628,18 +628,18 @@ Hello, world!
 \RequirePackage{changepage}
   \strictpagecheck
 \mdfdefinestyle{quoteodd}{backgroundcolor=black!0,
-  leftmargin=6pt,rightmargin=0pt,
-  innerleftmargin=6pt,innerrightmargin=0pt,
-  innertopmargin=0pt,innerbottommargin=0pt,
-  skipabove=0pt,skipbelow=0pt,
-  linewidth=2pt,
+  leftmargin=1em,rightmargin=0em,
+  innerleftmargin=1em,innerrightmargin=0em,
+  innertopmargin=0em,innerbottommargin=0em,
+  skipabove=0em,skipbelow=0em,
+  linewidth=.2em,
   topline=false,bottomline=false,rightline=false}
 \mdfdefinestyle{quoteeven}{backgroundcolor=black!0,
-  rightmargin=6pt,leftmargin=0pt,
-  innerrightmargin=6pt,innerleftmargin=0pt,
-  innertopmargin=0pt,innerbottommargin=0pt,
-  skipabove=0pt,skipbelow=0pt,
-  linewidth=2pt,
+  rightmargin=1em,leftmargin=0em,
+  innerrightmargin=1em,innerleftmargin=0em,
+  innertopmargin=0em,innerbottommargin=0em,
+  skipabove=0em,skipbelow=0em,
+  linewidth=.2em,
   topline=false,bottomline=false,leftline=false}
 \makeatletter
 \newcommand\ybQuote[3]{%
@@ -665,14 +665,14 @@ Hello, world!
       \end{mdframed}%
     \end{wrapfigure}%
   \else%
-    \begin{wrapfigure}{o}[12pt]{0.4\textwidth}%
+    \begin{wrapfigure}{o}[2em]{0.4\textwidth}%
       \sffamily\checkoddpage%
       \ifoddpage%
         \begin{mdframed}[style=quoteodd]\yb@body\end{mdframed}%
       \else%
         \begin{mdframed}[style=quoteeven]\yb@body\end{mdframed}%
       \fi%
-      \vspace{-12pt}
+      \vspace{-2em}
     \end{wrapfigure}%
   \fi%
 }
@@ -705,7 +705,7 @@ Hello, world!
   \AtNextBibliography{\small}%
   \raggedright%
   \ifdefined\yb@manuscript%
-    \setlength\bibitemsep{0pt}%
+    \setlength\bibitemsep{0em}%
     \newpage%
     \begin{multicols}{2}%
       {\setstretch{1.0}\printbibliography}%
@@ -728,7 +728,7 @@ Hello, world!
 %    \begin{macrocode}
 \newcommand\highlight[1]{%
   \tikz[baseline=(text.base)] {
-    \node[inner sep=0pt, outer sep=0pt] (text) {%
+    \node[inner sep=0em, outer sep=0em] (text) {%
       {\ifdefined\yb@colored\color{orange}\fi#1}};
     \begin{scope}
       \path[use as bounding box] (text.east) rectangle (text.west);
@@ -755,7 +755,7 @@ Hello, world!
   \fi%
   \setlength\topskip{0mm}%
   \setlength\parindent{1.5em}%
-  \setlength\fboxsep{0pt}%
+  \setlength\fboxsep{0em}%
   \setlength\parskip{1em}%
   \exhyphenpenalty=10000% to avoid line breaks before and after mdash
   \widowpenalty=10000% to have less widows
