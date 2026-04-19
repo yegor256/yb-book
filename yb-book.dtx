@@ -285,11 +285,15 @@ Hello, world!
   \crefformat{section}{\S#2#1#3}
 %    \end{macrocode}
 
-% Then, we load \href{https://ctan.org/pkg/inputenc}{inputenc} for UTF-8 encoding of the sources:
+% Then, we load \href{https://ctan.org/pkg/inputenc}{inputenc} for UTF-8 encoding of the sources,
+% but only under pdfTeX (XeTeX and LuaTeX already handle UTF-8 natively):
 % \changes{v0.5.1}{2025/01/05}{Added the usage of \texttt{inputenc} in order to ensure UTF-8 encoding for the sources.}
 %    \begin{macrocode}
-\PassOptionsToPackage{utf8}{inputenc}
-\RequirePackage{inputenc}
+\RequirePackage{iftex}
+\ifPDFTeX
+  \PassOptionsToPackage{utf8}{inputenc}
+  \RequirePackage{inputenc}
+\fi
 %    \end{macrocode}
 
 % \begin{macro}{geometry}
