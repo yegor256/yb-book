@@ -452,22 +452,10 @@ Hello, world!
 \ifdefined\yb@authordraft
   \PassOptionsToPackage{nopatch=footnote}{microtype}
 \else
-  \PassOptionsToPackage{letterspace=-50,nopatch=footnote,protrusion=true}{microtype}
+  \PassOptionsToPackage{nopatch=footnote,protrusion=true}{microtype}
 \fi
 \makeatother
 \RequirePackage{microtype}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{libertine}
-% Then, we include |libertine|, for a good looking font:
-%    \begin{macrocode}
-\makeatletter
-\ifdefined\yb@manuscript
-  \PassOptionsToPackage{tt=false,type1=true}{libertine}
-  \RequirePackage{libertine}
-\fi
-\makeatother
 %    \end{macrocode}
 % \end{macro}
 
