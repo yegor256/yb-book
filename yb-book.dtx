@@ -436,11 +436,10 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{condensed}
-% Then, we define |condensed| environment for snippets
-% (|lsstyle| is defined by |letterspace| in |microtype|):
+% Then, we define |condensed| environment for snippets:
 %    \begin{macrocode}
 \newenvironment{condensed}
-  {\begingroup\setstretch{1.0}\lsstyle}
+  {\begingroup\setstretch{1.0}}
   {\endgroup}
 %    \end{macrocode}
 % \end{macro}
@@ -751,9 +750,9 @@ Hello, world!
     \raggedright%
   \fi%
   \setlength\topskip{0mm}%
-  \setlength\parindent{0pt}%
+  \setlength\parindent{1.5em}%
   \setlength\fboxsep{0pt}%
-  \setlength\parskip{6pt}%
+  \setlength\parskip{1em}%
   \exhyphenpenalty=10000% to avoid line breaks before and after mdash
   \widowpenalty=10000% to have less widows
   \clubpenalty=10000% to have less orphans
