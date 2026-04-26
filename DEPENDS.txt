@@ -20,12 +20,12 @@ hard ifmtarg
 hard imakeidx
 hard lastpage
 hard lh
-hard libertine
 hard makeindex
 hard mdframed
 hard microtype
 hard needspace
 hard paralist
+hard paratype
 hard pgf
 hard pgfopts
 hard qrcode
