@@ -296,6 +296,22 @@ Hello, world!
 \fi
 %    \end{macrocode}
 
+% Then, we set Concrete as the default main font. Under pdfTeX we load
+% \href{https://ctan.org/pkg/beton}{beton}, which switches the roman family
+% to Knuth's Concrete. Under XeTeX and LuaTeX we load
+% \href{https://ctan.org/pkg/fontspec}{fontspec} and pick the OpenType
+% \href{https://ctan.org/pkg/cm-unicode}{CMU Concrete} face, which is the
+% Unicode counterpart of the same design:
+% \changes{v0.8.0}{2026/05/03}{Concrete is now the default main font: \texttt{beton} under pdfTeX, \texttt{CMU Concrete} via \texttt{fontspec} under XeTeX and LuaTeX.}
+%    \begin{macrocode}
+\ifPDFTeX
+  \RequirePackage{beton}
+\else
+  \RequirePackage{fontspec}
+  \setmainfont{CMU Concrete}
+\fi
+%    \end{macrocode}
+
 % \begin{macro}{geometry}
 % Then, using |geometry|, we setup page layout:
 %    \begin{macrocode}
@@ -449,13 +465,20 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{microtype}
-% Then, we include |microtype| for better rendering:
+% Then, we include |microtype| for better rendering. Under pdfTeX the Concrete
+% roman family is bitmap-only, so we turn font expansion off to avoid the
+% ``auto expansion is only possible with scalable fonts'' error:
+% \changes{v0.8.0}{2026/05/03}{Disabled \texttt{microtype} font expansion under pdfTeX, since Concrete ships only as METAFONT bitmaps.}
 %    \begin{macrocode}
 \makeatletter
 \ifdefined\yb@authordraft
   \PassOptionsToPackage{nopatch=footnote}{microtype}
 \else
-  \PassOptionsToPackage{nopatch=footnote,protrusion=true}{microtype}
+  \ifPDFTeX
+    \PassOptionsToPackage{nopatch=footnote,protrusion=true,expansion=false}{microtype}
+  \else
+    \PassOptionsToPackage{nopatch=footnote,protrusion=true}{microtype}
+  \fi
 \fi
 \makeatother
 \RequirePackage{microtype}

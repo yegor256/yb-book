@@ -4,6 +4,17 @@ Don't change this file in any respect.
 ] [2
 ]
 Chapter 1.
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+(../mt-cmr.cfg
+File: mt-cmr.cfg ....-..-.. v... microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
 [3]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).

@@ -1,9 +1,11 @@
 hard anyfontsize
+hard beton
 hard biblatex
 hard bigfoot
 hard changepage
 hard chngcntr
 hard cleveref
+hard cm-unicode
 hard collection-fontsextra
 hard collection-fontsrecommended
 hard csquotes
@@ -12,6 +14,7 @@ hard doi
 hard enumitem
 hard fancyhdr
 hard float
+hard fontspec
 hard footmisc
 hard geometry
 hard href-ul

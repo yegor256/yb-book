@@ -1,7 +1,19 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 [1
-] [2
+]
+LaTeX Font Warning: Font shape `OT1/ccr/b/n' undefined
+(Font)              using `OT1/ccr/bx/n' instead on input line ....
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+(../mt-cmr.cfg
+File: mt-cmr.cfg ....-..-.. v... microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+LaTeX Font Info:    Font shape `OT1/ccr/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line ....
+[2
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (with-bib.aux)
