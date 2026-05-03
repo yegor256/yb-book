@@ -300,15 +300,21 @@ Hello, world!
 % \href{https://ctan.org/pkg/beton}{beton}, which switches the roman family
 % to Knuth's Concrete. Under XeTeX and LuaTeX we load
 % \href{https://ctan.org/pkg/fontspec}{fontspec} and pick the OpenType
-% \href{https://ctan.org/pkg/cm-unicode}{CMU Concrete} face, which is the
-% Unicode counterpart of the same design:
+% \href{https://ctan.org/pkg/cm-unicode}{CMU Concrete} face by file name, so
+% that |kpathsea| locates the OTF files inside the TeX tree without relying
+% on a system-wide fontconfig database (which is absent in many CI
+% containers):
 % \changes{v0.8.0}{2026/05/03}{Concrete is now the default main font: \texttt{beton} under pdfTeX, \texttt{CMU Concrete} via \texttt{fontspec} under XeTeX and LuaTeX.}
 %    \begin{macrocode}
 \ifPDFTeX
   \RequirePackage{beton}
 \else
   \RequirePackage{fontspec}
-  \setmainfont{CMU Concrete}
+  \setmainfont{cmunorm.otf}[
+    BoldFont = cmunobx.otf,
+    ItalicFont = cmunoti.otf,
+    BoldItalicFont = cmunobi.otf,
+  ]
 \fi
 %    \end{macrocode}
 
