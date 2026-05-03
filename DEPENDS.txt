@@ -1,5 +1,4 @@
 hard anyfontsize
-hard beton
 hard biblatex
 hard bigfoot
 hard changepage
