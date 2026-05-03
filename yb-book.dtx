@@ -46,14 +46,14 @@
 \CodelineIndex
 \RecordChanges
 \begin{document}
-	\DocInput{yb-book.dtx}
-	\PrintChanges
-	\PrintIndex
+  \DocInput{yb-book.dtx}
+  \PrintChanges
+  \PrintIndex
 \end{document}
 %</driver>
 % \fi
 
-% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ \LaTeX{} Class |yb-book|\thanks{The sources are in GitHub at \href{https://github.com/yegor256/yb-book}{yegor256/yb-book}}}
+% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ \LaTeX{} Class |yb-book|\thanks{The sources are on GitHub at \href{https://github.com/yegor256/yb-book}{yegor256/yb-book}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
@@ -117,7 +117,7 @@ Hello, world!
 % \changes{v0.4.0}{2024/03/23}{The package option \texttt{draft} renamed to \texttt{authordraft}}
 % When it's a draft for reviewers (the page size is A4)
 % and you want to have a watermark and a compact form of the content. This
-% option goes together with |\thereviewer{}| command, which you may redefine,
+% option goes together with the |\thereviewer{}| command, which you may redefine,
 % in order to embed the name of the reviewer in the watermark. This may
 % help you prevent theft of your book:
 %\iffalse
@@ -234,7 +234,7 @@ Hello, world!
 
 % First, we parse package options:
 % \changes{v0.3.0}{2023/05/22}{The \texttt{pgfopts} package is now used to parse package options.}
-% \changes{v0.5.0}{2024/01/02}{The \texttt{sparse} package option added, to place every section in a new page.}
+% \changes{v0.5.0}{2024/01/02}{The \texttt{sparse} package option added, to place every section on a new page.}
 % \changes{v0.6.0}{2025/01/08}{The \texttt{apa} package option added, to enable APA citation style.}
 % \changes{v0.7.0}{2025/12/14}{The \texttt{colored} package option added, to enable colors.}
 %    \begin{macrocode}
@@ -312,7 +312,7 @@ Hello, world!
 %    \end{macrocode}
 
 % \begin{macro}{geometry}
-% Then, using |geometry|, we setup page layout:
+% Then, using |geometry|, we set up page layout:
 %    \begin{macrocode}
 \RequirePackage{geometry}
 \geometry{
@@ -417,7 +417,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{biblatex}
-% Then, we configure |biblatex|, for citation management:
+% Then, we configure |biblatex| for citation management:
 %    \begin{macrocode}
 \PassOptionsToPackage{indexing=cite,
   natbib=true,maxnames=2,minnames=1,doi=true,
@@ -478,7 +478,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\section}
-% Then, we redefine |\section| command:
+% Then, we redefine the |\section| command:
 %    \begin{macrocode}
 \makeatletter
 \let\yb@oldsection\section
@@ -499,7 +499,7 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
-% Then, if it's a |authordraft|, we put a watermark comment:
+% Then, if it's an |authordraft|, we put a watermark comment:
 %    \begin{macrocode}
 \makeatletter
 \ifdefined\yb@authordraft
@@ -545,7 +545,7 @@ Hello, world!
 %    \end{macrocode}
 
 % \begin{macro}{\maketitle}
-% Then, we redefine |\maketitle| command:
+% Then, we redefine the |\maketitle| command:
 %    \begin{macrocode}
 \renewcommand\maketitle{
   {\LARGE\textbf{\thetitle}}
@@ -567,7 +567,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\ybPrintTitlePage}
-% Then, we define |\ybPrintTitlePage| command:
+% Then, we define the |\ybPrintTitlePage| command:
 %    \begin{macrocode}
 \makeatletter
 \newcommand\ybPrintTitlePage{
@@ -599,7 +599,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\ybPrintTOC}
-% Then, we define |ybPrintTOC| command to print table of contents:
+% Then, we define the |\ybPrintTOC| command to print the table of contents:
 %    \begin{macrocode}
 \makeatletter
 \newcommand\ybPrintTOC{%
@@ -613,7 +613,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\ybPrintIndex}
-% Then, we configure |imakeidx| package and define |\ybPrintIndex| command:
+% Then, we configure the |imakeidx| package and define the |\ybPrintIndex| command:
 %    \begin{macrocode}
 \RequirePackage{imakeidx}
   \renewbibmacro*{citeindex}{\indexnames{labelname}{}}
@@ -636,7 +636,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\ybQuote}
-% Then, with the help of |wrapfig| and |mdframed|, we define |\ybQuote| command:
+% Then, with the help of |wrapfig| and |mdframed|, we define the |\ybQuote| command:
 %    \begin{macrocode}
 \RequirePackage{wrapfig}
 \RequirePackage{mdframed}
