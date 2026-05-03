@@ -53,7 +53,7 @@
 %</driver>
 % \fi
 
-% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ \LaTeX{} Class |yb-book|\thanks{The sources are in GitHub at \href{https://github.com/yegor256/yb-book.cls}{yegor256/yb-book.cls}}}
+% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ \LaTeX{} Class |yb-book|\thanks{The sources are in GitHub at \href{https://github.com/yegor256/yb-book}{yegor256/yb-book}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
@@ -103,7 +103,7 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{sparse}
-% With this package option every section will start from a new page.
+% With this package option every section will start on a new page.
 % \end{macro}
 
 % \begin{macro}{manuscript}
@@ -164,7 +164,7 @@ Hello, world!
 
 % \begin{macro}{\ybPrintTitlePage}
 % Prints the first page of a book. It expects at least |\thetitle|
-% and |theauthor| to be defined:
+% and |\theauthor| to be defined:
 %\iffalse
 %<*verb>
 %\fi
@@ -217,7 +217,7 @@ Hello, world!
 \documentclass{yb-book}
 \begin{document}
 Hello, world!
-\ybPrintIndex{Recommended Books}
+\ybPrintIndex[Recommended Books]
 \end{document}
 \end{verbatim}
 %\iffalse
@@ -245,7 +245,7 @@ Hello, world!
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
-  colored/.store in=\yb@manuscript,
+  colored/.store in=\yb@colored,
   sparse/.store in=\yb@sparse,
 }
 \ProcessPgfPackageOptions{/yb}
@@ -586,7 +586,7 @@ Hello, world!
       \ifx\thedate\empty\else%
         \thedate{}
       \fi
-      \ifx\thedate\empty\else%
+      \ifx\theversion\empty\else%
         \\
         \theversion{}
       \fi
@@ -727,7 +727,6 @@ Hello, world!
     \end{multicols}%
   \else%
     \setlength\bibitemsep{.2em}%
-    \ifdefined\yb@compact\@openrightfalse\fi%
     \@openrightfalse%
     \printbibliography[heading=bibintoc,title={#1}]%
     \ifdefined\yb@compact\@openrighttrue\fi%
@@ -772,9 +771,9 @@ Hello, world!
   \setlength\parindent{0em}%
   \setlength\fboxsep{0em}%
   \setlength\parskip{.5em}%
-  \exhyphenpenalty=10000% to avoid line breaks before and after mdash
-  \widowpenalty=10000% to have less widows
-  \clubpenalty=10000% to have less orphans
+  \exhyphenpenalty=10000% to avoid line breaks before and after an em dash
+  \widowpenalty=10000% to have fewer widows
+  \clubpenalty=10000% to have fewer orphans
   \interfootnotelinepenalty=10000% to format footnotes better
 }
 \makeatother
