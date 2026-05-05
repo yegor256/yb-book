@@ -579,6 +579,15 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\incolor}
+% Then, we define the |\incolor| command:
+%    \begin{macrocode}
+\makeatletter
+\newcommand\incolor[2]{\ifdefined\yb@colored\textcolor{#1}{#2}\else#2\fi}
+\makeatother
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\ybPrintTitlePage}
 % Then, we define the |\ybPrintTitlePage| command:
 %    \begin{macrocode}
