@@ -202,6 +202,9 @@ Hello, world!
 %\iffalse
 %</verb>
 %\fi
+% A warning is emitted to the log if the quote lands very close to the top
+% or the bottom of a page, since the underlying |wrapfig| environment does
+% not behave well in those positions.
 % \end{macro}
 
 % \begin{macro}{\ybPrintBibliography}
@@ -556,10 +559,9 @@ Hello, world!
     Volume \thevolume{}\\
   \fi
   \ifx\thedate\empty\else%
-    Rendered on \thedate{}
+    Rendered on \thedate{}\\
   \fi
   \ifx\theversion\empty\else%
-    \\
     Ver. \theversion{}
   \fi
 }
@@ -584,10 +586,9 @@ Hello, world!
         Volume \thevolume{}\\
       \fi
       \ifx\thedate\empty\else%
-        \thedate{}
+        \thedate{}\\
       \fi
       \ifx\theversion\empty\else%
-        \\
         \theversion{}
       \fi
       \vspace*{\fill}
@@ -665,6 +666,12 @@ Hello, world!
       \index{#3, #2}%
     \fi%
   }%
+  \ifdim\pagetotal<4\baselineskip\relax%
+    \ClassWarning{yb-book}{ybQuote stays at the top of a page: \detokenize{#1}}%
+  \fi%
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<8\baselineskip\relax%
+    \ClassWarning{yb-book}{ybQuote stays at the bottom of a page: \detokenize{#1}}%
+  \fi%
   \def\yb@body{%
     \raggedright%
     \ifx\hfuzz#3\hfuzz%
@@ -782,8 +789,8 @@ Hello, world!
 % Finally, a few meta commands with default values:
 %    \begin{macrocode}
 \newcommand*\thetitle{\textbackslash{}thetitle}
-\newcommand*\thevolume{}
-\newcommand*\thedate{}
+\let\thevolume\empty
+\let\thedate\empty
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
