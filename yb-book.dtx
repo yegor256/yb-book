@@ -503,6 +503,16 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% Then, we do small tweaking:
+%    \begin{macrocode}
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \raggedright%
+  \parindent=1em%
+  \noindent\hb@xt@1.8em{\hss\@makefnmark}#1}
+\makeatother
+%    \end{macrocode}
+
 % Then, if it's an |authordraft|, we put a watermark comment:
 %    \begin{macrocode}
 \makeatletter
