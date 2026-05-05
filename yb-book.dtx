@@ -640,6 +640,24 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\ybEpigraph}
+% Then, we define the |\ybEpigraph| command to print the epigraph:
+%    \begin{macrocode}
+\newcommand\ybEpigraph[3]{
+  \cleardoublepage
+  \vspace*{\fill}
+  \begin{quote}
+  \begin{raggedleft}
+  ``#1'' \\[1em]
+  {---} #2 \\
+  \citetitle{#3}\\
+  \citeyear{#3}\par
+  \end{raggedleft}
+  \end{quote}
+  \vspace*{\fill}}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\ybPrintTOC}
 % Then, we define the |\ybPrintTOC| command to print the table of contents:
 %    \begin{macrocode}
