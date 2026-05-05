@@ -27,7 +27,6 @@ hard mdframed
 hard microtype
 hard needspace
 hard paralist
-hard paratype
 hard pgf
 hard pgfopts
 hard qrcode
