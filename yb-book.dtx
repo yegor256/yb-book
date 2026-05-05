@@ -460,7 +460,9 @@ Hello, world!
 % Then, we define |condensed| environment for snippets:
 %    \begin{macrocode}
 \newenvironment{condensed}
-  {\begingroup\addfontfeature{LetterSpace=-3.0}}
+  {\begingroup%
+    \addfontfeature{LetterSpace=-3.0}%
+    \lstset{columns=fixed,basewidth=0.45em}}
   {\endgroup}
 %    \end{macrocode}
 % \end{macro}
