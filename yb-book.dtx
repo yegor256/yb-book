@@ -61,12 +61,11 @@
 % \section{Introduction}
 %
 % \index{Amazon}
-% The provided class |yb-book| helps me design
-% \href{https://www.yegor256.com/books.html}{my books} and
-% publish them
+% The class |yb-book| was devised to assist the author in producing
+% \href{https://www.yegor256.com/books.html}{his books} and in publishing them
 % \href{https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK}{on Amazon}.
-% You are welcome to use it for your own books. It is as simple
-% as this:
+% Others are welcome to employ it for their own books. The procedure is
+% straightforward:
 %\iffalse
 %<*verb>
 %\fi
@@ -87,38 +86,39 @@ Hello, world!
 %</verb>
 %\fi
 
-% You are welcome to suggest additional options and commands, but the style
-% of my books is intentionally as simple as possible, avoiding formatting
-% as much as possible. Here is \href{https://www.yegor256.com/2019/05/21/dont-improvise.html}{why}.
+% Suggestions for additional options and commands are welcome; nevertheless, the style
+% of the author's books is intentionally as plain as possible, eschewing formatting
+% to the greatest extent practicable. The reasoning is set out
+% \href{https://www.yegor256.com/2019/05/21/dont-improvise.html}{here}.
 
 % \section{Options}
 
-% There are a few class options you can use:
+% Several class options are available:
 
 % \begin{macro}{compact}
-% Use this package option when you need to make text more compact
-% and take less vertical space. This may be convenient for fiction books.
-% I use this option to render \href{https://www.yegor256.com/code-ahead.html}{Code Ahead} book.
+% This package option is to be used when the text is required in a more compact
+% form, occupying less vertical space. It proves convenient for works of fiction.
+% The author employs it to render the \href{https://www.yegor256.com/code-ahead.html}{Code Ahead} book.
 % \end{macro}
 
 % \begin{macro}{sparse}
-% With this package option every section will start on a new page.
+% Under this package option, every section commences on a new page.
 % \end{macro}
 
 % \begin{macro}{manuscript}
-% When the format is not for Amazon printing,
-% but for some other purposes (the page size is A4), this option may be
-% convenient. I also use it when I want the book to be rendered for
-% printing on paper for review purposes.
+% Whenever the format is not intended for Amazon printing
+% but for some other purpose (the page size being A4), this option proves
+% convenient. The author likewise employs it whenever the book is to be rendered
+% for printing on paper for review purposes.
 % \end{macro}
 
 % \begin{macro}{authordraft}
 % \changes{v0.4.0}{2024/03/23}{The package option \texttt{draft} renamed to \texttt{authordraft}}
-% When it's a draft for reviewers (the page size is A4)
-% and you want to have a watermark and a compact form of the content. This
-% option goes together with the |\thereviewer{}| command, which you may redefine,
-% in order to embed the name of the reviewer in the watermark. This may
-% help you prevent theft of your book:
+% This option is appropriate when the document is a draft for reviewers (the page size being A4)
+% and a watermark together with a compact form of the content is desired. The
+% option is used in conjunction with the |\thereviewer{}| command, which may be redefined
+% to embed the name of the reviewer within the watermark. This serves
+% as a deterrent to theft of the book:
 %\iffalse
 %<*verb>
 %\fi
@@ -136,7 +136,7 @@ Hello, world!
 
 % \section{Meta Commands}
 
-% There are a number of commands that you may redefine in the preamble:
+% A number of commands may be redefined within the preamble:
 %\iffalse
 %<*verb>
 %\fi
@@ -158,12 +158,12 @@ Hello, world!
 
 % \section{Printers}
 
-% There are a number of printers --- commands that print large blocks of text
+% A number of printers are provided---commands that render substantial blocks of text
 % in the expected format:
 
 % \begin{macro}{\ybPrintTitlePage}
-% Prints the first page of a book. It expects at least |\thetitle|
-% and |\theauthor| to be defined:
+% Prints the first page of a book. At minimum, |\thetitle|
+% and |\theauthor| must be defined:
 %\iffalse
 %<*verb>
 %\fi
@@ -201,9 +201,9 @@ Hello, world!
 %\iffalse
 %</verb>
 %\fi
-% A warning is emitted to the log if the quote lands very close to the top
-% or the bottom of a page, since the underlying |wrapfig| environment does
-% not behave well in those positions.
+% A warning is emitted to the log whenever the quotation falls very close to the top
+% or the bottom of a page, since the underlying |wrapfig| environment behaves
+% poorly in such positions.
 % \end{macro}
 
 % \begin{macro}{\ybPrintBibliography}
