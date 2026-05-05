@@ -36,7 +36,7 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{microtype}
-  \microtypesetup{verbose=false}
+  \microtypesetup{verbose=false,nopatch=footnote}
   \AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
 \usepackage{href-ul}
 \usepackage{graphicx}
@@ -793,6 +793,10 @@ Hello, world!
   \widowpenalty=10000% to have fewer widows
   \clubpenalty=10000% to have fewer orphans
   \interfootnotelinepenalty=10000% to format footnotes better
+  \hfuzz=3pt %
+  \tolerance=1000 %
+  \emergencystretch=1em %
+  \hbadness=2000 %
 }
 \makeatother
 %    \end{macrocode}
