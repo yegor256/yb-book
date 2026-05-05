@@ -588,6 +588,20 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\ix}
+% Then, we define the |\ix| command:
+%    \begin{macrocode}
+\newcommand\ix[2][]{%
+  \incolor{brown}{#2}%
+  \def\ixparam{#1}%
+  \ifx\ixparam\empty%
+    \index{#2}%
+  \else%
+    \index{#1}%
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\emph}
 % Then, we redefine the |\emph| command:
 %    \begin{macrocode}
