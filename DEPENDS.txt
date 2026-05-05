@@ -43,6 +43,7 @@ hard zref
 soft biblatex
 soft imakeidx
 soft l3build
+soft lmodern
 soft pgfopts
 soft scheme-basic
 soft silence

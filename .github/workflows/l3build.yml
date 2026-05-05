@@ -31,6 +31,11 @@ jobs:
           package_file: packages.txt
           texlive_version: 2025
       - run: l3build ctan --show-log-on-error --halt-on-error
+      - if: failure()
+        run: |
+          echo '::group::yb-book.log'
+          cat build/doc/yb-book.log 2>/dev/null || echo 'no build/doc/yb-book.log'
+          echo '::endgroup::'
       - run: |
           mkdir build/gh-pages
           cp build/distrib/tds/tex/latex/yb-book/yb-book.cls build/gh-pages
