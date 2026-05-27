@@ -5,8 +5,8 @@ module = "yb-book"
 ctanupload = true
 typesetopts = "-interaction=batchmode -shell-escape -halt-on-error"
 checkopts = "-interaction=batchmode -shell-escape -halt-on-error"
-checkengines = {"xetex", "luatex"}
-stdengine = "xetex"
+checkengines = {"pdftex", "xetex", "luatex"}
+stdengine = "pdftex"
 tagfiles = {"build.lua", "yb-book.dtx"}
 docfiles = {"yb-book-logo.pdf"}
 cleanfiles = {"*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.cls"}
