@@ -563,7 +563,8 @@ Hello, world!
 % Then, we define the |\incolor| command:
 %    \begin{macrocode}
 \makeatletter
-\newcommand\incolor[2]{\ifdefined\yb@colored\textcolor{#1}{#2}\else#2\fi}
+\newcommand\incolor[2]{%
+  \ifdefined\yb@colored\textcolor{#1}{#2}\else#2\fi}
 \makeatother
 %    \end{macrocode}
 % \end{macro}
@@ -748,7 +749,7 @@ Hello, world!
 \PassOptionsToPackage{bottom,perpage,multiple}{footmisc}
 \RequirePackage{footmisc}
 \makeatletter
-  \let\yb@oldfootnote\footnote
+\let\yb@oldfootnote\footnote
 \newcommand\yb@nexttoken\relax
 \newcommand\yb@isfootnote{%
   \ifx\footnote\yb@nexttoken\textsuperscript{,}\fi}
