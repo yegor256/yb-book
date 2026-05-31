@@ -742,6 +742,20 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\ybQuote}
+% Then, we define the |\ybTweet| command:
+% \changes{v0.11.0}{2026/05/31}{The \texttt{\char`\\ybTweet} command added.}
+%    \begin{macrocode}
+\makeatletter
+\newcommand\ybTweet[1]{%
+  \ifdefined\yb@authordraft\else%
+    \ybQuote{#1}{}{}%
+  \fi%
+  }
+\makeatother
+%    \end{macrocode}
+% \end{macro}
+
 % Then, we use and configure |footmisc| as suggested
 % \href{https://tex.stackexchange.com/questions/40072/incompatibility-between-footmisc-option-multiple-and-hyperref/62091#62091}{here}:
 %    \begin{macrocode}
