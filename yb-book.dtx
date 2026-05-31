@@ -786,6 +786,7 @@ Hello, world!
 % Then, we define the |\highlight| command:
 % \changes{v0.7.0}{2025/11/30}{The \texttt{\char`\\highlight} command was added.}
 %    \begin{macrocode}
+\makeatletter
 \newcommand\highlight[1]{%
   \tikz[baseline=(text.base)] {
     \node[inner sep=0em, outer sep=0em] (text) {%
@@ -801,6 +802,7 @@ Hello, world!
     \end{scope}
   }%
 }
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
