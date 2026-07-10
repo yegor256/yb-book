@@ -797,30 +797,6 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\highlight}
-% Then, we define the |\highlight| command:
-% \changes{v0.7.0}{2025/11/30}{The \texttt{\char`\\highlight} command was added.}
-%    \begin{macrocode}
-\makeatletter
-\newcommand\highlight[1]{%
-  \tikz[baseline=(text.base)] {
-    \node[inner sep=0em, outer sep=0em] (text) {%
-      {\ifdefined\yb@colored\color{orange}\fi#1}};
-    \begin{scope}
-      \path[use as bounding box] (text.east) rectangle (text.west);
-      \draw[decorate,
-        decoration={random steps, amplitude=0.05em, segment length=0.3em},
-        line join=round,
-        line cap=round,
-        line width=.08em,
-        draw=gray!80] ($(text.west) + (-0.2em, -.46em)$) rectangle ($(text.east) + (+0.2em, -.46em)$);
-    \end{scope}
-  }%
-}
-\makeatother
-%    \end{macrocode}
-% \end{macro}
-
 % Then, a few layout configurations at the beginning of the document:
 % \changes{v0.6.6}{2025/07/06}{Penalties for widows and clubs specified.}
 %    \begin{macrocode}
