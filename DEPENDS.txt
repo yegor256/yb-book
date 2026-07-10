@@ -30,6 +30,7 @@ hard pgfopts
 hard qrcode
 hard setspace
 hard soul
+hard stroke
 hard textpos
 hard titlesec
 hard ulem
