@@ -14,6 +14,7 @@ hard fancyhdr
 hard float
 hard footmisc
 hard geometry
+hard handstroke
 hard href-ul
 hard hypdoc
 hard ifmtarg
@@ -30,7 +31,6 @@ hard pgfopts
 hard qrcode
 hard setspace
 hard soul
-hard stroke
 hard textpos
 hard titlesec
 hard ulem

@@ -333,10 +333,11 @@ Hello, world!
   \counterwithout{footnote}{chapter}
 %    \end{macrocode}
 
-% Then, we load \href{https://ctan.org/pkg/stroke}{stroke}
-% to enable |\stroke| command to underline:
+% Then, we load \href{https://ctan.org/pkg/handstroke}{handstroke}
+% to enable |\hs| command to underline:
 %    \begin{macrocode}
-\RequirePackage{stroke}
+% \PassOptionsToPackage{synonym=hs}{handstroke}
+\RequirePackage{handstroke}
 %    \end{macrocode}
 
 % Then, we load \href{https://ctan.org/pkg/lastpage}{lastpage} to enable rendering of the last page number:
