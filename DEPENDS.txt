@@ -39,12 +39,15 @@ hard xcolor
 hard xifthen
 hard xkeyval
 hard zref
+soft biber
 soft biblatex
 soft bookmark
 soft fail-fast
 soft imakeidx
 soft l3build
 soft lm
+soft luatex
 soft pgfopts
 soft scheme-basic
 soft silence
+soft xetex
