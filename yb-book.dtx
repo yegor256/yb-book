@@ -36,11 +36,15 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{lmodern}
+\usepackage{fail-fast}
 \usepackage{microtype}
   \microtypesetup{verbose=false,nopatch=footnote}
   \AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
+\PassOptionsToPackage{hyperindex=false}{hyperref}
 \usepackage{href-ul}
 \usepackage{graphicx}
+\usepackage{bookmark}
+\renewcommand{\RerunFileCheck}[3]{\AddToHook{enddocument/info}{#2}}
 \PageIndex
 \EnableCrossrefs
 \CodelineIndex

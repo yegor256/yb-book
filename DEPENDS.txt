@@ -40,6 +40,8 @@ hard xifthen
 hard xkeyval
 hard zref
 soft biblatex
+soft bookmark
+soft fail-fast
 soft imakeidx
 soft l3build
 soft lm
