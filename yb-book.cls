@@ -7,7 +7,7 @@
 %% yb-book.dtx  (with options: `class')
 %% (The MIT License)
 %% 
-%% Copyright (c) 2021-2025 Yegor Bugayenko
+%% Copyright (c) 2021-2026 Yegor Bugayenko
 %% 
 %% Permission is hereby granted, free of charge, to any person obtaining a copy
 %% of this software and associated documentation files (the 'Software'), to deal
@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2025/03/02 10.10.31 YB Branded Book Style]
+[2026-07-16 08.17.57 YB Branded Book Style]
 
 
 
@@ -61,6 +61,7 @@
   authordraft/.store in=\yb@authordraft,
   compact/.store in=\yb@compact,
   manuscript/.store in=\yb@manuscript,
+  colored/.store in=\yb@colored,
   sparse/.store in=\yb@sparse,
 }
 \ProcessPgfPackageOptions{/yb}
@@ -81,7 +82,13 @@
 \makeatother
 \LoadClass{book}
 
-\RequirePackage[utf8]{inputenc}
+\RequirePackage{href-ul}
+
+\PassOptionsToPackage{capitalize}{cleveref}
+\RequirePackage{amsmath}
+\RequirePackage{cleveref}
+  \crefformat{section}{\S#2#1#3}
+
 
 \RequirePackage{geometry}
 \geometry{
@@ -98,8 +105,6 @@
 \fi
 \makeatother
 
-\RequirePackage{href-ul}
-
 \RequirePackage{anyfontsize}
 
 \RequirePackage{tikz}
@@ -110,6 +115,9 @@
 \RequirePackage{chngcntr}
   \counterwithout{footnote}{chapter}
 
+\PassOptionsToPackage{synonym=hs}{handstroke}
+\RequirePackage{handstroke}
+
 \RequirePackage{lastpage}
 
 \RequirePackage{paralist}
@@ -118,19 +126,17 @@
 
 \RequirePackage{graphicx}
 
-\RequirePackage[inline]{enumitem}
+\PassOptionsToPackage{inline}{enumitem}
+\RequirePackage{enumitem}
   \setlist{nosep}
 
 \RequirePackage{float}
 
-\RequirePackage[normalem]{ulem}
-
 \RequirePackage{xfp}
 \RequirePackage{xifthen}
 
-\RequirePackage{soul}
-
-\RequirePackage[autostyle=try]{csquotes}
+\PassOptionsToPackage{autostyle=try}{csquotes}
+\RequirePackage{csquotes}
 
 \pagestyle{plain}
 
@@ -144,7 +150,7 @@
 
 \PassOptionsToPackage{indexing=cite,
   natbib=true,maxnames=2,minnames=1,doi=true,
-  url=false,isbn=false,isbn=false}{biblatex}
+  url=false,isbn=false}{biblatex}
 \makeatletter
 \ifdefined\yb@apa
   \PassOptionsToPackage{style=authoryear}{biblatex}
@@ -176,30 +182,29 @@
     {\usebibmacro{postnote}}
 
 \newenvironment{condensed}
-  {\begingroup\setstretch{1.0}\lsstyle}
+  {\begingroup%
+    \lstset{columns=fixed,basewidth=0.45em}}
   {\endgroup}
 
 \makeatletter
-\ifdefined\yb@authordraft\else
-  \PassOptionsToPackage{letterspace=-50,nopatch=footnote}{microtype}
-  \RequirePackage{microtype}
+\ifdefined\yb@authordraft
+  \PassOptionsToPackage{nopatch=footnote}{microtype}
+\else
+  \PassOptionsToPackage{nopatch=footnote,protrusion=true}{microtype}
 \fi
 \makeatother
-
-\makeatletter
-\ifdefined\yb@manuscript
-  \RequirePackage[tt=false,type1=true]{libertine}
-\fi
-\makeatother
+\RequirePackage{microtype}
 
 \makeatletter
 \let\yb@oldsection\section
 \def\yb@secstart{\ifdefined\yb@sparse\newpage\fi}
 \ifdefined\yb@authordraft
-  \RequirePackage[medium]{titlesec}
+  \PassOptionsToPackage{medium}{titlesec}
+  \RequirePackage{titlesec}
 \else
-  \RequirePackage[raggedright]{titlesec}
-    \titlespacing{\section}{0in}{6pt}{6pt}[1in]
+  \PassOptionsToPackage{raggedright}{titlesec}
+  \RequirePackage{titlesec}
+    \titlespacing{\section}{0em}{2em}{1em}
   \renewcommand\section{\yb@secstart\yb@oldsection}
 \fi
 \ifdefined\yb@compact
@@ -208,14 +213,22 @@
 \makeatother
 
 \makeatletter
+\renewcommand\@makefntext[1]{%
+  \raggedright%
+  \parindent=1em%
+  \noindent\hb@xt@1.8em{\hss\@makefnmark}#1}
+\makeatother
+
+\makeatletter
 \ifdefined\yb@authordraft
-  \RequirePackage[absolute]{textpos}
+  \PassOptionsToPackage{absolute}{textpos}
+  \RequirePackage{textpos}
     \TPGrid{16}{16}
   \RequirePackage{fancyhdr}
   \pagestyle{fancy}
-  \renewcommand\headrulewidth{0pt}
-  \renewcommand\footrulewidth{0pt}
-  \setlength{\headheight}{16pt}
+  \renewcommand\headrulewidth{0em}
+  \renewcommand\footrulewidth{0em}
+  \setlength{\headheight}{3em}
   \fancyhf{}
   \fancyhead[L,C,LO,CO]{}
   \fancyhead[R,RO]{
@@ -231,7 +244,7 @@
     \end{textblock}%
     \begin{textblock}{4}(11.5,1)%
       \tikz \node [color=gray, rotate=270,
-        font=\ttfamily\scriptsize, text width=8in] at (0,0) {%
+        font=\ttfamily\scriptsize, text width=24em] at (0,0) {%
         Copyright \textcopyright{} \the\year{} by \theauthor{}.
         All rights reserved. No part of the contents of
         this book may be reproduced or transmitted in any
@@ -244,7 +257,7 @@
     \end{textblock}
   }
   \fancyfoot[C,CO,C]{\small\ttfamily%
-    page \#\thepage{} of \pageref{LastPage}}
+    page \thepage{} of \pageref{LastPage}}
 \fi
 \makeatother
 
@@ -257,13 +270,28 @@
     Volume \thevolume{}\\
   \fi
   \ifx\thedate\empty\else%
-    Rendered on \thedate{}
+    Rendered on \thedate{}\\
   \fi
   \ifx\theversion\empty\else%
-    \\
     Ver. \theversion{}
   \fi
 }
+
+\makeatletter
+\newcommand\incolor[2]{%
+  \ifdefined\yb@colored\textcolor{#1}{#2}\else#2\fi}
+\makeatother
+
+\newcommand\ix[2][]{%
+  \incolor{brown}{#2}%
+  \def\ixparam{#1}%
+  \ifx\ixparam\empty%
+    \index{#2}%
+  \else%
+    \index{#1}%
+  \fi}
+
+\renewcommand\emph[1]{\incolor{orange}{\textit{#1}}}
 
 \makeatletter
 \newcommand\ybPrintTitlePage{
@@ -280,10 +308,9 @@
         Volume \thevolume{}\\
       \fi
       \ifx\thedate\empty\else%
-        \thedate{}
+        \thedate{}\\
       \fi
-      \ifx\thedate\empty\else%
-        \\
+      \ifx\theversion\empty\else%
         \theversion{}
       \fi
       \vspace*{\fill}
@@ -292,12 +319,25 @@
 }
 \makeatother
 
+\newcommand\ybEpigraph[3]{
+  \cleardoublepage
+  \vspace*{\fill}
+  \begin{quote}
+  \begin{raggedleft}
+  ``#1'' \\[1em]
+  {---} #2 \\
+  \citetitle{#3}\\
+  \citeyear{#3}\par
+  \end{raggedleft}
+  \end{quote}
+  \vspace*{\fill}}
+
 \makeatletter
-\newcommand\ybPrintTOC{
-  \ifdefined\yb@authordraft\else
-    \ifdefined\yb@compact\else\cleardoublepage\fi
-    {\setstretch{0.7}\tableofcontents}
-  \fi
+\newcommand\ybPrintTOC{%
+  \ifdefined\yb@authordraft\else%
+    \ifdefined\yb@compact\else\cleardoublepage\fi%
+    {\setstretch{0.7}\tableofcontents}%
+  \fi%
 }
 \makeatother
 
@@ -307,8 +347,8 @@
   \indexsetup{othercode={\hyphenpenalty=10000}}
 \makeatletter
 \newcommand\ybPrintIndex[1][Index]{%
-  \ifdefined\yb@authordraft\else
-    \cleardoublepage%
+  \ifdefined\yb@authordraft\else%
+    \ifdefined\yb@compact\else\cleardoublepage\fi%
     {%
       \setstretch{1.0}%
       \small%
@@ -324,18 +364,18 @@
 \RequirePackage{changepage}
   \strictpagecheck
 \mdfdefinestyle{quoteodd}{backgroundcolor=black!0,
-  leftmargin=6pt,rightmargin=0pt,
-  innerleftmargin=6pt,innerrightmargin=0pt,
-  innertopmargin=0pt,innerbottommargin=0pt,
-  skipabove=0pt,skipbelow=0pt,
-  linewidth=2pt,
+  leftmargin=1em,rightmargin=0em,
+  innerleftmargin=1em,innerrightmargin=0em,
+  innertopmargin=0em,innerbottommargin=0em,
+  skipabove=0em,skipbelow=0em,
+  linewidth=.2em,
   topline=false,bottomline=false,rightline=false}
 \mdfdefinestyle{quoteeven}{backgroundcolor=black!0,
-  rightmargin=6pt,leftmargin=0pt,
-  innerrightmargin=6pt,innerleftmargin=0pt,
-  innertopmargin=0pt,innerbottommargin=0pt,
-  skipabove=0pt,skipbelow=0pt,
-  linewidth=2pt,
+  rightmargin=1em,leftmargin=0em,
+  innerrightmargin=1em,innerleftmargin=0em,
+  innertopmargin=0em,innerbottommargin=0em,
+  skipabove=0em,skipbelow=0em,
+  linewidth=.2em,
   topline=false,bottomline=false,leftline=false}
 \makeatletter
 \newcommand\ybQuote[3]{%
@@ -346,6 +386,12 @@
       \index{#3, #2}%
     \fi%
   }%
+  \ifdim\pagetotal<4\baselineskip\relax%
+    \ClassWarning{yb-book}{ybQuote stays at the top of a page: \detokenize{#1}}%
+  \fi%
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<8\baselineskip\relax%
+    \ClassWarning{yb-book}{ybQuote stays at the bottom of a page: \detokenize{#1}}%
+  \fi%
   \def\yb@body{%
     \raggedright%
     \ifx\hfuzz#3\hfuzz%
@@ -361,23 +407,32 @@
       \end{mdframed}%
     \end{wrapfigure}%
   \else%
-    \begin{wrapfigure}{o}[12pt]{0.4\textwidth}%
+    \begin{wrapfigure}{o}[2em]{0.4\textwidth}%
       \sffamily\checkoddpage%
       \ifoddpage%
         \begin{mdframed}[style=quoteodd]\yb@body\end{mdframed}%
       \else%
         \begin{mdframed}[style=quoteeven]\yb@body\end{mdframed}%
       \fi%
-      \vspace{-12pt}
+      \vspace{-1em}
     \end{wrapfigure}%
   \fi%
 }
 \makeatother
 
-\RequirePackage{perpage}
-\RequirePackage[bottom,perpage,multiple]{footmisc}
 \makeatletter
-  \let\yb@oldfootnote\footnote
+\newcommand\ybTweet[1]{%
+  \ifdefined\yb@authordraft\else%
+    \ybQuote{#1}{}{}%
+  \fi%
+  }
+\makeatother
+
+\RequirePackage{perpage}
+\PassOptionsToPackage{bottom,perpage,multiple}{footmisc}
+\RequirePackage{footmisc}
+\makeatletter
+\let\yb@oldfootnote\footnote
 \newcommand\yb@nexttoken\relax
 \newcommand\yb@isfootnote{%
   \ifx\footnote\yb@nexttoken\textsuperscript{,}\fi}
@@ -390,14 +445,16 @@
   \AtNextBibliography{\small}%
   \raggedright%
   \ifdefined\yb@manuscript%
-    \setlength\bibitemsep{0pt}%
+    \setlength\bibitemsep{0em}%
     \newpage%
     \begin{multicols}{2}%
       {\setstretch{1.0}\printbibliography}%
     \end{multicols}%
   \else%
     \setlength\bibitemsep{.2em}%
+    \@openrightfalse%
     \printbibliography[heading=bibintoc,title={#1}]%
+    \ifdefined\yb@compact\@openrighttrue\fi%
   \fi%
 }
 \makeatother
@@ -408,17 +465,24 @@
   \ifdefined\yb@authordraft%
     \raggedright%
   \fi%
-  \setlength\topskip{0mm}%
-  \setlength\parindent{0pt}%
-  \setlength\fboxsep{0pt}%
-  \setlength\parskip{6pt}%
-  \interfootnotelinepenalty=10000%
+  \setlength\topskip{0em}%
+  \setlength\parindent{0em}%
+  \setlength\fboxsep{0em}%
+  \setlength\parskip{.5em}%
+  \exhyphenpenalty=10000% to avoid line breaks before and after an em dash
+  \widowpenalty=10000% to have fewer widows
+  \clubpenalty=10000% to have fewer orphans
+  \interfootnotelinepenalty=10000% to format footnotes better
+  \hfuzz=3pt %
+  \tolerance=1000 %
+  \emergencystretch=1em %
+  \hbadness=2000 %
 }
 \makeatother
 
 \newcommand*\thetitle{\textbackslash{}thetitle}
-\newcommand*\thevolume{}
-\newcommand*\thedate{}
+\let\thevolume\empty
+\let\thedate\empty
 \newcommand*\theversion{\textbackslash{}theversion}
 \newcommand*\theauthor{\textbackslash{}theauthor}
 \newcommand*\thereviewer{\textbackslash{}thereviewer}
