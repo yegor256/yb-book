@@ -39,7 +39,7 @@ jobs:
           Write-Host "Ghostscript at $($gs.DirectoryName)"
           Add-Content -Path $env:GITHUB_PATH -Value $gs.DirectoryName
       - run: cut -d' ' -f2 DEPENDS.txt > packages.txt
-      - uses: zauguin/install-texlive@v4.4.0
+      - uses: zauguin/install-texlive@v4.5.0
         with:
           package_file: packages.txt
           texlive_version: 2026
