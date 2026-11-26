@@ -689,11 +689,13 @@ Hello, world!
 
 % \begin{macro}{\ybQuote}
 % Then, with the help of |wrapfig| and |mdframed|, we define the |\ybQuote| command:
+% \changes{v0.11.1}{2026/11/26}{The \texttt{\char`\\ybQuote} command starts a new page when the quote doesn't fit at the bottom of the current one.}
 %    \begin{macrocode}
 \RequirePackage{wrapfig}
 \RequirePackage{mdframed}
 \RequirePackage{changepage}
   \strictpagecheck
+\RequirePackage{needspace}
 \mdfdefinestyle{quoteodd}{backgroundcolor=black!0,
   leftmargin=1em,rightmargin=0em,
   innerleftmargin=1em,innerrightmargin=0em,
@@ -709,6 +711,7 @@ Hello, world!
   linewidth=.2em,
   topline=false,bottomline=false,leftline=false}
 \makeatletter
+\newsavebox\yb@quotebox
 \newcommand\ybQuote[3]{%
   \ifthenelse{\isempty{#3}}{}{
     \ifx\hfuzz#2\hfuzz%
@@ -720,9 +723,6 @@ Hello, world!
   \ifdim\pagetotal<4\baselineskip\relax%
     \ClassWarning{yb-book}{ybQuote stays at the top of a page: \detokenize{#1}}%
   \fi%
-  \ifdim\dimexpr\pagegoal-\pagetotal\relax<8\baselineskip\relax%
-    \ClassWarning{yb-book}{ybQuote stays at the bottom of a page: \detokenize{#1}}%
-  \fi%
   \def\yb@body{%
     \raggedright%
     \ifx\hfuzz#3\hfuzz%
@@ -730,7 +730,14 @@ Hello, world!
     \else%
       ``#1''\\\raggedleft---#2 #3%
     \fi%
-  }
+  }%
+  \sbox\yb@quotebox{%
+    \begin{minipage}{\dimexpr0.4\textwidth-2.2em\relax}%
+      \ifdefined\yb@authordraft\else\sffamily\fi%
+      \yb@body%
+    \end{minipage}%
+  }%
+  \needspace{\dimexpr\ht\yb@quotebox+\dp\yb@quotebox+2\baselineskip\relax}%
   \ifdefined\yb@authordraft%
     \begin{wrapfigure}{r}{0.4\textwidth}%
       \begin{mdframed}[style=quoteodd]%

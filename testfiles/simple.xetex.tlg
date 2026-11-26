@@ -13,6 +13,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+(../mt-cmr.cfg
+File: mt-cmr.cfg ....-..-.. v... microtype config. file: Computer Modern Roman (RS)
+)
 Package mdframed Info: mdframed works in twoside mode on input line ....
 Package mdframed Info: mdframed inside float 
  mdframed uses option nobreak mdframed on input line ....
