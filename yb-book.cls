@@ -32,7 +32,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{yb-book}
-[2026-11-12 02.50.27 YB Branded Book Style]
+[2026-11-26 06.58.58 YB Branded Book Style]
 
 
 
@@ -363,6 +363,7 @@
 \RequirePackage{mdframed}
 \RequirePackage{changepage}
   \strictpagecheck
+\RequirePackage{needspace}
 \mdfdefinestyle{quoteodd}{backgroundcolor=black!0,
   leftmargin=1em,rightmargin=0em,
   innerleftmargin=1em,innerrightmargin=0em,
@@ -378,6 +379,7 @@
   linewidth=.2em,
   topline=false,bottomline=false,leftline=false}
 \makeatletter
+\newsavebox\yb@quotebox
 \newcommand\ybQuote[3]{%
   \ifthenelse{\isempty{#3}}{}{
     \ifx\hfuzz#2\hfuzz%
@@ -389,9 +391,6 @@
   \ifdim\pagetotal<4\baselineskip\relax%
     \ClassWarning{yb-book}{ybQuote stays at the top of a page: \detokenize{#1}}%
   \fi%
-  \ifdim\dimexpr\pagegoal-\pagetotal\relax<8\baselineskip\relax%
-    \ClassWarning{yb-book}{ybQuote stays at the bottom of a page: \detokenize{#1}}%
-  \fi%
   \def\yb@body{%
     \raggedright%
     \ifx\hfuzz#3\hfuzz%
@@ -399,7 +398,14 @@
     \else%
       ``#1''\\\raggedleft---#2 #3%
     \fi%
-  }
+  }%
+  \sbox\yb@quotebox{%
+    \begin{minipage}{\dimexpr0.4\textwidth-2.2em\relax}%
+      \ifdefined\yb@authordraft\else\sffamily\fi%
+      \yb@body%
+    \end{minipage}%
+  }%
+  \needspace{\dimexpr\ht\yb@quotebox+\dp\yb@quotebox+2\baselineskip\relax}%
   \ifdefined\yb@authordraft%
     \begin{wrapfigure}{r}{0.4\textwidth}%
       \begin{mdframed}[style=quoteodd]%
