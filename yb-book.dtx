@@ -208,7 +208,32 @@ Hello, world!
 %\fi
 % A warning is emitted to the log whenever the quotation falls very close to the top
 % or the bottom of a page, since the underlying |wrapfig| environment behaves
-% poorly in such positions.
+% poorly in such positions. The quote also keeps shortening a few lines that follow
+% it. If another |wrapfigure| is placed close after a |\ybQuote|, the two collide:
+% the second figure may be dropped and the surrounding text may lose its paragraph
+% shapes. The |\ybFlushQuote| command must be used right before such a |wrapfigure|.
+% \end{macro}
+
+% \begin{macro}{\ybFlushQuote}
+% Ends the wrapping started by a preceding |\ybQuote|, skipping the lines that were
+% still reserved for the quote. It must come before any other |wrapfigure| placed
+% close after a quote:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{yb-book}
+\begin{document}
+\ybQuote{Never tell the truth to people who
+  are not worthy of it}{Mark Twain}{}
+Hello, world!
+\ybFlushQuote
+.. a portrait in its own wrapfigure goes here
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
 % \end{macro}
 
 % \begin{macro}{\ybPrintBibliography}
@@ -755,6 +780,24 @@ Hello, world!
       \vspace{-1em}
     \end{wrapfigure}%
   \fi%
+}
+\makeatother
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ybFlushQuote}
+% \changes{v0.13.0}{2026/11/15}{The \texttt{\char`\\ybFlushQuote} command added.}
+% The |\ybQuote| command returns while |wrapfig| is still shortening the lines that
+% follow it. When another |wrapfigure| has to start close after a quote, this command
+% ends the wrapping first:
+%    \begin{macrocode}
+\makeatletter
+\newcommand\ybFlushQuote{%
+  \par%
+  \ifnum\c@WF@wrappedlines>\@ne%
+    \vspace*{\dimexpr\baselineskip*(\c@WF@wrappedlines-1)\relax}%
+  \fi%
+  \WFclear%
 }
 \makeatother
 %    \end{macrocode}
